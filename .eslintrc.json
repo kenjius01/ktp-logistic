@@ -1,3 +1,62 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"]
+  "extends": [
+    "next",
+    "eslint:recommended",
+    "prettier",
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier", "@typescript-eslint", "simple-import-sort"],
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    // I suggest you add those two rules:
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+
+    "curly": ["error", "all"],
+    "eqeqeq": "error",
+    "prefer-arrow-callback": "error",
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error"
+
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     "singleQuote": true,
+    //     "semi": true,
+    //     "trailingComma": "all",
+    //     "endOfLine": "auto",
+    //     "tabWidth": 2,
+    //     "printWidth": 100
+    //   }
+    // ]
+  },
+  "overrides": [
+    // override "simple-import-sort" config
+    {
+      "files": ["*.js", "*.jsx", "*.ts", "*.tsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          "error",
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              ["^react", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
