@@ -2,13 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 body {
   height: 100%;
   width: 100%;
 }
-
 
 @layer base {
   :root {
@@ -76,14 +73,13 @@ body {
   }
 }
 
-
 .vr-circle-fill-fb {
   background: #2196f3b2;
   box-shadow: 0 0 0 0 rgb(33, 150, 243);
 }
 
 .vr-circle-fill-zalo {
-  box-shadow: 0 0 0 0 #2196F3;
+  box-shadow: 0 0 0 0 #2196f3;
   background-color: rgba(33, 150, 243, 0.7);
 }
 
