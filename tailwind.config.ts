@@ -1,17 +1,18 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
-    darkMode: ["class"],
-    content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+  darkMode: ['class'],
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
   	extend: {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			mainColor: 'hsl(var(--main-color))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -55,9 +56,69 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
+  		},
+  		keyframes: {
+  			'phone-vr-circle-fill': {
+  				'0%': {
+  					transform: 'rotate(0) scale(1) skew(1deg)'
+  				},
+  				'10%': {
+  					transform: 'rotate(-25deg) scale(1) skew(1deg)'
+  				},
+  				'20%': {
+  					transform: 'rotate(25deg) scale(1) skew(1deg)'
+  				},
+  				'30%': {
+  					transform: 'rotate(-25deg) scale(1) skew(1deg)'
+  				},
+  				'40%': {
+  					transform: 'rotate(25deg) scale(1) skew(1deg)'
+  				},
+  				'50%': {
+  					transform: 'rotate(0) scale(1) skew(1deg)'
+  				},
+  				'100%': {
+  					transform: 'rotate(0) scale(1) skew(1deg)'
+  				}
+  			},
+  			zoom: {
+  				'0%': {
+  					transform: 'scale(0.9)'
+  				},
+  				'70%': {
+  					transform: 'scale(1)',
+  					boxShadow: '0 0 0 15px transparent'
+  				},
+  				'100%': {
+  					transform: 'scale(0.9)',
+  					boxShadow: '0 0 0 0 transparent'
+  				}
+  			},
+  			'accordion-down': {
+  				from: {
+  					height: '0'
+  				},
+  				to: {
+  					height: 'var(--radix-accordion-content-height)'
+  				}
+  			},
+  			'accordion-up': {
+  				from: {
+  					height: 'var(--radix-accordion-content-height)'
+  				},
+  				to: {
+  					height: '0'
+  				}
+  			}
+  		},
+  		animation: {
+  			'phone-vr-circle-fill': 'phone-vr-circle-fill 1s ease-in-out infinite',
+  			zoom: 'zoom 1.3s infinite',
+  			'accordion-down': 'accordion-down 0.2s ease-out',
+  			'accordion-up': 'accordion-up 0.2s ease-out'
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require('tailwindcss-animate')],
 };
 export default config;
