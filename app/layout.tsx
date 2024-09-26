@@ -4,6 +4,7 @@ import localFont from 'next/font/local';
 
 import { MainLayout } from '@/components/mainLayout/MainLayout';
 import { QueryProvider } from '@/components/providers/QueryProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 import './globals.css';
 
@@ -35,6 +36,7 @@ export default function RootLayout({
           <MainLayout>{children}</MainLayout>
           <ReactQueryDevtools />
         </QueryProvider>
+        <Toaster />
       </body>
     </html>
   );

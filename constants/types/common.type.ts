@@ -21,3 +21,22 @@ export interface ICompanyPhotoRes {
   items: CompanyPhotoType[];
   total?: number;
 }
+
+export interface IFormContact {
+  full_name: string;
+  content: string;
+  phone_number: string;
+  email: string;
+  address: string;
+}
+
+export type FormContactType = {
+  id: number;
+  full_name: string;
+  content: string;
+  phone_number: string;
+  email: string;
+  created_at: string;
+  address: string;
+  is_read: boolean;
+};
