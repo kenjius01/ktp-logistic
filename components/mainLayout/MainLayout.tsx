@@ -1,4 +1,11 @@
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
+import { ArrowUpToLine } from 'lucide-react';
 import Image from 'next/image';
+
+import { companyInfoOptions } from '@/constants/options';
+import { getQueryClient } from '@/lib/get-query-client';
+
+import { ScrollToTop } from '../ScrollToTop';
 
 import { Footer } from './footer/Footer';
 import { Header } from './header/Header';
@@ -8,11 +15,16 @@ interface MainLayoutProps {
 }
 
 export const MainLayout = ({ children }: MainLayoutProps) => {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(companyInfoOptions);
+
   return (
-    <div>
+    <div className="">
       <Header />
       <main>{children}</main>
-      <Footer />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <Footer />
+      </HydrationBoundary>
       <div className="fixed bottom-5 left-2 z-50 flex flex-col items-center gap-4 sm:bottom-8 sm:left-5">
         {/* Facebook */}
         <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
@@ -65,6 +77,11 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
       </div>
+
+      {/* Scroll to top */}
+      <ScrollToTop minHeight={400} scrollTo={10} className="bottom-16 right-4">
+        <ArrowUpToLine />
+      </ScrollToTop>
     </div>
   );
 };

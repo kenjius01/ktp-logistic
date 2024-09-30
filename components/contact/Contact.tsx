@@ -32,12 +32,13 @@ export const Contact = () => {
           </div>
           <div className="flex-1">
             <iframe
-              src="https://maps.google.com/maps?q=24%20B%C3%ACnh%20H%C3%B2a%206%2C%20khu%C3%AA%20trung%2C%20c%E1%BA%A9m%20l%E1%BB%87%2C%20%C4%91%C3%A0%20n%E1%BA%B5ng&t=m&z=19&output=embed&iwloc=near"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.3255639159815!2d106.66978270888838!3d10.786357989318645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed43913c8c5%3A0x40910a582f5d5df2!2sTHI%CC%A3NH%20PHA%CC%81T%20LOGISTICS!5e0!3m2!1svi!2s!4v1727407967095!5m2!1svi!2s"
               width="100%"
               height="100%"
               style={{ border: '0', position: 'relative', zIndex: '10' }}
               allowFullScreen
               loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
           </div>
         </div>

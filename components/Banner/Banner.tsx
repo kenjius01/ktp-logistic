@@ -1,6 +1,6 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 
@@ -12,7 +12,7 @@ import { searchBannersApi } from '@/services/common.services';
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import { Skeleton } from '../ui/skeleton';
 export const Banner = () => {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useSuspenseQuery({
     queryKey: [SEARCH_BANNERS_KEY],
     queryFn: () => searchBannersApi(DEFAULT_FILTER),
   });
@@ -33,7 +33,7 @@ export const Banner = () => {
           <CarouselContent>
             {listBanners.map((item) => (
               <CarouselItem key={item.id} className="relative h-[400px] w-full">
-                <Image style={{ objectFit: 'cover' }} alt="banner" src={item?.link} fill />
+                <Image style={{ objectFit: 'cover' }} alt="banner" src={item?.link} fill priority />
               </CarouselItem>
             ))}
           </CarouselContent>

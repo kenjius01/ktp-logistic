@@ -27,13 +27,13 @@ const ServicesIntro = () => {
           <div className="flex flex-col gap-8">
             <div className="text-center">
               <h2 className="text-center text-base font-bold md:text-xl lg:text-2xl">
-                KTP LOGISTICS - CUNG CẤP DỊCH VỤ GỬI HÀNG ĐI NƯỚC NGOÀI UY TÍN
+                THỊNH PHÁT LOGISTICS - CUNG CẤP DỊCH VỤ GỬI HÀNG ĐI NƯỚC NGOÀI UY TÍN
               </h2>
             </div>
             <p className="text-center">
               Với đa dạng dịch vụ <b>gửi hàng đi nước ngoài</b> như Singapore, Malaysia, Hàn Quốc,
-              Đài Loan, Mỹ,.. Cùng nhiều năm kinh nghiệm trong việc gửi hàng đi nước ngoài, 43
-              Logistics sẽ là lựa chọn đáng tin cậy cho mọi khách hàng!
+              Đài Loan, Mỹ,.. Cùng nhiều năm kinh nghiệm trong việc gửi hàng đi nước ngoài, Thịnh
+              phát logisticS sẽ là lựa chọn đáng tin cậy cho mọi khách hàng!
             </p>
           </div>
 
@@ -63,12 +63,12 @@ const ServicesIntro = () => {
           </div>
 
           {/* Why choose me */}
-          <div className="bg-[#F3EBA178]">
+          <div className="bg-orange-200">
             <div className="pt-4">
               <h2 className="text-center text-2xl font-bold">TẠI SAO NÊN CHỌN CHÚNG TÔI?</h2>
             </div>
-            <div className="pt-12">
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="pt-8">
+              <div className="grid grid-cols-1 gap-4 p-2 md:grid-cols-2 lg:grid-cols-4">
                 {listAdInfos.map((item) => (
                   <Card className={''} key={item.id} style={item.style}>
                     <CardHeader className="flex flex-col gap-2">

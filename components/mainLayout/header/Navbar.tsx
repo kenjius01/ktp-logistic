@@ -3,23 +3,24 @@
 import * as React from 'react';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { Container } from '@/components/Container';
+import { Logo } from '@/components/logo/Logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { listNavbarMenu } from '@/constants/menu';
+import { cn } from '@/lib/utils';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-
+  const pathname = usePathname();
   return (
-    <nav className="fixed left-0 right-0 top-0 z-10 bg-white shadow-sm">
+    <nav className="fixed left-0 right-0 top-0 z-50 bg-white shadow-sm">
       <Container>
         <div className="flex h-16 justify-between">
           <div className="flex flex-shrink-0 items-center">
-            <Link href="/" className="text-xl font-bold text-gray-800">
-              Logo
-            </Link>
+            <Logo />
           </div>
           <div className="hidden flex-grow items-center justify-center sm:flex">
             <div className="flex md:gap-2 lg:space-x-8">
@@ -27,7 +28,10 @@ export const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-base font-bold text-black hover:border-mainColor hover:text-mainColor"
+                  className={cn(
+                    'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-base font-bold text-black hover:border-mainColor hover:text-mainColor',
+                    pathname === item.href && 'text-mainColor',
+                  )}
                 >
                   {item.name}
                 </Link>
@@ -54,7 +58,10 @@ export const Navbar = () => {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-lg font-medium capitalize hover:text-sky-500"
+                      className={cn(
+                        'text-lg font-medium capitalize hover:text-mainColor',
+                        pathname === item.href && 'text-mainColor',
+                      )}
                       onClick={() => setIsOpen(false)}
                     >
                       {item.name.toLowerCase()}

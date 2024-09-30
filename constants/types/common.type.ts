@@ -40,3 +40,11 @@ export type FormContactType = {
   address: string;
   is_read: boolean;
 };
+
+export type CompanyInfoType = {
+  id: number;
+  email: string;
+  phone_number: string;
+  address: string;
+  created_at: string;
+};

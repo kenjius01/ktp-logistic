@@ -71,25 +71,25 @@ export const listAdInfos = [
 export const processList = [
   {
     id: 1,
-    image: 'https://43logistics.vn/wp-content/uploads/2023/11/customer-service-150x150.png',
+    image: '/images/customerService.png',
     title: '1. Tiếp nhận dịch vụ và tư vấn gửi hàng',
     desc: 'Tư vấn giá cước của các tuyến theo nhu cầu khách hàng. Giải đáp các câu hỏi về kích cỡ hàng hóa, trọng lượng hàng hóa, các loại hàng cấm, hàng khó gửi,…',
   },
   {
     id: 2,
-    image: 'https://43logistics.vn/wp-content/uploads/2023/11/cash-on-delivery-150x150.png',
+    image: '/images/cashOnDelivery.png',
     title: '2. Nhận hàng tại kho sau khi đã đạt thỏa thuận',
     desc: 'Sau khi đã đạt được các thỏa thuận liên quan tới chi phí, thủ tục, thời gian vận chuyển để gửi hàng đi nước ngoài. Khách hàng có thể gửi hàng tới kho của KTP Logistics. Tại kho, 43 Logistics sẽ tiến hành các bước cân kiểm hàng hóa và bổ sung thêm thông tin của người nhận để làm thủ tục thông quan hàng hóa.',
   },
   {
     id: 3,
-    image: 'https://43logistics.vn/wp-content/uploads/2023/11/delivery-man-150x150.png',
+    image: '/images/deliveryMan.png',
     title: '3. Đóng gói hàng hóa và thanh toán',
     desc: 'Sau khi hàng hóa được kiểm tra và không phát sinh các vấn đề liên quan. KTP Logistics sẽ tiến hành đóng gói hàng và báo cước vấn chuyển. Khách hàng thanh toán cước vận chuyển và đối chiếu lại thông tin để tránh sai sót.',
   },
   {
     id: 4,
-    image: 'https://43logistics.vn/wp-content/uploads/2023/11/delivery-150x150.png',
+    image: '/images/delivery.png',
     title: '4. Thông quan - vận chuyển và giao hàng',
     desc: 'Quá trình thông quan và vận chuyển sẽ được thực hiện gần như cùng một khoảng thời gian. 43 Logistics sẽ cập nhật tình trạng đơn hàng liên tục cho tới khi khách hàng nhận thành công đơn hàng.\n Lưu ý: Người gửi chỉ thanh toán một lần duy nhất và người nhận chỉ nhận hàng!',
   },

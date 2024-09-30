@@ -1,6 +1,11 @@
 import { BaseRequest } from '@/constants/types';
-import { IResponse } from '@/constants/types/BaseResponse.type';
-import { IBannerRes, ICompanyPhotoRes, IFormContact } from '@/constants/types/common.type';
+import { IBaseResPaginate, IResponse } from '@/constants/types/BaseResponse.type';
+import {
+  CompanyInfoType,
+  IBannerRes,
+  ICompanyPhotoRes,
+  IFormContact,
+} from '@/constants/types/common.type';
 import { http } from '@/lib/http';
 
 import { APIS } from './api.services';
@@ -15,4 +20,10 @@ export const searchCompanyPhotoApi = (body: BaseRequest): Promise<IResponse<ICom
 
 export const postContactCompanyApi = (body: IFormContact): Promise<IResponse<IFormContact>> => {
   return http.post(APIS.POST_SIGNUP_CONTACT, body);
+};
+
+export const companyContactInfoApi = (
+  body: BaseRequest,
+): Promise<IResponse<IBaseResPaginate<CompanyInfoType>>> => {
+  return http.post(APIS.COMPANY_CONTACT_INFO, body);
 };

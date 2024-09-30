@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as SheetPrimitive from '@radix-ui/react-dialog';
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '@/lib/utils';
@@ -64,6 +65,10 @@ const SheetContent = React.forwardRef<
         <Cross2Icon className="h-4 w-4" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
+      <VisuallyHidden>
+        <SheetTitle>Sheet Content</SheetTitle>
+        <SheetDescription>This is a hidden description for screen readers.</SheetDescription>
+      </VisuallyHidden>
       {children}
     </SheetPrimitive.Content>
   </SheetPortal>

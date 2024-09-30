@@ -5,11 +5,12 @@
 body {
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 @layer base {
   :root {
-    --main-color: 217 100% 52%;
+    --main-color: 207 82% 41%;
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;

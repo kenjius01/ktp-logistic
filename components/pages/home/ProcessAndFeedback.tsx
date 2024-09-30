@@ -18,7 +18,7 @@ import { listFeedback, processList } from '@/constants/common';
 
 export const ProcessAndFeedback = () => {
   return (
-    <div className="bg-[#1DFC5C3D]">
+    <div className="rounded-sm bg-sky-200">
       <div className="pt-6">
         <h2 className="text-center text-2xl font-bold">QUY TRÌNH GỬI HÀNG ĐI NƯỚC NGOÀI</h2>
       </div>

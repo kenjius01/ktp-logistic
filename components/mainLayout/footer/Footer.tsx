@@ -1,20 +1,30 @@
+'use client';
 import { SVGProps } from 'react';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 
+import { Logo } from '@/components/logo/Logo';
+import { companyInfoOptions } from '@/constants/options';
+
 export const Footer = () => {
+  const { data } = useSuspenseQuery(companyInfoOptions);
+  const companyInfo = data?.result?.items?.[1];
   return (
     <footer className="bg-muted py-12 text-center">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-          <div className="space-y-2">
+          <div className="flex justify-center space-y-2 md:justify-start">
             <div className="flex flex-shrink-0 items-center">
-              <Link href="/" className="text-xl font-bold text-gray-800">
-                Logo
-              </Link>
+              <Logo
+                width={150}
+                height={150}
+                style={{ objectFit: 'cover' }}
+                src="/images/logoBig.png"
+              />
             </div>
           </div>
-          <div className="space-y-2">
-            <ul className="FLEX flex-col space-y-1 text-base font-bold text-muted-foreground">
+          <div className="flex justify-center space-y-2 md:justify-start">
+            <ul className="flex flex-col space-y-1 text-base font-bold text-muted-foreground">
               <li className="text-left">
                 <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
                   TRANG CHỦ
@@ -42,34 +52,17 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="space-y-2">
-            <h4 className="text-lg font-semibold">Resources</h4>
-            <ul className="space-y-1 text-sm text-muted-foreground">
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Documentation
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Support
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:underline" prefetch={false}>
-                  Community
-                </Link>
-              </li>
+          <div className="flex flex-col items-center gap-y-2 text-left md:text-center">
+            <h4 className="flex text-lg font-bold uppercase md:self-start">Thông tin liên hệ</h4>
+            <ul className="space-y-1">
+              <li className="text-left">Địa chỉ: {companyInfo?.address}</li>
+              <li className="text-left">Email: {companyInfo?.email}</li>
+              <li className="text-left">Số điện thoại: {companyInfo?.phone_number}</li>
             </ul>
           </div>
-          <div className="space-y-2">
+          <div className="flex flex-col items-center space-y-2">
             <h4 className="text-lg font-semibold">Follow Us</h4>
-            <div className="flex items-center justify-center space-x-4">
+            <div className="flex items-center space-x-4 md:justify-center">
               <Link
                 href="#"
                 className="text-muted-foreground hover:text-foreground"
