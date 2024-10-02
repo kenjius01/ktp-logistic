@@ -1,11 +1,10 @@
 'use client';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 
 import { PaginationWithLinks } from '@/components/pagination/PaginationWithLinks';
 import { SkeletonCard } from '@/components/skeleton/SkeletonCard';
-import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT } from '@/constants/common';
 import { OPERATION_FILTER } from '@/constants/filters';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -50,7 +49,7 @@ export const ListNews = () => {
   });
 
   return (
-    <Suspense fallback={<Skeleton />}>
+    <div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         <CategoryNews
           categories={listCategory}
@@ -76,6 +75,6 @@ export const ListNews = () => {
           )}
         </div>
       </div>
-    </Suspense>
+    </div>
   );
 };

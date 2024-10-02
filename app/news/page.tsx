@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { Container } from '@/components/Container';
 import { HotNewsCarousel } from '@/components/pages/news/HotNewsCarousel';
 import { ListNews } from '@/components/pages/news/ListNews';
+import { Skeleton } from '@/components/ui/skeleton';
 import { categoryNewsOptions, hotNewsOptions } from '@/constants/options';
 import { getQueryClient } from '@/lib/get-query-client';
 
@@ -19,7 +20,9 @@ const NewsPage = () => {
             <HotNewsCarousel />
           </div>
           <div className="mb-16 mt-12">
-            <ListNews />
+            <Suspense fallback={<Skeleton />}>
+              <ListNews />
+            </Suspense>
           </div>
         </HydrationBoundary>
       </Container>

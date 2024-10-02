@@ -1,6 +1,6 @@
 'use client';
 
-import { type ReactNode, Suspense, useCallback } from 'react';
+import { type ReactNode, useCallback } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import {
@@ -145,40 +145,38 @@ export function PaginationWithLinks({
   };
 
   return (
-    <Suspense>
-      <div className="flex w-full flex-col items-center gap-3 md:flex-row">
-        {pageSizeSelectOptions && (
-          <div className="flex flex-1 flex-col gap-4">
-            <SelectRowsPerPage
-              options={pageSizeSelectOptions.pageSizeOptions}
-              setPageSize={navToPageSize}
-              pageSize={pageSize}
+    <div className="flex w-full flex-col items-center gap-3 md:flex-row">
+      {pageSizeSelectOptions && (
+        <div className="flex flex-1 flex-col gap-4">
+          <SelectRowsPerPage
+            options={pageSizeSelectOptions.pageSizeOptions}
+            setPageSize={navToPageSize}
+            pageSize={pageSize}
+          />
+        </div>
+      )}
+      <Pagination className={cn({ 'md:justify-end': pageSizeSelectOptions })}>
+        <PaginationContent className="max-sm:gap-0">
+          <PaginationItem>
+            <PaginationPrevious
+              href={buildLink(Math.max(page - 1, 1))}
+              aria-disabled={page === 1}
+              tabIndex={page === 1 ? -1 : undefined}
+              className={page === 1 ? 'pointer-events-none opacity-50' : undefined}
             />
-          </div>
-        )}
-        <Pagination className={cn({ 'md:justify-end': pageSizeSelectOptions })}>
-          <PaginationContent className="max-sm:gap-0">
-            <PaginationItem>
-              <PaginationPrevious
-                href={buildLink(Math.max(page - 1, 1))}
-                aria-disabled={page === 1}
-                tabIndex={page === 1 ? -1 : undefined}
-                className={page === 1 ? 'pointer-events-none opacity-50' : undefined}
-              />
-            </PaginationItem>
-            {renderPageNumbers()}
-            <PaginationItem>
-              <PaginationNext
-                href={buildLink(Math.min(page + 1, totalPageCount))}
-                aria-disabled={page === totalPageCount}
-                tabIndex={page === totalPageCount ? -1 : undefined}
-                className={page === totalPageCount ? 'pointer-events-none opacity-50' : undefined}
-              />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      </div>
-    </Suspense>
+          </PaginationItem>
+          {renderPageNumbers()}
+          <PaginationItem>
+            <PaginationNext
+              href={buildLink(Math.min(page + 1, totalPageCount))}
+              aria-disabled={page === totalPageCount}
+              tabIndex={page === totalPageCount ? -1 : undefined}
+              className={page === totalPageCount ? 'pointer-events-none opacity-50' : undefined}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
   );
 }
 
