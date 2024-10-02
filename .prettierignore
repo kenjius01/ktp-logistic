@@ -6,5 +6,5 @@ node_modules
 next-env.d.ts
 next.config.ts
 yarn.lock
-lint-staged.config.cjs
+lint-staged.config.mjs
 tailwind.config.ts
