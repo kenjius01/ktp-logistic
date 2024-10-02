@@ -43,7 +43,7 @@ export const HotNewsCarousel = () => {
                   priority
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 bg-black bg-opacity-50 p-6">
-                  <h2 className="text-4xl font-bold text-white">{item?.title}</h2>
+                  <h2 className="line-clamp-2 text-4xl font-bold text-white">{item?.title}</h2>
                   <Button
                     size={'lg'}
                     variant={'secondary'}

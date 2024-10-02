@@ -6,6 +6,7 @@ export type NewsType = {
   is_hot: boolean;
   created_at: string;
   category_new_id: number;
+  category: CategoryType;
 };
 
 export type CategoryType = {

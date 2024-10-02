@@ -1,10 +1,11 @@
 'use client';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
 
 import { PaginationWithLinks } from '@/components/pagination/PaginationWithLinks';
 import { SkeletonCard } from '@/components/skeleton/SkeletonCard';
+import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT } from '@/constants/common';
 import { OPERATION_FILTER } from '@/constants/filters';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -66,11 +67,13 @@ export const ListNews = () => {
             news.map((item) => <NewsItem key={item?.id} item={item} />)}
           {totalNews > 0 && (
             <div className="col-span-3 text-center">
-              <PaginationWithLinks
-                page={page}
-                pageSize={DEFAULT.NEWS_PAGE_SIZE}
-                totalCount={totalNews}
-              />
+              <Suspense fallback={<Skeleton />}>
+                <PaginationWithLinks
+                  page={page}
+                  pageSize={DEFAULT.NEWS_PAGE_SIZE}
+                  totalCount={totalNews}
+                />
+              </Suspense>
             </div>
           )}
         </div>

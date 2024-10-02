@@ -21,7 +21,7 @@ export const NewsItem = ({ item }: NewsItemProps) => {
         className="w-full max-w-sm cursor-pointer overflow-hidden rounded-lg shadow-lg"
         onClick={() => onNavigateNews(item.id)}
       >
-        <div className="group relative aspect-[4/2]">
+        <div className="group relative aspect-[5/3]">
           <Image
             src={item?.cover_url}
             alt="news"
@@ -30,13 +30,13 @@ export const NewsItem = ({ item }: NewsItemProps) => {
             className="object-cover transition-all duration-500 group-hover:scale-105"
           />
         </div>
-        <CardContent className="space-y-3 p-6">
-          <CardTitle className="text-lg font-semibold transition-colors hover:text-mainColor">
+        <CardContent className="space-y-3 p-4">
+          <CardTitle className="line-clamp-2 text-lg font-semibold transition-colors hover:text-mainColor">
             {item?.title}
           </CardTitle>
-          <div className="flex items-center justify-between gap-2 text-sm font-medium text-muted-foreground">
-            <p className="font-semibold text-mainColor">{item.category_new_id}</p>
+          <div className="flex items-center justify-between gap-2 text-xs font-medium text-muted-foreground">
             <span>{formatDateFn(item?.created_at)}</span>
+            <p className="font-semibold uppercase text-mainColor">{item?.category?.name}</p>
           </div>
         </CardContent>
       </Card>

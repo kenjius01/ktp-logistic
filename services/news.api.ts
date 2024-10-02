@@ -11,6 +11,10 @@ export const searchNewsApi = (
   return http.post(APIS.SEARCH_NEWS, body);
 };
 
+export const getDetailNewsApi = (id: number | string): Promise<IResponse<NewsType>> => {
+  return http.get(APIS.GET_DETAIL_NEWS(id));
+};
+
 export const searchCategoryNewsApi = (
   body: BaseRequest,
 ): Promise<IResponse<IBaseResPaginate<CategoryType>>> => {

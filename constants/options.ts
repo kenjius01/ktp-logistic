@@ -1,13 +1,14 @@
 import { queryOptions } from '@tanstack/react-query';
 
 import { companyContactInfoApi, searchBannersApi } from '@/services/common.services';
-import { searchCategoryNewsApi, searchNewsApi } from '@/services/news.api';
+import { getDetailNewsApi, searchCategoryNewsApi, searchNewsApi } from '@/services/news.api';
 
 import { DEFAULT_FILTER } from './common';
 import { OPERATION_FILTER } from './filters';
 import {
   COMPANY_CONTACT_INFO_KEY,
   HOT_NEWS_KEY,
+  KEY_QUERY,
   SEARCH_BANNERS_KEY,
   SEARCH_CATEGORY_NEWS_KEY,
 } from './keyQuery';
@@ -21,6 +22,12 @@ export const bannerOptions = queryOptions({
   queryKey: [SEARCH_BANNERS_KEY],
   queryFn: () => searchBannersApi(DEFAULT_FILTER),
 });
+
+export const detailNewsOptions = (id: string | number) =>
+  queryOptions({
+    queryKey: [KEY_QUERY.NEWS_DETAIL, id],
+    queryFn: () => getDetailNewsApi(id),
+  });
 
 export const hotNewsOptions = queryOptions({
   queryKey: [HOT_NEWS_KEY],

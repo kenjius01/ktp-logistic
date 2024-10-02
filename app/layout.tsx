@@ -1,6 +1,6 @@
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
-import localFont from 'next/font/local';
+import { Roboto } from 'next/font/google';
 
 import { MainLayout } from '@/components/mainLayout/MainLayout';
 import { QueryProvider } from '@/components/providers/QueryProvider';
@@ -8,15 +8,9 @@ import { Toaster } from '@/components/ui/toaster';
 
 import './globals.css';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
+const font = Roboto({
+  subsets: ['vietnamese'],
+  weight: ['100', '300', '400', '500', '700', '900'],
 });
 
 export const metadata: Metadata = {
@@ -34,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={'en'} className="scroll-smooth">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={font.className}>
         <QueryProvider>
           <MainLayout>{children}</MainLayout>
           <ReactQueryDevtools />

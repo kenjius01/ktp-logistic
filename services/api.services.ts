@@ -5,5 +5,6 @@ export const APIS = {
   COMPANY_CONTACT_INFO: '/api/v1/public/thong-tin-lien-he/search',
 
   SEARCH_NEWS: '/api/v1/public/tin-tuc/search',
+  GET_DETAIL_NEWS: (id: number | string) => `/api/v1/public/tin-tuc/${id}`,
   SEARCH_CATEGORY_NEWS: '/api/v1/public/danh-muc-bai-viet/search',
 };
