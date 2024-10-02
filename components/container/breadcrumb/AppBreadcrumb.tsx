@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import Link from 'next/link';
 
 import {
   Breadcrumb,
@@ -9,12 +10,11 @@ import {
 } from '@/components/ui/breadcrumb';
 import { cn } from '@/lib/utils';
 import { formatDateFn } from '@/utils/date.utils';
-import Link from 'next/link';
 
 type Item = {
   name: string;
   link?: string;
-  color?:boolean
+  color?: boolean;
 };
 
 interface AppBreadcrumbProps {
@@ -30,16 +30,22 @@ export const AppBreadcrumb = ({ date, listItems = [], className }: AppBreadcrumb
         <BreadcrumbList>
           {listItems.map((item, index) => (
             <Fragment key={index}>
-              <BreadcrumbItem className={cn('font-bold text-primary',item.color && 'text-mainColor')}>
-                <BreadcrumbLink asChild className='hover:text-mainColor' >
-               <Link className={cn(item.link ? 'hover:text-mainColor': 'hover:text-primary cursor-default')} href={{pathname:item?.link}}>
-                {item?.name}
-               </Link>
+              <BreadcrumbItem
+                className={cn('font-bold text-primary', item.color && 'text-mainColor')}
+              >
+                <BreadcrumbLink asChild className="hover:text-mainColor">
+                  <Link
+                    className={cn(
+                      item.link ? 'hover:text-mainColor' : 'cursor-default hover:text-primary',
+                    )}
+                    href={{ pathname: item?.link }}
+                  >
+                    {item?.name}
+                  </Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               {index !== listItems.length - 1 && (
-                <BreadcrumbSeparator className='text-primary mt-0.5'>
-                </BreadcrumbSeparator>
+                <BreadcrumbSeparator className="mt-0.5 text-primary"></BreadcrumbSeparator>
               )}
             </Fragment>
           ))}

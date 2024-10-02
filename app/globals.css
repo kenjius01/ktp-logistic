@@ -95,18 +95,23 @@ body {
 }
 
 .stringToHtml {
-    line-height: 28px;
-    letter-spacing: 0.5px;
-    p{
-        padding-bottom: 16px;
-        &:last-child{
-            padding-bottom: 0;
-        }
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  p {
+    padding-bottom: 16px;
+    &:last-child {
+      padding-bottom: 0;
     }
-    h1, h2, h3, h4, h5, h6{
-        font-size: unset !important;
-        margin: unset !important;
-        padding: unset !important;
-        font-weight: unset !important;
-    }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: unset !important;
+    margin: unset !important;
+    padding: unset !important;
+    font-weight: unset !important;
+  }
 }
