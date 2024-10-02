@@ -50,7 +50,7 @@ export const ListNews = () => {
   });
 
   return (
-    <div>
+    <Suspense fallback={<Skeleton />}>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         <CategoryNews
           categories={listCategory}
@@ -67,17 +67,15 @@ export const ListNews = () => {
             news.map((item) => <NewsItem key={item?.id} item={item} />)}
           {totalNews > 0 && (
             <div className="col-span-3 text-center">
-              <Suspense fallback={<Skeleton />}>
-                <PaginationWithLinks
-                  page={page}
-                  pageSize={DEFAULT.NEWS_PAGE_SIZE}
-                  totalCount={totalNews}
-                />
-              </Suspense>
+              <PaginationWithLinks
+                page={page}
+                pageSize={DEFAULT.NEWS_PAGE_SIZE}
+                totalCount={totalNews}
+              />
             </div>
           )}
         </div>
       </div>
-    </div>
+    </Suspense>
   );
 };
