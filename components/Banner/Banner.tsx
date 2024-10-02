@@ -4,18 +4,13 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
 
-import { DEFAULT_FILTER } from '@/constants/common';
-import { SEARCH_BANNERS_KEY } from '@/constants/keyQuery';
+import { bannerOptions } from '@/constants/options';
 import { BannerType } from '@/constants/types/common.type';
-import { searchBannersApi } from '@/services/common.services';
 
 import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
 import { Skeleton } from '../ui/skeleton';
 export const Banner = () => {
-  const { data, isLoading } = useSuspenseQuery({
-    queryKey: [SEARCH_BANNERS_KEY],
-    queryFn: () => searchBannersApi(DEFAULT_FILTER),
-  });
+  const { data, isLoading } = useSuspenseQuery(bannerOptions);
   const listBanners: BannerType[] = data?.result?.items || [];
   return (
     <div>

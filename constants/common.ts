@@ -7,6 +7,12 @@ export const DEFAULT_FILTER = {
   },
 };
 
+export const DEFAULT = {
+  PAGE: 1,
+  PAGE_SIZE: 10,
+  NEWS_PAGE_SIZE: 9,
+};
+
 export const socialContacts = [
   {
     link: 'sms:+84948484859',

@@ -20,8 +20,11 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'WEB',
+  title: 'Thịnh Phát Logistics',
   description: '',
+  icons: {
+    icon: '/logoIcon.png',
+  },
 };
 
 export default function RootLayout({

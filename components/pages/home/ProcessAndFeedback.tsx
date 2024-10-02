@@ -23,12 +23,17 @@ export const ProcessAndFeedback = () => {
         <h2 className="text-center text-2xl font-bold">QUY TRÌNH GỬI HÀNG ĐI NƯỚC NGOÀI</h2>
       </div>
       <div className="p-4 text-base">
-        <Accordion type="single" collapsible className="w-full border border-gray-900">
+        <Accordion
+          type="single"
+          defaultValue={processList?.[0]?.title}
+          collapsible
+          className="w-full border border-gray-900"
+        >
           {processList.map((item) => (
             <AccordionItem key={item.id} value={item.title} className="border border-gray-900 p-1">
               <AccordionTrigger className="font-bold">{item.title}</AccordionTrigger>
               <AccordionContent>
-                <div className="flex items-end gap-2">
+                <div className="flex flex-col items-center gap-2 md:flex-row md:items-end">
                   <div className="relative h-20 w-full max-w-20">
                     <Image
                       src={item.image}

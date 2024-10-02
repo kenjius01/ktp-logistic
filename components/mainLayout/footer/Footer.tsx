@@ -12,12 +12,11 @@ export const Footer = () => {
   return (
     <footer className="bg-muted py-12 text-center">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 md:gap-8">
           <div className="flex justify-center space-y-2 md:justify-start">
             <div className="flex flex-shrink-0 items-center">
               <Logo
-                width={150}
-                height={150}
+                className="h-24 w-24 md:h-40 md:w-40"
                 style={{ objectFit: 'cover' }}
                 src="/images/logoBig.png"
               />
@@ -52,16 +51,16 @@ export const Footer = () => {
               </li>
             </ul>
           </div>
-          <div className="flex flex-col items-center gap-y-2 text-left md:text-center">
+          <div className="flex flex-col items-center gap-y-2 text-left md:items-start">
             <h4 className="flex text-lg font-bold uppercase md:self-start">Thông tin liên hệ</h4>
-            <ul className="space-y-1">
-              <li className="text-left">Địa chỉ: {companyInfo?.address}</li>
-              <li className="text-left">Email: {companyInfo?.email}</li>
-              <li className="text-left">Số điện thoại: {companyInfo?.phone_number}</li>
+            <ul className="flex flex-col items-center space-y-1">
+              <li className="flex self-start text-nowrap">Địa chỉ: {companyInfo?.address}</li>
+              <li className="flex self-start">Email: {companyInfo?.email}</li>
+              <li className="flex self-start">Số điện thoại: {companyInfo?.phone_number}</li>
             </ul>
           </div>
           <div className="flex flex-col items-center space-y-2">
-            <h4 className="text-lg font-semibold">Follow Us</h4>
+            <h4 className="text-lg font-bold uppercase">Theo dõi chúng tôi</h4>
             <div className="flex items-center space-x-4 md:justify-center">
               <Link
                 href="#"

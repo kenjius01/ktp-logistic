@@ -15,6 +15,8 @@ import { cn } from '@/lib/utils';
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
+  const firstPath = '/' + pathname?.split('/')[1];
+
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 bg-white shadow-sm">
       <Container>
@@ -27,10 +29,11 @@ export const Navbar = () => {
               {listNavbarMenu.map((item) => (
                 <Link
                   key={item.name}
+                  prefetch
                   href={item.href}
                   className={cn(
-                    'inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-base font-bold text-black hover:border-mainColor hover:text-mainColor',
-                    pathname === item.href && 'text-mainColor',
+                    'inline-flex items-center border-b-2 border-transparent text-base font-bold uppercase text-black hover:border-mainColor hover:text-mainColor',
+                    firstPath === item.href && 'text-mainColor',
                   )}
                 >
                   {item.name}
@@ -60,7 +63,7 @@ export const Navbar = () => {
                       href={item.href}
                       className={cn(
                         'text-lg font-medium capitalize hover:text-mainColor',
-                        pathname === item.href && 'text-mainColor',
+                        firstPath === item.href && 'text-mainColor',
                       )}
                       onClick={() => setIsOpen(false)}
                     >

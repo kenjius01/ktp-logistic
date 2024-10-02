@@ -2,17 +2,23 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { ROUTES } from '@/constants/routes';
+import { cn } from '@/lib/utils';
+
 interface LogoProps {
-  width?: number;
-  height?: number;
+  className?: string;
   [x: string]: unknown;
 }
-export const Logo = ({ width = 80, height = 80, ...rest }: LogoProps) => {
+export const Logo = ({ className, ...rest }: LogoProps) => {
   return (
-    <div>
-      <Link href="/">
-        <Image src={'/images/logo.png'} alt="logo" width={width} height={height} {...rest} />
-      </Link>
-    </div>
+    <Link href={ROUTES.HOME} className={cn('relative h-20 w-20', className)}>
+      <Image
+        src={'/images/logo.png'}
+        alt="logo"
+        fill
+        sizes="(max-width: 467px) 100vw, 50vw"
+        {...rest}
+      />
+    </Link>
   );
 };
