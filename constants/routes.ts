@@ -6,4 +6,6 @@ export const ROUTES = {
   NEWS_DETAIL: (id?: string | number) => `/news/${id}`,
   LOOKUP: '/lookup',
   ORDER_REQUEST: '/order-request',
+  LOGIN: '/login',
+  REGISTER: '/register',
 };

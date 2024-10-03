@@ -50,7 +50,6 @@ const ServicesIntro = () => {
                         alt="order"
                         style={{ objectFit: 'cover' }}
                         fill
-                        priority
                         sizes="(max-width: 768px) 100vw, 33vw"
                       />
                     </div>

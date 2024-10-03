@@ -3,19 +3,26 @@
 import * as React from 'react';
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { Container } from '@/components/Container';
 import { Logo } from '@/components/logo/Logo';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { listNavbarMenu } from '@/constants/menu';
+import { ROUTES } from '@/constants/routes';
 import { cn } from '@/lib/utils';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const firstPath = '/' + pathname?.split('/')[1];
+
+  const onNavigate = (path: string) => {
+    setIsOpen(false);
+    router.push(path);
+  };
 
   return (
     <nav className="fixed left-0 right-0 top-0 z-50 bg-white shadow-sm">
@@ -42,10 +49,10 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="hidden sm:flex sm:items-center">
-            <Button variant="outline" className="mr-2">
+            <Button onClick={() => onNavigate(ROUTES.REGISTER)} variant="outline" className="mr-2">
               Đăng ký
             </Button>
-            <Button>Đăng nhập</Button>
+            <Button onClick={() => onNavigate(ROUTES.LOGIN)}>Đăng nhập</Button>
           </div>
           <div className="flex items-center sm:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -74,11 +81,11 @@ export const Navbar = () => {
                   <Button
                     variant="outline"
                     className="mb-2 w-full"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => onNavigate(ROUTES.REGISTER)}
                   >
                     Đăng ký
                   </Button>
-                  <Button className="w-full" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full" onClick={() => onNavigate(ROUTES.LOGIN)}>
                     Đăng nhập
                   </Button>
                 </nav>
