@@ -62,7 +62,7 @@ export const NewsDetail = () => {
       <Separator className="my-8" />
       <div className="mt-8">
         <h4 className="pb-4 text-lg font-bold uppercase">TIN TỨC KHÁC</h4>
-        <div className="grid gap-4 md:col-span-2 lg:col-span-3 lg:grid-cols-3">
+        <div className="grid gap-4 sm:col-span-2 sm:grid-cols-2 lg:col-span-3 lg:grid-cols-3">
           {listOtherNews.map((item) => (
             <NewsItem key={item.id} item={item} />
           ))}

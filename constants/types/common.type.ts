@@ -1,3 +1,5 @@
+import { DateType } from './date.type';
+
 export type BannerType = {
   id: number;
   name: string;
@@ -46,5 +48,13 @@ export type CompanyInfoType = {
   email: string;
   phone_number: string;
   address: string;
-  created_at: string;
+  created_at: DateType;
+};
+
+export type WebConfigType = {
+  id: number;
+  link_web: string;
+  avatar_url: string;
+  created_at: DateType;
+  name: string;
 };

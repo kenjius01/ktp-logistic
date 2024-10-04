@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
 
 import { MainLayout } from '@/components/mainLayout/MainLayout';
+import { AuthProvider } from '@/components/providers/AuthProvider';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { Toaster } from '@/components/ui/toaster';
 
@@ -30,7 +31,9 @@ export default function RootLayout({
     <html lang={'en'} className="scroll-smooth">
       <body className={font.className}>
         <QueryProvider>
-          <MainLayout>{children}</MainLayout>
+          <AuthProvider>
+            <MainLayout>{children}</MainLayout>
+          </AuthProvider>
           <ReactQueryDevtools />
         </QueryProvider>
         <Toaster />

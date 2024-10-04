@@ -1,5 +1,6 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 
 import { Container } from '@/components/Container';
@@ -11,12 +12,20 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { listAdInfos } from '@/constants/common';
+import { Skeleton } from '@/components/ui/skeleton';
+import { DEFAULT_FILTER, listAdInfos } from '@/constants/common';
+import { KEY_QUERY } from '@/constants/keyQuery';
+import { searchWebConfigApi } from '@/services/common.services';
 
 import { CompanyCarousel } from './CompanyCarousel';
 import { ProcessAndFeedback } from './ProcessAndFeedback';
 
 const ServicesIntro = () => {
+  const { data, isLoading } = useQuery({
+    queryKey: [KEY_QUERY.WEB_CONFIG],
+    queryFn: () => searchWebConfigApi(DEFAULT_FILTER),
+  });
+  const listWebConfig = data?.result?.items || [];
   return (
     <Container>
       <h2 className="py-8 text-center text-base font-bold sm:text-2xl md:text-3xl lg:text-4xl">
@@ -41,20 +50,28 @@ const ServicesIntro = () => {
           <div className="p-6">
             <Carousel className="mt-8 w-auto" opts={{ loop: true }}>
               <CarouselContent>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
-                    <div className="relative mb-2 aspect-square h-auto cursor-pointer">
-                      <Image
-                        className="rounded-3xl shadow-[-1px_4px_5px_0px_rgba(0,0,0,0.5)]"
-                        src={'https://43logistics.vn/wp-content/uploads/2023/10/anh1.png'}
-                        alt="order"
-                        style={{ objectFit: 'cover' }}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
+                {isLoading
+                  ? Array.from({ length: 3 }).map((_, index) => (
+                      <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
+                        <div className="relative mb-2 aspect-square h-auto cursor-pointer">
+                          <Skeleton className="h-full w-full rounded-xl" />
+                        </div>
+                      </CarouselItem>
+                    ))
+                  : listWebConfig.map((item) => (
+                      <CarouselItem key={item.id} className="sm:basis-1/2 md:basis-1/3">
+                        <div className="relative mb-2 aspect-square h-auto cursor-pointer">
+                          <Image
+                            className="rounded-3xl border-[0.5px] object-contain shadow-[-1px_4px_5px_0px_rgba(0,0,0,0.5)]"
+                            src={item?.avatar_url}
+                            alt="order"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            onClick={() => window.open(item?.link_web, '_blank')}
+                          />
+                        </div>
+                      </CarouselItem>
+                    ))}
               </CarouselContent>
               <CarouselPrevious />
               <CarouselNext />

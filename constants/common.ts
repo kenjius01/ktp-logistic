@@ -104,27 +104,40 @@ export const processList = [
 export const listFeedback = [
   {
     id: 1,
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/1-qezpa7nvmjsuxiavoyvahuytoh266qijv7iuyo7ebk.png',
+    image: '/feedback/feedback.png',
   },
   {
     id: 2,
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/4-qezpau806knqo5e418mc5p9vxpyzbh03yb6ihb9y68.png',
+    image: '/feedback/feedback2.png',
   },
   {
     id: 3,
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/2-qezpaixxwk8astuhv3qtbs4ct3ikr3rbwrcopzqo8w.png',
+    image: '/feedback/feedback3.png',
   },
   {
     id: 4,
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/8-qezpbint49l720em2j6myj3vdqmivlp4po54yi9pog.png',
+    image: '/feedback/feedback4.png',
   },
   {
     id: 5,
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/3-qezparehm2jvpbi7hpegg7zi5kcvodowxx821he4ow.png',
+    image: '/feedback/feedback5.png',
   },
+  { id: 6, image: '/feedback/feedback6.png' },
+  {
+    id: 7,
+    image: '/feedback/feedback7.png',
+  },
+  {
+    id: 8,
+    image: '/feedback/feedback8.png',
+  },
+  {
+    id: 9,
+    image: '/feedback/feedback9.png',
+  },
+];
+
+export const GENDER_OPTIONS = [
+  { value: 'Nam', label: 'Nam' },
+  { value: 'Nữ', label: 'Nữ' },
 ];

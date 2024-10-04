@@ -10,7 +10,7 @@ export const HotNewsSider = () => {
   const { data } = useSuspenseQuery(hotNewsOptions);
   const listHotNews = data?.result?.items || [];
   return (
-    <div className="flex flex-col gap-4">
+    <div className="grid w-full gap-4 md:grid-cols-2 lg:grid-cols-1">
       {listHotNews.map((item) => (
         <div key={item.id} className="relative aspect-video">
           <Image alt="hot news" src={item.cover_url} fill className="rounded object-cover" />

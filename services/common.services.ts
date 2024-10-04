@@ -5,6 +5,7 @@ import {
   IBannerRes,
   ICompanyPhotoRes,
   IFormContact,
+  WebConfigType,
 } from '@/constants/types/common.type';
 import { http } from '@/lib/http';
 
@@ -26,4 +27,10 @@ export const companyContactInfoApi = (
   body: BaseRequest,
 ): Promise<IResponse<IBaseResPaginate<CompanyInfoType>>> => {
   return http.post(APIS.COMPANY_CONTACT_INFO, body);
+};
+
+export const searchWebConfigApi = (
+  body: BaseRequest,
+): Promise<IResponse<IBaseResPaginate<WebConfigType>>> => {
+  return http.post(APIS.SEARCH_WEB_CONFIG, body);
 };

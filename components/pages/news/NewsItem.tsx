@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 import { ROUTES } from '@/constants/routes';
@@ -11,16 +11,9 @@ interface NewsItemProps {
   item: NewsType;
 }
 export const NewsItem = ({ item }: NewsItemProps) => {
-  const router = useRouter();
-  const onNavigateNews = (id: number) => {
-    router.push(ROUTES.NEWS_DETAIL(id));
-  };
   return (
-    <div>
-      <Card
-        className="w-full max-w-sm cursor-pointer overflow-hidden rounded-lg shadow-lg"
-        onClick={() => onNavigateNews(item.id)}
-      >
+    <Link href={ROUTES.NEWS_DETAIL(item.id)} prefetch={true} className="">
+      <Card className="w-full max-w-sm cursor-pointer overflow-hidden rounded-lg shadow-lg">
         <div className="group relative aspect-[5/3]">
           <Image
             src={item?.cover_url}
@@ -40,6 +33,6 @@ export const NewsItem = ({ item }: NewsItemProps) => {
           </div>
         </CardContent>
       </Card>
-    </div>
+    </Link>
   );
 };

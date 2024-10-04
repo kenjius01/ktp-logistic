@@ -9,4 +9,5 @@ export const SEARCH_CATEGORY_NEWS_KEY = 'searchCategoryNews';
 export const KEY_QUERY = {
   SEARCH_NEWS_BY_CATEGORY: 'searchNewsByCategory',
   NEWS_DETAIL: 'newsDetail',
+  WEB_CONFIG: 'webConfig',
 };

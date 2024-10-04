@@ -8,15 +8,20 @@ import { POST_SIGNUP_CONTACT_KEY } from '@/constants/keyQuery';
 import { useToast } from '@/hooks/use-toast';
 import { postContactCompanyApi } from '@/services/common.services';
 
+import { FormInput } from '../Form/FormInput';
 import { Button } from '../ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form';
-import { Input } from '../ui/input';
 import { Textarea } from '../ui/textarea';
 
 const formSchema = z.object({
-  full_name: z.string().min(2).max(50),
-  email: z.string().email(),
-  phone_number: z.string(),
+  full_name: z
+    .string()
+    .min(1, {
+      message: 'Vui lòng nhập họ tên',
+    })
+    .max(50),
+  email: z.string(),
+  phone_number: z.string().min(1, { message: 'Vui lòng nhập số điện thoại' }),
   address: z.string(),
   content: z.string(),
 });
@@ -55,55 +60,34 @@ export const FormContact = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <div className="grid gap-2 md:grid-cols-2">
-            <FormField
+            <FormInput
               control={form.control}
+              placeholder="Họ và tên"
               name="full_name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input className="h-12" placeholder="Họ và tên" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              className="h-12"
+              required
             />
-            <FormField
+            <FormInput
               control={form.control}
+              placeholder="Số điện thoại"
               name="phone_number"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input className="h-12" placeholder="Số điện thoại" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              className="h-12"
+              required
             />
           </div>
           <div className="grid gap-2 md:grid-cols-2">
-            <FormField
+            <FormInput
               control={form.control}
+              placeholder="Email"
               name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input className="h-12" placeholder="Email" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              type="email"
+              className="h-12"
             />
-            <FormField
+            <FormInput
               control={form.control}
+              placeholder="Địa chỉ"
               name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Input className="h-12" placeholder="Địa chỉ" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              className="h-12"
             />
           </div>
           <div>

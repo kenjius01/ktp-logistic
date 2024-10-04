@@ -4,17 +4,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { z } from 'zod';
 
+import { FormInput } from '@/components/Form/FormInput';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
+import { ROUTES } from '@/constants/routes';
 
 const formSchema = z.object({
   username: z.string().min(1, {
@@ -49,36 +43,20 @@ export const LoginForm = () => {
         <form onSubmit={form.handleSubmit(onLogin)}>
           <Card>
             <CardContent className="space-y-4 p-6">
-              <div className="space-y-2">
-                <FormField
-                  control={form.control}
-                  name="username"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tài khoản</FormLabel>
-                      <FormControl>
-                        <Input disabled={false} placeholder="Nhập tài khoản" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-              <div className="space-y-2">
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Mật khẩu</FormLabel>
-                      <FormControl>
-                        <Input type="password" disabled={false} {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+              <FormInput
+                control={form.control}
+                name="username"
+                label="Tài khoản"
+                required
+                placeholder="Nhập tài khoản"
+              />
+              <FormInput
+                control={form.control}
+                name="password"
+                label="Mật khẩu"
+                required
+                type="password"
+              />
             </CardContent>
             <CardFooter>
               <Button type="submit" className="w-full">
@@ -91,7 +69,7 @@ export const LoginForm = () => {
       <div className="text-center text-sm">
         Bạn chưa có tài khoản?{' '}
         <Link
-          href="/register"
+          href={ROUTES.REGISTER}
           className="font-medium underline underline-offset-4"
           prefetch={false}
         >

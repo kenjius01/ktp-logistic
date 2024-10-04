@@ -114,4 +114,7 @@ body {
     padding: unset !important;
     font-weight: unset !important;
   }
+  figure {
+    width: 100% !important;
+  }
 }
