@@ -3,7 +3,7 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import Autoplay from 'embla-carousel-autoplay';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -18,7 +18,6 @@ import { ROUTES } from '@/constants/routes';
 
 export const HotNewsCarousel = () => {
   const { data } = useSuspenseQuery(hotNewsOptions);
-  const router = useRouter();
 
   const listHotNews = data?.result?.items || [];
   return (
@@ -26,7 +25,7 @@ export const HotNewsCarousel = () => {
       <Carousel
         plugins={[
           Autoplay({
-            delay: 3000,
+            delay: 5000,
           }),
         ]}
         opts={{ loop: true }}
@@ -41,16 +40,18 @@ export const HotNewsCarousel = () => {
                   fill
                   style={{ objectFit: 'cover' }}
                   priority
+                  sizes="(max-width: 640px) 100vw, 33vw"
                 />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 bg-black bg-opacity-50 p-6">
                   <h2 className="line-clamp-2 text-4xl font-bold text-white">{item?.title}</h2>
                   <Button
                     size={'lg'}
                     variant={'secondary'}
-                    onClick={() => router.push(ROUTES.NEWS_DETAIL(item?.id))}
                     className="font-bold uppercase hover:bg-mainColor hover:text-white"
                   >
-                    Xem chi tiết
+                    <Link href={ROUTES.NEWS_DETAIL(item?.id)} prefetch={true}>
+                      Xem chi tiết
+                    </Link>
                   </Button>
                 </div>
               </div>

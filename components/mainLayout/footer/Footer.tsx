@@ -23,7 +23,7 @@ export const Footer = () => {
             </div>
           </div>
           <div className="flex justify-center space-y-2 md:justify-start">
-            <ul className="flex flex-col space-y-1 text-base font-bold text-muted-foreground">
+            <ul className="flex flex-col space-y-1 text-base font-bold text-primary">
               <li className="text-left">
                 <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
                   TRANG CHỦ

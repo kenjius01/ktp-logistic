@@ -4,11 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: '/media.vneconomy.vn',
       },
       {
         protocol: 'https',
-        hostname: '/media.vneconomy.vn',
+        hostname: '**',
       },
     ],
   },

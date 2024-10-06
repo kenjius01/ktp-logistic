@@ -59,11 +59,13 @@ export const ListNews = () => {
         {news.length === 0 && !isLoading && (
           <p className="pt-1 text-center md:col-span-2 lg:col-span-3">Không có dữ liệu</p>
         )}
-        <div className="grid gap-4 md:col-span-2 lg:col-span-3 lg:grid-cols-3">
+        <div className="mx-auto gap-4 md:col-span-2 lg:col-span-3">
           {isLoading && turnLoadingToArray}
-          {!isLoading &&
-            news.length > 0 &&
-            news.map((item) => <NewsItem key={item?.id} item={item} />)}
+          <div className="mb-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {!isLoading &&
+              news.length > 0 &&
+              news.map((item) => <NewsItem key={item?.id} item={item} />)}
+          </div>
           {totalNews > 0 && (
             <div className="col-span-3 text-center">
               <PaginationWithLinks

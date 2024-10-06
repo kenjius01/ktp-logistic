@@ -10,4 +10,6 @@ export const KEY_QUERY = {
   SEARCH_NEWS_BY_CATEGORY: 'searchNewsByCategory',
   NEWS_DETAIL: 'newsDetail',
   WEB_CONFIG: 'webConfig',
+  INTRODUCE: 'introduce',
+  SEARCH_PARTNER: 'searchPartner',
 };

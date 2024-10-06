@@ -1,6 +1,10 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import { companyContactInfoApi, searchBannersApi } from '@/services/common.services';
+import {
+  companyContactInfoApi,
+  searchBannersApi,
+  searchIntroducesApi,
+} from '@/services/common.services';
 import { getDetailNewsApi, searchCategoryNewsApi, searchNewsApi } from '@/services/news.api';
 
 import { DEFAULT_FILTER } from './common';
@@ -51,4 +55,9 @@ export const hotNewsOptions = queryOptions({
 export const categoryNewsOptions = queryOptions({
   queryKey: [SEARCH_CATEGORY_NEWS_KEY],
   queryFn: () => searchCategoryNewsApi(DEFAULT_FILTER),
+});
+
+export const introduceOptions = queryOptions({
+  queryKey: [KEY_QUERY.INTRODUCE],
+  queryFn: () => searchIntroducesApi(DEFAULT_FILTER),
 });

@@ -58,3 +58,28 @@ export type WebConfigType = {
   created_at: DateType;
   name: string;
 };
+
+export type IntroduceItemType = {
+  title: string;
+  content: string;
+  image_url?: string;
+};
+
+export type IntroduceType = {
+  id: number;
+  title: string;
+  content: string;
+  cover_url: string;
+  info_vision: IntroduceItemType[];
+  info_mission: IntroduceItemType[];
+  info_core_value: IntroduceItemType[];
+  info_competitive: IntroduceItemType[];
+  created_at: string;
+};
+
+export type PartnerType = {
+  id: number;
+  name: string;
+  avatar_url?: string;
+  created_at: DateType;
+};

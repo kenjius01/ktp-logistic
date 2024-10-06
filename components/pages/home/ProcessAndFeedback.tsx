@@ -56,7 +56,7 @@ export const ProcessAndFeedback = () => {
         <h2 className="text-center text-2xl font-bold">PHẢN HỒI TỪ KHÁCH HÀNG</h2>
       </div>
       <div className="p-6">
-        <Carousel className="w-auto" opts={{ loop: true }} plugins={[Autoplay({ delay: 3000 })]}>
+        <Carousel className="w-auto" opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]}>
           <CarouselContent>
             {listFeedback.map((item) => (
               <CarouselItem key={item.id} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/5">
