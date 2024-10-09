@@ -12,4 +12,7 @@ export const KEY_QUERY = {
   WEB_CONFIG: 'webConfig',
   INTRODUCE: 'introduce',
   SEARCH_PARTNER: 'searchPartner',
+  GET_ME: 'me',
+  LOGIN: 'login',
+  LOGOUT: 'logout',
 };

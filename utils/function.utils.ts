@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { isEmpty, isEqual, xorWith } from 'lodash';
+
+import { UserType } from '@/constants/types/user.type';
 const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
 
 type ValueType = string | number;
@@ -118,4 +120,15 @@ export const getNonNegativeNumber = (value: unknown) => {
 export const getLastPathSegment = (path: string) => {
   const pathArray = path.split('/').filter((x) => x);
   return pathArray[pathArray.length - 1];
+};
+
+export const getFullName = (user: UserType): string => {
+  return `${user?.last_name} ${user?.first_name}`.trim();
+};
+
+export const getInitialsName = (user: UserType): string => {
+  const { first_name, last_name } = user;
+  const firstInitial = first_name ? first_name.charAt(0).toUpperCase() : '';
+  const lastInitial = last_name ? last_name.charAt(0).toUpperCase() : '';
+  return `${lastInitial}${firstInitial}`;
 };

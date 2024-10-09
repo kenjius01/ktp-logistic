@@ -19,7 +19,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
   void queryClient.prefetchQuery(companyInfoOptions);
 
   return (
-    <div className="">
+    <div className="relative min-h-screen">
       <Header />
       <main>{children}</main>
       <HydrationBoundary state={dehydrate(queryClient)}>

@@ -2,7 +2,7 @@ import { Navbar } from './Navbar';
 
 export const Header = () => {
   return (
-    <div className="pb-16">
+    <div className="sticky left-0 top-0 z-50 bg-white shadow-sm">
       <Navbar />
     </div>
   );

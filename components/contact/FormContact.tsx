@@ -49,7 +49,7 @@ export const FormContact = () => {
       onSuccess: () => {
         toast({
           description: 'Đăng ký liên hệ thành công',
-          className: 'bg-green-500 text-white',
+          variant: 'success',
         });
       },
     });

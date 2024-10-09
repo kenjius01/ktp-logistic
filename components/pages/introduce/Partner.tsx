@@ -42,7 +42,7 @@ export const Partner = () => {
           <CarouselContent className="justify-center">
             {listPartner.map((item) => (
               <CarouselItem className="sm:basis-1/2 md:basis-1/4 xl:basis-1/5" key={item?.id}>
-                <div className="relative mb-2 aspect-video h-20">
+                <div className="relative mb-2 aspect-video h-24">
                   <Image
                     className="object-cover"
                     src={item?.avatar_url || ''}

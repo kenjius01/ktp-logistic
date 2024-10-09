@@ -44,6 +44,9 @@ const ServicesIntro = () => {
               Đài Loan, Mỹ,.. Cùng nhiều năm kinh nghiệm trong việc gửi hàng đi nước ngoài, Thịnh
               phát logisticS sẽ là lựa chọn đáng tin cậy cho mọi khách hàng!
             </p>
+            <p className="text-center text-xl font-bold uppercase">
+              Tra cứu lộ trình đơn hàng từ nước ngoài
+            </p>
           </div>
 
           {/* Carousel */}

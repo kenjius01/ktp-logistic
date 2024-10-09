@@ -5,10 +5,11 @@ import Link from 'next/link';
 
 import { Logo } from '@/components/logo/Logo';
 import { companyInfoOptions } from '@/constants/options';
+import { ROUTES } from '@/constants/routes';
 
 export const Footer = () => {
   const { data } = useSuspenseQuery(companyInfoOptions);
-  const companyInfo = data?.result?.items?.[1];
+  const companyInfo = data?.result?.items?.[0];
   return (
     <footer className="bg-muted py-12 text-center">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
@@ -19,33 +20,63 @@ export const Footer = () => {
                 className="h-24 w-24 md:h-40 md:w-40"
                 style={{ objectFit: 'cover' }}
                 src="/images/logoBig.png"
+                sizes="(max-width: 640px) 100vw, 33vw"
               />
             </div>
           </div>
           <div className="flex justify-center space-y-2 md:justify-start">
             <ul className="flex flex-col space-y-1 text-base font-bold text-primary">
               <li className="text-left">
-                <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
+                <Link
+                  href={ROUTES.HOME}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
                   TRANG CHỦ
                 </Link>
               </li>
               <li className="text-left">
-                <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
+                <Link
+                  href={ROUTES.INTRODUCE}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
                   GIỚI THIỆU
                 </Link>
               </li>
               <li className="text-left">
-                <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
+                <Link
+                  href={ROUTES.NEWS}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
                   TIN TỨC
                 </Link>
               </li>{' '}
               <li className="text-left">
-                <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
+                <Link
+                  href={ROUTES.ORDER_REQUEST}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
+                  GỬI YÊU CẦU LẤY HÀNG
+                </Link>
+              </li>
+              <li className="text-left">
+                <Link
+                  href={ROUTES.LOOKUP}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
                   TRA CỨU
                 </Link>
               </li>
               <li className="text-left">
-                <Link href="#" className="hover:text-mainColor hover:underline" prefetch={false}>
+                <Link
+                  href={ROUTES.CONTACT}
+                  className="hover:text-mainColor hover:underline"
+                  prefetch={false}
+                >
                   LIÊN HỆ
                 </Link>
               </li>
@@ -54,7 +85,7 @@ export const Footer = () => {
           <div className="flex flex-col items-center gap-y-2 text-left md:items-start">
             <h4 className="flex text-lg font-bold uppercase md:self-start">Thông tin liên hệ</h4>
             <ul className="flex flex-col items-center space-y-1">
-              <li className="flex self-start text-nowrap">Địa chỉ: {companyInfo?.address}</li>
+              <li className="flex self-start xl:text-nowrap">Địa chỉ: {companyInfo?.address}</li>
               <li className="flex self-start">Email: {companyInfo?.email}</li>
               <li className="flex self-start">Số điện thoại: {companyInfo?.phone_number}</li>
             </ul>

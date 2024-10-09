@@ -12,20 +12,24 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { listNavbarMenu } from '@/constants/menu';
 import { ROUTES } from '@/constants/routes';
 import { cn } from '@/lib/utils';
+import useAuthStore from '@/stores/useAuthStore';
+
+import { UserInfo } from './UserInfo';
 
 export const Navbar = () => {
+  const { user: userInfo } = useAuthStore();
+  const user = userInfo;
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const firstPath = '/' + pathname?.split('/')[1];
-
   const onNavigate = (path: string) => {
     setIsOpen(false);
     router.push(path);
   };
 
   return (
-    <nav className="fixed left-0 right-0 top-0 z-50 bg-white shadow-sm">
+    <nav className="">
       <Container>
         <div className="flex h-16 justify-between">
           <div className="flex flex-shrink-0 items-center">
@@ -49,12 +53,23 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="hidden sm:flex sm:items-center">
-            <Button onClick={() => onNavigate(ROUTES.REGISTER)} variant="outline" className="mr-2">
-              Đăng ký
-            </Button>
-            <Button onClick={() => onNavigate(ROUTES.LOGIN)}>Đăng nhập</Button>
+            {user ? (
+              <UserInfo user={user} />
+            ) : (
+              <React.Fragment>
+                <Button
+                  onClick={() => onNavigate(ROUTES.REGISTER)}
+                  variant="outline"
+                  className="mr-2"
+                >
+                  Đăng ký
+                </Button>
+                <Button onClick={() => onNavigate(ROUTES.LOGIN)}>Đăng nhập</Button>
+              </React.Fragment>
+            )}
           </div>
-          <div className="flex items-center sm:hidden">
+          <div className="flex items-center gap-4 sm:hidden">
+            {user && <UserInfo isMobile user={user} />}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
