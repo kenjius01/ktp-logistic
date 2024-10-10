@@ -1,5 +1,5 @@
 import React from 'react';
-import { Control, FieldValues, Path } from 'react-hook-form';
+import { FieldValues, Path, useFormContext } from 'react-hook-form';
 
 import {
   FormControl,
@@ -9,31 +9,30 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 
-interface FormInputProps<T extends FieldValues> {
-  control?: Control<T>;
-  description?: React.ReactNode;
+interface FormTextAreaProps<T extends FieldValues> {
   name: Path<T>;
   label?: React.ReactNode;
   required?: boolean;
   disabled?: boolean;
   placeholder?: string;
+  description?: React.ReactNode;
   [x: string]: unknown;
 }
-export const FormInput = <T extends FieldValues>({
-  control,
-  description,
+export const FormTextArea = <T extends FieldValues>({
   disabled,
   name,
   label,
   required,
   placeholder,
+  description,
   ...rest
-}: FormInputProps<T>) => {
+}: FormTextAreaProps<T>) => {
+  const form = useFormContext();
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
         <FormItem>
@@ -43,7 +42,7 @@ export const FormInput = <T extends FieldValues>({
             </FormLabel>
           )}
           <FormControl>
-            <Input disabled={disabled} placeholder={placeholder} {...field} {...rest} />
+            <Textarea disabled={disabled} placeholder={placeholder} {...field} {...rest} />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />

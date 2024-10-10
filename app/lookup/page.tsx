@@ -1,7 +1,15 @@
 import React from 'react';
+import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import Image from 'next/image';
 
+import { FeeLookup } from '@/components/pages/lookup/FeeLookup';
+import { massListOptions } from '@/constants/options';
+import { getQueryClient } from '@/lib/get-query-client';
+
 const LookupPage = () => {
+  const queryClient = getQueryClient();
+  void queryClient.prefetchQuery(massListOptions);
+
   return (
     <div>
       <div className="relative h-52 w-full">
@@ -11,7 +19,11 @@ const LookupPage = () => {
           <p className="text-xl tracking-widest">Cung cấp dịch vụ gửi hàng đi nước ngoài uy tín</p>
         </div>
       </div>
-      <div className="py-12"></div>
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <div className="py-12">
+          <FeeLookup />
+        </div>
+      </HydrationBoundary>
     </div>
   );
 };

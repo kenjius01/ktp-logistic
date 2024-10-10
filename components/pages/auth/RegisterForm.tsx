@@ -2,29 +2,32 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
-import { FormInput } from '@/components/Form/FormInput';
-import { FormSelect } from '@/components/Form/FormSelect';
+import { FormDatePicker, FormInput, FormSelect, FormTextArea } from '@/components/Form';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Form } from '@/components/ui/form';
+import { CODE_RESPONSE } from '@/constants/codeResponse';
 import { GENDER_OPTIONS } from '@/constants/common';
+import { KEY_QUERY } from '@/constants/keyQuery';
 import { ROUTES } from '@/constants/routes';
+import { useToast } from '@/hooks/use-toast';
+import { registerApi } from '@/services/user.api';
 
 const formSchema = z.object({
   username: z.string().min(1, {
     message: 'Vui lòng nhập tài khoản',
   }),
-  password: z
-    .string()
-    .min(1, {
-      message: 'Vui lòng nhập mật khẩu',
-    })
-    .min(8, {
-      message: 'Mật khẩu phải tối thiểu 8 ký tự',
-    }),
+  password: z.string().min(1, {
+    message: 'Vui lòng nhập mật khẩu',
+  }),
+  // .min(8, {
+  //   message: 'Mật khẩu phải tối thiểu 8 ký tự',
+  // }),
   first_name: z.string().min(1, {
     message: 'Vui lòng nhập tên',
   }),
@@ -33,11 +36,13 @@ const formSchema = z.object({
   }),
   phone_number: z.string(),
   gender: z.string(),
-  email: z.string().email({ message: 'Email không hợp lệ' }),
+  email: z.string().email({ message: 'Email không hợp lệ' }).optional().or(z.literal('')),
   address: z.string(),
   date_of_birth: z.date().nullable(),
 });
 export const RegisterForm = () => {
+  const router = useRouter();
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -52,8 +57,23 @@ export const RegisterForm = () => {
       date_of_birth: null,
     },
   });
+  const { mutate } = useMutation({
+    mutationKey: [KEY_QUERY.REGISTER],
+    mutationFn: registerApi,
+  });
   const onRegister = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    mutate(values, {
+      onSuccess: (res) => {
+        console.log({ res });
+        if (res.code === CODE_RESPONSE.POST_SUCCESS) {
+          form.reset();
+          toast({ description: 'Đăng ký thành công', variant: 'success' });
+          router.push(ROUTES.LOGIN);
+          return;
+        }
+        toast({ description: res.message, variant: 'destructive' });
+      },
+    });
   };
   return (
     <div className="mx-auto max-w-[500px] space-y-6">
@@ -113,27 +133,36 @@ export const RegisterForm = () => {
                     required
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="w-full space-y-2">
                   <FormInput
                     control={form.control}
                     name="email"
                     label="Email"
                     placeholder="Nhập email..."
                     type="email"
-                    required
                   />
                 </div>
               </div>
               <div className="flex flex-col gap-2 md:flex-row">
-                <div className="space-y-2">
+                <div className="w-full space-y-2">
                   <FormSelect
                     name="gender"
-                    control={form.control}
                     label="Giới tính"
                     placeholder="Chọn giới tính"
                     options={GENDER_OPTIONS}
                   />
                 </div>
+                <div className="w-full space-y-2">
+                  <FormDatePicker
+                    name="date_of_birth"
+                    label="Ngày sinh"
+                    placeholder="Chọn ngày sinh"
+                    disabledDate={(date) => date > new Date()}
+                  />
+                </div>
+              </div>
+              <div className="w-full space-y-2">
+                <FormTextArea name="address" label="Địa chỉ" placeholder="Nhập địa chỉ" />
               </div>
             </CardContent>
             <CardFooter>

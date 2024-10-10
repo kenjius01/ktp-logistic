@@ -1,5 +1,16 @@
 import { DateType } from './date.type';
 
+export type RegisterFormType = {
+  username: string;
+  password: string;
+  first_name: string;
+  last_name: string;
+  phone_number: string;
+  gender?: string;
+  address?: string;
+  date_of_birth?: DateType;
+  email?: string | undefined;
+};
 export type LoginFormType = {
   username: string;
   password: string;
@@ -19,9 +30,9 @@ export type UserType = {
   first_name: string;
   last_name: string;
   phone_number: string;
-  gender: string;
-  email: string;
-  address: string;
+  gender?: string;
+  email?: string;
+  address?: string;
   date_of_birth: string;
   active: boolean;
   is_system: boolean;

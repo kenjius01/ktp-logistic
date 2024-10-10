@@ -14,5 +14,11 @@ export const KEY_QUERY = {
   SEARCH_PARTNER: 'searchPartner',
   GET_ME: 'me',
   LOGIN: 'login',
+  REGISTER: 'register',
   LOGOUT: 'logout',
+  MASS_LIST: 'massList',
+  LOOKUP: 'lookup',
+  SHIPPING_SERVICE: 'shipping_service',
+  PROVINCE: 'province',
+  DISTRICT: 'district',
 };

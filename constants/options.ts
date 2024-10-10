@@ -5,6 +5,7 @@ import {
   searchBannersApi,
   searchIntroducesApi,
 } from '@/services/common.services';
+import { searchMassListApi } from '@/services/lookup.api';
 import { getDetailNewsApi, searchCategoryNewsApi, searchNewsApi } from '@/services/news.api';
 
 import { DEFAULT_FILTER } from './common';
@@ -60,4 +61,10 @@ export const categoryNewsOptions = queryOptions({
 export const introduceOptions = queryOptions({
   queryKey: [KEY_QUERY.INTRODUCE],
   queryFn: () => searchIntroducesApi(DEFAULT_FILTER),
+});
+
+// LOOKUP PAGE
+export const massListOptions = queryOptions({
+  queryKey: [KEY_QUERY.MASS_LIST],
+  queryFn: () => searchMassListApi(DEFAULT_FILTER),
 });

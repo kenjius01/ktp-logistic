@@ -1,22 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useMemo } from 'react';
+'use client';
+
+import { useMemo } from 'react';
 import { Control, FieldValues, Path, useFormContext } from 'react-hook-form';
-import { CaretSortIcon, CheckIcon } from '@radix-ui/react-icons';
 import { QueryFunction, QueryKey, useQuery } from '@tanstack/react-query';
 
 import { QueryConfig } from '@/lib/react-query';
-import { cn } from '@/lib/utils';
-import { matchText } from '@/utils/function.utils';
 
-import { Button } from '../ui/button';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from '../ui/command';
 import {
   FormControl,
   FormDescription,
@@ -25,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from '../ui/form';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
 
 type FieldNamesType = {
   label: string;
@@ -48,21 +38,21 @@ interface FormSelectProps<T extends FieldValues> {
   queryFn?: QueryFunction<unknown, QueryKey>;
   [x: string]: unknown;
 }
+
 export const FormSelect = <T extends FieldValues>({
   name,
-  control,
+  config,
   defaultSelect,
   description,
   disabled,
-  emptyContent,
-  label,
-  placeholder,
-  required,
   fieldNames = { label: 'label', value: 'value' },
-  config,
+  label,
   options,
+  placeholder,
   queryFn,
   queryKey,
+  required,
+  ...rest
 }: FormSelectProps<T>) => {
   const form = useFormContext();
   const { data, isLoading } = useQuery({
@@ -89,67 +79,36 @@ export const FormSelect = <T extends FieldValues>({
       return [defaultSelect, ...res];
     }
   }, [data?.result, defaultSelect, options, queryFn]);
-
   return (
     <FormField
-      control={control}
+      control={form.control}
       name={name}
       render={({ field }) => (
-        <FormItem className="flex flex-col">
+        <FormItem>
           {label && (
             <FormLabel>
               {label} {required && <span className="text-red-500">*</span>}
             </FormLabel>
           )}
-          <Popover>
-            <PopoverTrigger asChild>
-              <FormControl>
-                <Button
-                  disabled={isLoading || disabled}
-                  variant="outline"
-                  role="combobox"
-                  className={cn(
-                    'w-[200px] justify-between',
-                    !field.value && 'text-muted-foreground',
-                  )}
-                >
-                  {field.value
-                    ? newOptions?.find((item: any) =>
-                        matchText(item?.[fieldNames.value], field.value),
-                      )?.[fieldNames.label]
-                    : placeholder}
-                  <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </Button>
-              </FormControl>
-            </PopoverTrigger>
-            <PopoverContent className="w-[200px] p-0">
-              <Command>
-                <CommandInput placeholder={'Tìm kiếm'} className="h-9" />
-                <CommandList>
-                  <CommandEmpty>{emptyContent || 'Không tìm thấy kết quả'}</CommandEmpty>
-                  <CommandGroup>
-                    {newOptions.map((item: any) => (
-                      <CommandItem
-                        value={item?.[fieldNames.value]}
-                        key={item?.[fieldNames.value]}
-                        onSelect={() => {
-                          form.setValue(name, item?.[fieldNames.value]);
-                        }}
-                      >
-                        {item?.[fieldNames.label]}
-                        <CheckIcon
-                          className={cn(
-                            'ml-auto h-4 w-4',
-                            item?.[fieldNames.value] === field.value ? 'opacity-100' : 'opacity-0',
-                          )}
-                        />
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          <Select
+            disabled={disabled || isLoading}
+            onValueChange={field.onChange}
+            defaultValue={field.value}
+            {...rest}
+          >
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder={placeholder} />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              {newOptions.map((option: any) => (
+                <SelectItem key={option[fieldNames.value]} value={option[fieldNames.value]}>
+                  {option[fieldNames.label]}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
           <FormDescription>{description}</FormDescription>
           <FormMessage />
         </FormItem>

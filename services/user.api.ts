@@ -1,8 +1,17 @@
 import { IResponse } from '@/constants/types/BaseResponse.type';
-import { AuthResponseType, LoginFormType, UserType } from '@/constants/types/user.type';
+import {
+  AuthResponseType,
+  LoginFormType,
+  RegisterFormType,
+  UserType,
+} from '@/constants/types/user.type';
 import { http } from '@/lib/http';
 
 import { APIS } from './api.services';
+
+export const registerApi = (body: RegisterFormType): Promise<IResponse<UserType>> => {
+  return http.post(APIS.REGISTER, body);
+};
 
 export const loginApi = (body: LoginFormType): Promise<IResponse<AuthResponseType>> => {
   return http.post(APIS.LOGIN, body);

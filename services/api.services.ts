@@ -1,4 +1,5 @@
 export const APIS = {
+  REGISTER: '/api/v1/public/dang-ki-tai-khoan',
   LOGIN: '/api/v1/public/auth/login',
   GET_ME: '/api/v1/web/user/profile',
   REFRESH_TOKEN: '/api/v1/auth/refresh-token',
@@ -16,6 +17,11 @@ export const APIS = {
   GET_DETAIL_NEWS: (id: number | string) => `/api/v1/public/tin-tuc/${id}`,
   SEARCH_CATEGORY_NEWS: '/api/v1/public/danh-muc-bai-viet/search',
 
+  SEARCH_PROVINCE: '/api/v1/public/tinh-thanh/search',
+  SEARCH_DISTRICT: '/api/v1/public/quan-huyen/search',
+
   //LOOKUP
   SEARCH_MASS_LIST: '/api/v1/public/khoi-luong/search',
+  SEARCH_SHIPPING_SERVICE: '/api/v1/public/dich-vu-van-chuyen/search',
+  LOOKUP_FEE_AND_TIME: '/api/v1/public/gia-cuoc/tra-cuu-gia-cuoc-va-thoi-gian-van-chuyen',
 };

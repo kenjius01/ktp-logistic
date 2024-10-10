@@ -70,7 +70,7 @@ export const listAdInfos = [
     style: { backgroundColor: '#fda4af' },
     image:
       'https://43logistics.vn/wp-content/uploads/elementor/thumbs/supply-chain-qgcw7vcymejoxnw8fyo757lp4j714dbvuvw10qixns.png',
-    desc: 'Các thủ tục trước khi bay như đóng gói, cân kiểm hàng hóa sẽ do 43 Logistics đảm nhiệm. Mọi chứng từ, thủ tục thông quan sẽ được nhân viên 43 Logistics đảm nhiệm.',
+    desc: 'Các thủ tục trước khi bay như đóng gói, cân kiểm hàng hóa sẽ do Thịnh Phát Logistics đảm nhiệm. Mọi chứng từ, thủ tục thông quan sẽ được nhân viên Thịnh Phát Logistics đảm nhiệm.',
   },
 ];
 
@@ -85,19 +85,19 @@ export const processList = [
     id: 2,
     image: '/images/cashOnDelivery.png',
     title: '2. Nhận hàng tại kho sau khi đã đạt thỏa thuận',
-    desc: 'Sau khi đã đạt được các thỏa thuận liên quan tới chi phí, thủ tục, thời gian vận chuyển để gửi hàng đi nước ngoài. Khách hàng có thể gửi hàng tới kho của KTP Logistics. Tại kho, 43 Logistics sẽ tiến hành các bước cân kiểm hàng hóa và bổ sung thêm thông tin của người nhận để làm thủ tục thông quan hàng hóa.',
+    desc: 'Sau khi đã đạt được các thỏa thuận liên quan tới chi phí, thủ tục, thời gian vận chuyển để gửi hàng đi nước ngoài. Khách hàng có thể gửi hàng tới kho của Thịnh Phát Logistics. Tại kho, Thịnh Phát Logistics sẽ tiến hành các bước cân kiểm hàng hóa và bổ sung thêm thông tin của người nhận để làm thủ tục thông quan hàng hóa.',
   },
   {
     id: 3,
     image: '/images/deliveryMan.png',
     title: '3. Đóng gói hàng hóa và thanh toán',
-    desc: 'Sau khi hàng hóa được kiểm tra và không phát sinh các vấn đề liên quan. KTP Logistics sẽ tiến hành đóng gói hàng và báo cước vấn chuyển. Khách hàng thanh toán cước vận chuyển và đối chiếu lại thông tin để tránh sai sót.',
+    desc: 'Sau khi hàng hóa được kiểm tra và không phát sinh các vấn đề liên quan. Thịnh Phát Logistics sẽ tiến hành đóng gói hàng và báo cước vấn chuyển. Khách hàng thanh toán cước vận chuyển và đối chiếu lại thông tin để tránh sai sót.',
   },
   {
     id: 4,
     image: '/images/delivery.png',
     title: '4. Thông quan - vận chuyển và giao hàng',
-    desc: 'Quá trình thông quan và vận chuyển sẽ được thực hiện gần như cùng một khoảng thời gian. 43 Logistics sẽ cập nhật tình trạng đơn hàng liên tục cho tới khi khách hàng nhận thành công đơn hàng.\n Lưu ý: Người gửi chỉ thanh toán một lần duy nhất và người nhận chỉ nhận hàng!',
+    desc: 'Quá trình thông quan và vận chuyển sẽ được thực hiện gần như cùng một khoảng thời gian. Thịnh Phát Logistics sẽ cập nhật tình trạng đơn hàng liên tục cho tới khi khách hàng nhận thành công đơn hàng.\n Lưu ý: Người gửi chỉ thanh toán một lần duy nhất và người nhận chỉ nhận hàng!',
   },
 ];
 

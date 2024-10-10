@@ -8,10 +8,9 @@ import { POST_SIGNUP_CONTACT_KEY } from '@/constants/keyQuery';
 import { useToast } from '@/hooks/use-toast';
 import { postContactCompanyApi } from '@/services/common.services';
 
-import { FormInput } from '../Form/FormInput';
+import { FormInput, FormTextArea } from '../Form';
 import { Button } from '../ui/button';
-import { Form, FormControl, FormField, FormItem, FormMessage } from '../ui/form';
-import { Textarea } from '../ui/textarea';
+import { Form } from '../ui/form';
 
 const formSchema = z.object({
   full_name: z
@@ -91,17 +90,11 @@ export const FormContact = () => {
             />
           </div>
           <div>
-            <FormField
+            <FormTextArea
               control={form.control}
               name="content"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <Textarea className="min-h-24" placeholder="Nội dung" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
+              className="min-h-24"
+              placeholder="Nội dung"
             />
           </div>
           <div className="text-center">

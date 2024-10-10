@@ -23,7 +23,6 @@ export function matchText(targetText: string, searchText: string) {
   if (!searchText || !targetText) {
     return false;
   }
-
   const targetTextNormal = removeAccents((targetText ?? '').toLowerCase()).trim();
   const searchTextNormal = removeAccents((searchText ?? '').toLowerCase()).trim();
 

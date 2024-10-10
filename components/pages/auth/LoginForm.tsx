@@ -59,10 +59,10 @@ export const LoginForm = () => {
           setTokens(token, long_token);
           queryClient.invalidateQueries({ queryKey: [KEY_QUERY.GET_ME] });
           router.push(ROUTES.HOME);
+          return;
         }
-        if (res.code === CODE_RESPONSE.POST_FAILUE) {
-          toast({ description: res.message, variant: 'destructive' });
-        }
+
+        toast({ description: res.message, variant: 'destructive' });
       },
     });
   };
