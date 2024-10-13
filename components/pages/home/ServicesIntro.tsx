@@ -2,6 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { Container } from '@/components/Container';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -15,17 +16,30 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT_FILTER, listAdInfos } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
+import { ROUTES } from '@/constants/routes';
+import { WebConfigType } from '@/constants/types';
 import { searchWebConfigApi } from '@/services/common.services';
+import useAuthStore from '@/stores/useAuthStore';
 
 import { CompanyCarousel } from './CompanyCarousel';
 import { ProcessAndFeedback } from './ProcessAndFeedback';
 
 const ServicesIntro = () => {
+  const { user } = useAuthStore();
+  const router = useRouter();
   const { data, isLoading } = useQuery({
     queryKey: [KEY_QUERY.WEB_CONFIG],
     queryFn: () => searchWebConfigApi(DEFAULT_FILTER),
   });
   const listWebConfig = data?.result?.items || [];
+
+  const onRedirectTrackingOrder = (item: WebConfigType) => {
+    if (!user) {
+      window.open(item?.link_web, '_blank');
+      return;
+    }
+    router.push(ROUTES.TRACKING_ORDER_TYPE(item?.name));
+  };
   return (
     <Container>
       <h2 className="py-8 text-center text-base font-bold sm:text-2xl md:text-3xl lg:text-4xl">
@@ -70,7 +84,7 @@ const ServicesIntro = () => {
                             alt="order"
                             fill
                             sizes="(max-width: 768px) 100vw, 33vw"
-                            onClick={() => window.open(item?.link_web, '_blank')}
+                            onClick={() => onRedirectTrackingOrder(item)}
                           />
                         </div>
                       </CarouselItem>

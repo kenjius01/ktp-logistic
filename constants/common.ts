@@ -42,8 +42,7 @@ export const listAdInfos = [
   {
     id: 1,
     title: 'Đa Dạng Hình Thức',
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/logistics-1-qgcw7tha8qh4afyyqxuy082rxrgaoz4f6ml226lq08.png',
+    image: '/images/logistics1.png',
     desc: 'Cung cấp đa dạng các hình thức vận chuyển như đường biển, đường bộ, đường hàng không. Đáp ứng mọi nhu cầu gửi hàng của quý khách.',
     style: { backgroundColor: '#fef3c7' },
   },
@@ -52,24 +51,21 @@ export const listAdInfos = [
     title: 'Vận Chuyển Nhanh',
     style: { backgroundColor: '#e9d5ff' },
 
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/logistics-qgcw7uf4fkiem1xllg9kkpu8j5bnwo85ir8jjgkbu0.png',
+    image: '/images/logistics2.png',
     desc: 'Gửi hàng đi Singapore, Malaysia nhận sau 1-2 ngày. Đi Hàn Quốc, Đài Loan nhận sau 3-5 ngày. Các nước hâu Âu, Mỹ nhận hàng sau 7-10 ngày.',
   },
   {
     id: 3,
     title: 'Cước Phí Ưu Đãi',
     style: { backgroundColor: '#6ee7b7' },
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/best-price-qgcw7sjg1wftyu0bwfgbfqbbcdkxha0ouhxkkwn46g.png',
+    image: '/images/logistics3.png',
     desc: 'Hỗ trợ khách hàng trong quá trình thông quan hàng hóa, đóng gói và bảo quản hàng hóa. Từ đó giảm tải được nhiều chi phí phát sinh.',
   },
   {
     id: 4,
     title: 'Thủ Tục Đơn Giản',
     style: { backgroundColor: '#fda4af' },
-    image:
-      'https://43logistics.vn/wp-content/uploads/elementor/thumbs/supply-chain-qgcw7vcymejoxnw8fyo757lp4j714dbvuvw10qixns.png',
+    image: '/images/logistic4.png',
     desc: 'Các thủ tục trước khi bay như đóng gói, cân kiểm hàng hóa sẽ do Thịnh Phát Logistics đảm nhiệm. Mọi chứng từ, thủ tục thông quan sẽ được nhân viên Thịnh Phát Logistics đảm nhiệm.',
   },
 ];
@@ -140,4 +136,19 @@ export const listFeedback = [
 export const GENDER_OPTIONS = [
   { value: 'Nam', label: 'Nam' },
   { value: 'Nữ', label: 'Nữ' },
+];
+
+export const proxyConfigs = [
+  {
+    url: 'https://eservice.7-11.com.tw/e-tracking/search.aspx',
+    selectorsToRemove: ['header', 'footer'],
+  },
+  {
+    url: 'https://fmec.famiport.com.tw/FP_Entrance/QueryBox',
+    selectorsToRemove: ['.site-header', '.site-footer'],
+  },
+  {
+    url: 'https://www.t-cat.com.tw/inquire/trace.aspx',
+    selectorsToRemove: ['.nav-bar', '.bottom-section'], // Xóa navbar và footer của một trang khác
+  },
 ];

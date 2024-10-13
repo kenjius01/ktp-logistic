@@ -21,4 +21,6 @@ export const KEY_QUERY = {
   SHIPPING_SERVICE: 'shipping_service',
   PROVINCE: 'province',
   DISTRICT: 'district',
+  UPLOAD: 'upload',
+  ORDER_REQUEST: 'orderRequest',
 };

@@ -8,4 +8,6 @@ export const ROUTES = {
   ORDER_REQUEST: '/order-request',
   LOGIN: '/login',
   REGISTER: '/register',
+  TRACKING_ORDER: '/tracking-order',
+  TRACKING_ORDER_TYPE: (type: string) => `/tracking-order/${type}`,
 };

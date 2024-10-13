@@ -29,16 +29,50 @@ export const http = Axios.create({
   withCredentials: false,
 });
 
-const handleLogout = async () => {
+const handleLogout = async (isAuthen = true) => {
+  if (!isAuthen) {
+    useAuthStore.getState().logout();
+    return;
+  }
   const { long_token, user } = useAuthStore.getState();
   await logoutApi({ userId: user?.id, accessToken: long_token });
+  useAuthStore.getState().logout();
 };
 
 const onResponse = async (response: AxiosResponse): Promise<AxiosResponse> => {
   const { code } = response.data;
-
+  const errorConfig = response?.config as any;
   //* Truong hop refresh token
+  if (
+    code === CODE_RESPONSE.NOT_AUTHORIZED ||
+    (code === CODE_RESPONSE.SEVER_ERROR && !errorConfig.headers.Authorization)
+  ) {
+    const long_token = useAuthStore.getState().long_token;
 
+    if (!long_token) {
+      await handleLogout(false);
+      return Promise.reject(response);
+    }
+    try {
+      if (errorConfig.headers.resend || errorConfig.url?.includes(APIS.REFRESH_TOKEN)) {
+        return Promise.reject(response);
+      }
+      errorConfig.headers.resend = true;
+
+      const res = await refreshToken(long_token);
+      const newToken = res?.result?.token;
+      if (!newToken) {
+        await handleLogout();
+        return Promise.reject(response);
+      }
+      useAuthStore.getState().setTokens(newToken);
+      errorConfig.headers.Authorization = 'Bearer ' + newToken;
+      return await http(errorConfig);
+    } catch (error) {
+      await handleLogout();
+      return Promise.reject(error);
+    }
+  }
   //* Cac TH con lai
   switch (code) {
     case 200:

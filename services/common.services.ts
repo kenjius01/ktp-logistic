@@ -48,3 +48,9 @@ export const searchPartnersApi = (
 ): Promise<IResponse<IBaseResPaginate<PartnerType>>> => {
   return http.post(APIS.SEARCH_PARTNER, body);
 };
+
+export const uploadFileApi = (file: File): Promise<IResponse<string>> => {
+  const bodyFormData = new FormData();
+  bodyFormData.append('file', file);
+  return http.post(APIS.UPLOAD_FILE, bodyFormData);
+};

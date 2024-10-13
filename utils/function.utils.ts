@@ -131,3 +131,19 @@ export const getInitialsName = (user: UserType): string => {
   const lastInitial = last_name ? last_name.charAt(0).toUpperCase() : '';
   return `${lastInitial}${firstInitial}`;
 };
+
+export function toBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+
+    fileReader.readAsDataURL(file);
+
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+}

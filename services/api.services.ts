@@ -4,6 +4,7 @@ export const APIS = {
   GET_ME: '/api/v1/web/user/profile',
   REFRESH_TOKEN: '/api/v1/auth/refresh-token',
   LOGOUT: '/api/v1/auth/logout',
+  UPLOAD_FILE: '/api/v1/public/ktp-upload',
 
   SEARCH_BANNERS: '/api/v1/public/banner-quang-cao/search',
   SEARCH_COMPANY_PHOTO: '/api/v1/public/company-photo/search',
@@ -24,4 +25,8 @@ export const APIS = {
   SEARCH_MASS_LIST: '/api/v1/public/khoi-luong/search',
   SEARCH_SHIPPING_SERVICE: '/api/v1/public/dich-vu-van-chuyen/search',
   LOOKUP_FEE_AND_TIME: '/api/v1/public/gia-cuoc/tra-cuu-gia-cuoc-va-thoi-gian-van-chuyen',
+
+  //ORDER REQUEST
+  ORDER_REQUEST_AUTH: '/api/v1/web/don-hang',
+  ORDER_REQUEST_PUBLIC: '/api/v1/public/don-hang',
 };
