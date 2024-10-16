@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import { Banner } from '@/components/Banner/Banner';
@@ -6,6 +6,7 @@ import { Container } from '@/components/Container';
 import { HotNewsSider } from '@/components/pages/news/HotNewsSider';
 import { FormOrderRequest } from '@/components/pages/orderRequest/FormOrderRequest';
 import { ShippingRegulation } from '@/components/pages/orderRequest/ShippingRegulation';
+import { Skeleton } from '@/components/ui/skeleton';
 import { shippingRegulationOptions } from '@/constants/options';
 import { getQueryClient } from '@/lib/get-query-client';
 
@@ -32,7 +33,9 @@ const OrderRequestPage = ({ params: { page } }: OrderRequestPageProps) => {
               <div>
                 <h2 className="my-5 text-center text-4xl font-bold">Quy định vận chuyển</h2>
                 <div className="py-8">
-                  <ShippingRegulation />
+                  <Suspense fallback={<Skeleton />}>
+                    <ShippingRegulation />
+                  </Suspense>
                 </div>
               </div>
             </div>
