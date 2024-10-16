@@ -29,4 +29,5 @@ export const APIS = {
   //ORDER REQUEST
   ORDER_REQUEST_AUTH: '/api/v1/web/don-hang',
   ORDER_REQUEST_PUBLIC: '/api/v1/public/don-hang',
+  SHIPPING_REGULATION: '/api/v1/public/quy-dinh-van-chuyen/search',
 };

@@ -7,6 +7,7 @@ import {
 } from '@/services/common.services';
 import { searchMassListApi } from '@/services/lookup.api';
 import { getDetailNewsApi, searchCategoryNewsApi, searchNewsApi } from '@/services/news.api';
+import { shippingRegulationApi } from '@/services/orderRequest.api';
 
 import { DEFAULT_FILTER } from './common';
 import { OPERATION_FILTER } from './filters';
@@ -68,3 +69,18 @@ export const massListOptions = queryOptions({
   queryKey: [KEY_QUERY.MASS_LIST],
   queryFn: () => searchMassListApi(DEFAULT_FILTER),
 });
+
+// ORDER_REQUEST PAGE
+export const shippingRegulationOptions = (page: number) =>
+  queryOptions({
+    queryKey: [KEY_QUERY.SHIPPING_REGULATION, page],
+    queryFn: () =>
+      shippingRegulationApi({
+        filters: [],
+        pageable: {
+          page,
+          page_size: 1,
+        },
+        keyword: '',
+      }),
+  });

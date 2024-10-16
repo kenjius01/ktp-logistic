@@ -151,4 +151,8 @@ export const proxyConfigs = [
     url: 'https://www.t-cat.com.tw/inquire/trace.aspx',
     selectorsToRemove: ['.nav-bar', '.bottom-section'], // Xóa navbar và footer của một trang khác
   },
+  {
+    url: 'https://www.trackingmore.com/track/en/?express=t-cat',
+    selectorsToRemove: ['nav', '.bottom-section'], // Xóa navbar và footer của một trang khác
+  },
 ];

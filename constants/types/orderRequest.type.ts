@@ -22,3 +22,10 @@ export type TOrderRequestRes = {
   created_at: DateType;
   status: string;
 };
+
+export type TShippingRegulation = {
+  id: number | string;
+  image_url: string;
+  content: string;
+  title: string;
+};

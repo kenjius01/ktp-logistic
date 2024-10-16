@@ -23,4 +23,5 @@ export const KEY_QUERY = {
   DISTRICT: 'district',
   UPLOAD: 'upload',
   ORDER_REQUEST: 'orderRequest',
+  SHIPPING_REGULATION: 'shipping_regulation',
 };

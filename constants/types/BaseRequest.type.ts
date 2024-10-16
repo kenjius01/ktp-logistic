@@ -1,5 +1,5 @@
 export interface IPageAble {
-  page: number;
+  page?: number;
   page_size: number;
 }
 export type BaseRequest = {

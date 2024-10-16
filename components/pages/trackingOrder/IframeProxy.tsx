@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import { useEffect, useState } from 'react';
 
 interface IframeProxyProps {
   url: string;
@@ -6,12 +7,17 @@ interface IframeProxyProps {
 
 const IframeProxy: React.FC<IframeProxyProps> = ({ url }) => {
   // Encode the URL to safely include it in the iframe src attribute
-  const encodedUrl = encodeURIComponent(url);
+  const [encodedUrl, setEncodedUrl] = useState('');
+
+  useEffect(() => {
+    const targetUrl = encodeURIComponent(url);
+    setEncodedUrl(`/api/proxy?url=${targetUrl}`);
+  }, [url]);
 
   return (
     <div style={{ width: '100%', height: '100vh' }}>
       <iframe
-        src={`/api/proxy?url=${encodedUrl}`} // The proxy API handles the URL
+        src={encodedUrl} // The proxy API handles the URL
         width="100%"
         height="100%"
         style={{ border: 'none' }}

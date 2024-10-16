@@ -60,17 +60,17 @@ export const FormOrderRequest = () => {
           description: 'Đặt hàng thành công',
           variant: 'success',
         });
+        form.reset();
       },
     });
   };
   return (
-    <div>
-      <div className="space-y-2">
+    <div className="">
+      <div className="">
         <h1 className="mb-10 text-2xl font-bold">Đặt hàng</h1>
       </div>
-
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSendOrderRequest)}>
+        <form className="" onSubmit={form.handleSubmit(onSendOrderRequest)}>
           <div className="max-w-2xl space-y-4">
             <div className="space-y-2">
               <FormInput

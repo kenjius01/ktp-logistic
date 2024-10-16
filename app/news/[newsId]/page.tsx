@@ -25,7 +25,7 @@ const NewsDetailPage = ({ params: { newsId } }: NewsDetailPageProps) => {
           <div className="md:col-span-2">
             <NewsDetail />
           </div>
-          <div className="top- h-fit w-full rounded bg-gray-100 p-8 md:col-span-2 lg:sticky lg:col-span-1">
+          <div className="top-16 h-fit w-full rounded bg-gray-100 p-8 md:col-span-2 lg:sticky lg:col-span-1">
             <h4 className="pb-4 font-bold uppercase">TIN TỨC NỔI BẬT</h4>
             <HotNewsSider />
           </div>
