@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Container } from '@/components/Container';
-import IframeProxy from '@/components/pages/trackingOrder/IframeProxy';
 
 interface TypeTrackingOrderPage {
   params: {
@@ -15,8 +14,7 @@ const TypeTrackingOrderPage = ({ params: { type } }: TypeTrackingOrderPage) => {
     <div>
       <Container>
         <div className="h-full w-full">
-          {/* <iframe width={'100%'} height={'100%'} src={url} /> */}
-          <IframeProxy url={url} />
+          <iframe width={'100%'} height={'100%'} src={url} />
         </div>
       </Container>
     </div>
