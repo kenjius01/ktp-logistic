@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { KEY_QUERY } from '@/constants/keyQuery';
+import { ROUTES } from '@/constants/routes';
 import { UserType } from '@/constants/types/user.type';
 import { logoutApi } from '@/services/user.api';
 import useAuthStore from '@/stores/useAuthStore';
@@ -49,7 +50,9 @@ export const UserInfo = ({ user, isMobile }: UserInfoProps) => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="cursor-pointer">Thông tin tài khoản</DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer" onClick={() => router.push(ROUTES.PROFILE)}>
+          Thông tin tài khoản
+        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" onClick={onLogout}>
           Đăng xuất
         </DropdownMenuItem>

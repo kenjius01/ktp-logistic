@@ -1,4 +1,6 @@
 export const ROUTES = {
+  PROFILE: '/profile',
+  PROFILE_BY_TAB: (tab: string) => `/profile?tab=${tab}`,
   HOME: '/',
   INTRODUCE: '/introduce',
   CONTACT: '/contact',

@@ -80,6 +80,7 @@ export const HctTrackingOrder = () => {
             fill
             alt="trackingImg"
             className="object-contain"
+            priority
             sizes="(max-width: 640px) 100vw, 50vw"
           />
         </div>

@@ -1,6 +1,10 @@
 import { BaseRequest } from '@/constants/types';
 import { IBaseResPaginate, IResponse } from '@/constants/types/BaseResponse.type';
-import { TOrderRequestForm, TShippingRegulation } from '@/constants/types/orderRequest.type';
+import {
+  TOrderInfo,
+  TOrderRequestForm,
+  TShippingRegulation,
+} from '@/constants/types/orderRequest.type';
 import { http } from '@/lib/http';
 
 import { APIS } from './api.services';
@@ -17,4 +21,10 @@ export const shippingRegulationApi = (
   body: BaseRequest,
 ): Promise<IResponse<IBaseResPaginate<TShippingRegulation>>> => {
   return http.post(APIS.SHIPPING_REGULATION, body);
+};
+
+export const searchOrderUserApi = (
+  body: BaseRequest,
+): Promise<IResponse<IBaseResPaginate<TOrderInfo>>> => {
+  return http.post(APIS.ORDER_REQUEST_LIST, body);
 };

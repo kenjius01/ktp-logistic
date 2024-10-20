@@ -43,3 +43,12 @@ export const logoutApi = ({
     },
   });
 };
+
+interface IFormChangePassword {
+  currentPassword: string;
+  newPassword: string;
+  rePassword: string;
+}
+export const changePasswordApi = (body: IFormChangePassword): Promise<IResponse<unknown>> => {
+  return http.post(APIS.CHANGE_PASSWORD, body);
+};

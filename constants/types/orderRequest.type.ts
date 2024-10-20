@@ -29,3 +29,16 @@ export type TShippingRegulation = {
   content: string;
   title: string;
 };
+
+export type TOrderInfo = {
+  id: number | string;
+  full_name: string;
+  phone_number: string;
+  address: string;
+  time: string;
+  total_packages: number;
+  content: string;
+  image_url: Array<string>;
+  created_at: string;
+  status: string;
+};
