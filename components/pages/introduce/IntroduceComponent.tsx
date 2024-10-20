@@ -33,7 +33,7 @@ export const IntroduceComponent = () => {
         />
       </div>
       <Container>
-        <div className="pt-16">
+        <div className="py-16">
           <h3 className="pb-6 text-center text-3xl font-bold uppercase text-mainColor">
             {introduceRes?.title}
           </h3>

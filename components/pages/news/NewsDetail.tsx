@@ -12,12 +12,14 @@ import { SEARCH_NEWS_KEY } from '@/constants/keyQuery';
 import { detailNewsOptions } from '@/constants/options';
 import { ROUTES } from '@/constants/routes';
 import { searchNewsApi } from '@/services/news.api';
+import { getIdFromSeo } from '@/utils/function.utils';
 
 import { NewsItem } from './NewsItem';
 import { ShareNewsBtn } from './ShareNewsBtn';
 
 export const NewsDetail = () => {
-  const { newsId } = useParams();
+  const { seoId } = useParams();
+  const newsId = getIdFromSeo(seoId.toString());
   const { data } = useSuspenseQuery(detailNewsOptions(newsId.toString()));
   const newsDetail = data?.result || {};
   const { data: otherNewsRes } = useQuery({

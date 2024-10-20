@@ -6,14 +6,16 @@ import { HotNewsSider } from '@/components/pages/news/HotNewsSider';
 import { NewsDetail } from '@/components/pages/news/NewsDetail';
 import { detailNewsOptions, hotNewsOptions } from '@/constants/options';
 import { getQueryClient } from '@/lib/get-query-client';
+import { getIdFromSeo } from '@/utils/function.utils';
 
 interface NewsDetailPageProps {
   params: {
-    newsId: string;
+    seoId: string;
   };
 }
 
-const NewsDetailPage = ({ params: { newsId } }: NewsDetailPageProps) => {
+const NewsDetailPage = ({ params: { seoId } }: NewsDetailPageProps) => {
+  const newsId = getIdFromSeo(seoId);
   const queryClient = getQueryClient();
   void queryClient.prefetchQuery(detailNewsOptions(newsId));
   void queryClient.prefetchQuery(hotNewsOptions);

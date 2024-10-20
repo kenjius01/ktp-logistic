@@ -49,7 +49,7 @@ export const HotNewsCarousel = () => {
                     variant={'secondary'}
                     className="font-bold uppercase hover:bg-mainColor hover:text-white"
                   >
-                    <Link href={ROUTES.NEWS_DETAIL(item?.id)} prefetch={true}>
+                    <Link href={ROUTES.NEWS_DETAIL(item?.seo_id)} prefetch={true}>
                       Xem chi tiết
                     </Link>
                   </Button>

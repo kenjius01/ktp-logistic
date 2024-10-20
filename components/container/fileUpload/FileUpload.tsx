@@ -35,7 +35,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   return (
     <div
       {...getRootProps()}
-      className="flex cursor-pointer flex-col items-center justify-center gap-y-2 rounded-lg border border-foreground p-8 shadow-sm shadow-foreground"
+      className="flex max-h-96 cursor-pointer flex-col items-center justify-center gap-y-2 rounded-lg border border-foreground p-8 shadow-sm shadow-foreground"
     >
       {preview && (
         <div className="relative aspect-square w-full">

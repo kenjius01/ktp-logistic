@@ -4,6 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 
 import { Logo } from '@/components/logo/Logo';
+import { DEFAULT } from '@/constants/common';
 import { companyInfoOptions } from '@/constants/options';
 import { ROUTES } from '@/constants/routes';
 
@@ -101,7 +102,8 @@ export const Footer = () => {
                 <TwitterIcon className="h-5 w-5" />
               </Link>
               <Link
-                href="#"
+                href={DEFAULT.FACEBOOK_LINK}
+                target="_blank"
                 className="text-muted-foreground hover:text-foreground"
                 prefetch={false}
               >

@@ -1,20 +1,23 @@
-import React from 'react';
-
 import { Container } from '@/components/Container';
+import { FMTrackingOrder } from '@/components/pages/trackingOrder/FMTrackingOrder';
+import { HctTrackingOrder } from '@/components/pages/trackingOrder/HctTrackingOrder';
+import { SERVICE_COMPANY } from '@/constants/common';
 
 interface TypeTrackingOrderPage {
   params: {
     type: string;
   };
 }
+
 const TypeTrackingOrderPage = ({ params: { type } }: TypeTrackingOrderPage) => {
-  const url = 'https://www.trackingmore.com/track/en/904696548544?express=t-cat';
-  console.log(type);
+  const typeTracking = decodeURIComponent(type);
   return (
     <div>
       <Container>
-        <div className="h-full w-full">
-          <iframe width={'100%'} height={'100%'} src={url} />
+        <div className="py-12">
+          <h1 className="text-center text-4xl font-bold">Tra cứu hành trình đơn hàng</h1>
+          {typeTracking === SERVICE_COMPANY.HCT && <HctTrackingOrder />}
+          {typeTracking === SERVICE_COMPANY.FAMILY_MART && <FMTrackingOrder />}
         </div>
       </Container>
     </div>

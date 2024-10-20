@@ -56,9 +56,11 @@ export function DataTable<TData, TValue>({
         </TableHeader>
         <TableBody>
           {isLoading && table.getRowModel()?.rows?.length === 0 && (
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-              <ReloadIcon className="h-4 w-4 animate-spin text-center text-mainColor" />
-            </div>
+            <tr className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+              <td>
+                <ReloadIcon className="h-4 w-4 animate-spin text-center text-mainColor" />
+              </td>
+            </tr>
           )}
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (

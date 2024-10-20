@@ -7,10 +7,21 @@ export const DEFAULT_FILTER = {
   },
 };
 
+export const SERVICE_COMPANY = {
+  HCT: 'HCT LOGISTICS',
+  FAMILY_MART: 'FAMILY MART',
+  SHOPPE: 'SHOPEE',
+  T_CAT: 'T-CAT',
+  ELEVEN: '7-ELEVEN',
+  FACEBOOK: 'FACEBOOK',
+};
+
 export const DEFAULT = {
   PAGE: 1,
   PAGE_SIZE: 10,
   NEWS_PAGE_SIZE: 9,
+  FACEBOOK_LINK: 'https://www.facebook.com/khuong443',
+  ZALO_LINK: 'https://zalo.me/2783031911443104697',
 };
 
 export const socialContacts = [

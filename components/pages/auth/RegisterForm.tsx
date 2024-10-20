@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { FormDatePicker, FormInput, FormSelect, FormTextArea } from '@/components/Form';
@@ -15,7 +16,6 @@ import { CODE_RESPONSE } from '@/constants/codeResponse';
 import { GENDER_OPTIONS } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { ROUTES } from '@/constants/routes';
-import { useToast } from '@/hooks/use-toast';
 import { registerApi } from '@/services/user.api';
 
 const formSchema = z.object({
@@ -42,7 +42,6 @@ const formSchema = z.object({
 });
 export const RegisterForm = () => {
   const router = useRouter();
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -67,11 +66,11 @@ export const RegisterForm = () => {
         console.log({ res });
         if (res.code === CODE_RESPONSE.POST_SUCCESS) {
           form.reset();
-          toast({ description: 'Đăng ký thành công', variant: 'success' });
+          toast.success('Đăng ký thành công');
           router.push(ROUTES.LOGIN);
           return;
         }
-        toast({ description: res.message, variant: 'destructive' });
+        toast.error(res.message);
       },
     });
   };

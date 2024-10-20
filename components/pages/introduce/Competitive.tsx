@@ -41,7 +41,7 @@ export const Competitive = ({ data }: CompetitiveProps) => {
             <CardHeader>
               <div className="flex items-center justify-center">
                 <Image
-                  src={item?.image_url || iconImage[index]}
+                  src={item?.image_url || iconImage[index % (iconImage.length || 0)]}
                   alt="icon"
                   width={64}
                   height={64}

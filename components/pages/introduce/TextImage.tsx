@@ -81,12 +81,19 @@ export const TextImage = ({
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >
-        <Image src={image_url} alt={''} fill sizes="(max-width: 640px) 100vw, 33vw" />
+        <Image
+          src={image_url}
+          alt={''}
+          fill
+          sizes="(max-width: 640px) 100vw, 33vw"
+          className="object-cover"
+        />
       </motion.div>
       {/* Animated Text Section */}
       <motion.div
         className={cn(
-          'w-full p-6 md:absolute md:w-[450px] md:bg-slate-100/70 md:text-lg md:shadow-lg lg:w-[570px]',
+          'w-full p-6 md:absolute md:w-[480px] md:bg-slate-100/80 md:text-lg md:shadow-lg lg:w-[630px]',
+          'md:wavy-box rounded-lg',
           classText,
           rightText ? 'left-auto right-0' : 'left-0',
         )}
@@ -95,19 +102,13 @@ export const TextImage = ({
         animate={isInView ? 'visible' : 'hidden'}
       >
         <h5 className="text-center text-2xl font-bold uppercase md:text-start">{mainTitle}</h5>
-        <div className="flex items-start gap-2">
+        <div className="mt-2 flex gap-2 md:mt-4">
           {iconImage && (
-            <div className="relative hidden h-6 w-8 md:block">
-              <Image
-                src={iconImage}
-                alt="Icon"
-                className="mt-2"
-                fill
-                sizes="(max-width: 640px) 100vw, 33vw"
-              />
+            <div className="relative hidden aspect-square h-8 md:block">
+              <Image src={iconImage} alt="Icon" fill sizes="(max-width: 640px) 100vw, 33vw" />
             </div>
           )}
-          <p className="mt-2 font-medium text-gray-600 md:mt-4">{title}</p>
+          <p className="text-justify font-medium text-primary/80">{title}</p>
         </div>
       </motion.div>
     </div>

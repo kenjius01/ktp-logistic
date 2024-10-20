@@ -2,6 +2,7 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { FormInput, FormTextArea } from '@/components/Form';
@@ -9,7 +10,6 @@ import { FormFileUpload } from '@/components/Form/FormFileUpload';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { KEY_QUERY } from '@/constants/keyQuery';
-import { useToast } from '@/hooks/use-toast';
 import { orderRequestAuthApi, orderRequestPublicApi } from '@/services/orderRequest.api';
 import useAuthStore from '@/stores/useAuthStore';
 
@@ -32,7 +32,6 @@ const formSchema = z.object({
 });
 export const FormOrderRequest = () => {
   const { user } = useAuthStore();
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -56,11 +55,7 @@ export const FormOrderRequest = () => {
     };
     mutate(dataSend, {
       onSuccess: () => {
-        toast({
-          description: 'Đặt hàng thành công',
-          variant: 'success',
-        });
-        form.reset();
+        toast.success('Đặt hàng thành công');
       },
     });
   };

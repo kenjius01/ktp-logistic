@@ -5,7 +5,7 @@ import { Roboto } from 'next/font/google';
 import { MainLayout } from '@/components/mainLayout/MainLayout';
 import { AuthProvider } from '@/components/providers/AuthProvider';
 import { QueryProvider } from '@/components/providers/QueryProvider';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/sonner';
 
 import './globals.css';
 
@@ -36,7 +36,7 @@ export default function RootLayout({
           </AuthProvider>
           <ReactQueryDevtools />
         </QueryProvider>
-        <Toaster />
+        <Toaster richColors position="top-right" closeButton />
       </body>
     </html>
   );

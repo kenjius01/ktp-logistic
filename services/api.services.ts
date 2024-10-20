@@ -30,4 +30,9 @@ export const APIS = {
   ORDER_REQUEST_AUTH: '/api/v1/web/don-hang',
   ORDER_REQUEST_PUBLIC: '/api/v1/public/don-hang',
   SHIPPING_REGULATION: '/api/v1/public/quy-dinh-van-chuyen/search',
+
+  //TRACKING ORDER
+  HCT_TRACKING: '/api/v1/public/hct-logistics/search',
+  FM_TRACKING_SEARCH: '/api/v1/public/family-mart/search',
+  FM_TRACKING_DETAIL: `/api/v1/public/family-mart/detail`,
 };

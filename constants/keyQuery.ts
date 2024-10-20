@@ -24,4 +24,7 @@ export const KEY_QUERY = {
   UPLOAD: 'upload',
   ORDER_REQUEST: 'orderRequest',
   SHIPPING_REGULATION: 'shipping_regulation',
+  HCT_TRACKING_ORDER: 'hct_tracking_order',
+  FM_TRACKING_ORDER: 'fm_tracking_order',
+  FM_DETAIL_TRACKING: 'fm_detail_tracking',
 };

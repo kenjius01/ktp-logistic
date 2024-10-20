@@ -12,7 +12,7 @@ interface NewsItemProps {
 }
 export const NewsItem = ({ item }: NewsItemProps) => {
   return (
-    <Link href={ROUTES.NEWS_DETAIL(item.id)} prefetch={true} className="">
+    <Link href={ROUTES.NEWS_DETAIL(item.seo_id)} prefetch={true} className="">
       <Card className="w-full max-w-sm cursor-pointer overflow-hidden rounded-lg shadow-lg">
         <div className="group relative aspect-[5/3]">
           <Image

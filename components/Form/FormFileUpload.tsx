@@ -2,10 +2,10 @@
 import React from 'react';
 import { Control, ControllerRenderProps, FieldValues, Path } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 
 import { CODE_RESPONSE } from '@/constants/codeResponse';
 import { KEY_QUERY } from '@/constants/keyQuery';
-import { useToast } from '@/hooks/use-toast';
 import { uploadFileApi } from '@/services/common.services';
 
 import { FileUpload } from '../container/fileUpload/FileUpload';
@@ -27,7 +27,6 @@ export const FormFileUpload = <T extends FieldValues>({
   label = 'Upload your image',
   required,
 }: FormFileUploadProps<T>) => {
-  const { toast } = useToast();
   const [preview, setPreview] = React.useState<string | ArrayBuffer | null>(null);
 
   const { mutate, isPending } = useMutation({
@@ -45,11 +44,7 @@ export const FormFileUpload = <T extends FieldValues>({
             field.onChange(res.result);
             return;
           }
-
-          toast({
-            description: res.message,
-            variant: 'destructive',
-          });
+          toast.error(res.message);
         },
       });
     } else {

@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { FormInput } from '@/components/Form/FormInput';
@@ -13,7 +14,6 @@ import { Form } from '@/components/ui/form';
 import { CODE_RESPONSE } from '@/constants/codeResponse';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { ROUTES } from '@/constants/routes';
-import { useToast } from '@/hooks/use-toast';
 import { loginApi } from '@/services/user.api';
 import useAuthStore from '@/stores/useAuthStore';
 
@@ -29,7 +29,6 @@ export const LoginForm = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { setTokens } = useAuthStore();
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,10 +42,7 @@ export const LoginForm = () => {
     mutationFn: loginApi,
     onError: (error) => {
       console.log(error);
-      toast({
-        description: error.message || 'Có lỗi xảy ra',
-        variant: 'destructive',
-      });
+      toast.error(error.message || 'Có lỗi xảy ra');
     },
   });
 
@@ -55,14 +51,14 @@ export const LoginForm = () => {
       onSuccess: (res) => {
         if (res.code === CODE_RESPONSE.POST_SUCCESS) {
           const { long_token, token } = res.result;
-          toast({ description: 'Đăng nhập thành công', variant: 'success' });
+          toast.success('Đăng nhập thành công');
           setTokens(token, long_token);
           queryClient.invalidateQueries({ queryKey: [KEY_QUERY.GET_ME] });
           router.push(ROUTES.HOME);
           return;
         }
 
-        toast({ description: res.message, variant: 'destructive' });
+        toast.error(res.message);
       },
     });
   };

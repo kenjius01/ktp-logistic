@@ -147,3 +147,9 @@ export function toBase64(file: File) {
     };
   });
 }
+
+export function getIdFromSeo(seoUrl: string) {
+  const parts = seoUrl.split('-');
+  const id = parts.pop();
+  return id || '';
+}

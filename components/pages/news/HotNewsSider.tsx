@@ -19,7 +19,10 @@ export const HotNewsSider = () => {
             <span className="rounded bg-black bg-opacity-45 p-1 text-xs font-bold text-white">
               {item?.category?.name}
             </span>
-            <Link className="line-clamp-2 font-bold text-white" href={ROUTES.NEWS_DETAIL(item?.id)}>
+            <Link
+              className="line-clamp-2 font-bold text-white"
+              href={ROUTES.NEWS_DETAIL(item?.seo_id)}
+            >
               {item?.title}
             </Link>
           </div>

@@ -2,10 +2,10 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { POST_SIGNUP_CONTACT_KEY } from '@/constants/keyQuery';
-import { useToast } from '@/hooks/use-toast';
 import { postContactCompanyApi } from '@/services/common.services';
 
 import { FormInput, FormTextArea } from '../Form';
@@ -26,7 +26,6 @@ const formSchema = z.object({
 });
 
 export const FormContact = () => {
-  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,10 +45,7 @@ export const FormContact = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     mutate(values, {
       onSuccess: () => {
-        toast({
-          description: 'Đăng ký liên hệ thành công',
-          variant: 'success',
-        });
+        toast.success('Đăng ký liên hệ thành công');
       },
     });
   }

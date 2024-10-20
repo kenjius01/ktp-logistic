@@ -10,10 +10,11 @@ interface AuthProviderProps {
   children: React.ReactNode;
 }
 export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const { setUser } = useAuthStore();
+  const { setUser, token } = useAuthStore();
   const { data } = useQuery({
-    queryKey: [KEY_QUERY.GET_ME],
+    queryKey: [KEY_QUERY.GET_ME, token],
     queryFn: getMeApi,
+    enabled: !!token,
   });
   const profileRes = data?.result;
 
