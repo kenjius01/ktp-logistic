@@ -38,13 +38,13 @@ export function AvatarUpload({ isLoading, value, onChange }: AvatarUploadProps) 
         variant="ghost"
         size="icon"
         disabled={isLoading}
-        className="absolute bottom-[-8px] right-0 rounded-full hover:bg-transparent"
+        className="absolute bottom-[-8px] right-0 rounded-full bg-slate-400/80 p-0"
         onClick={(e) => {
           e.preventDefault();
           inputRef.current?.click();
         }}
       >
-        <PencilIcon className="h-4 w-4 hover:text-mainColor" />
+        <PencilIcon className="h-4 w-4" />
       </Button>
       <Input
         ref={inputRef}

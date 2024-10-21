@@ -14,7 +14,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
-import { DEFAULT_FILTER, listAdInfos } from '@/constants/common';
+import { DEFAULT_FILTER, listAdInfos, SERVICE_COMPANY } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { ROUTES } from '@/constants/routes';
 import { WebConfigType } from '@/constants/types';
@@ -34,11 +34,11 @@ const ServicesIntro = () => {
   const listWebConfig = data?.result?.items || [];
 
   const onRedirectTrackingOrder = (item: WebConfigType) => {
-    if (!user) {
-      window.open(item?.link_web, '_blank');
+    if (Object.values(SERVICE_COMPANY).includes(item?.name) && user) {
+      router.push(ROUTES.TRACKING_ORDER_TYPE(item?.name));
       return;
     }
-    router.push(ROUTES.TRACKING_ORDER_TYPE(item?.name));
+    window.open(item?.link_web, '_blank');
   };
   return (
     <Container>

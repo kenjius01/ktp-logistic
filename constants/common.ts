@@ -10,10 +10,10 @@ export const DEFAULT_FILTER = {
 export const SERVICE_COMPANY = {
   HCT: 'HCT LOGISTICS',
   FAMILY_MART: 'FAMILY MART',
-  SHOPPE: 'SHOPEE',
+  // SHOPPE: 'SHOPEE',
   T_CAT: 'T-CAT',
   ELEVEN: '7-ELEVEN',
-  FACEBOOK: 'FACEBOOK',
+  // FACEBOOK: 'FACEBOOK',
 };
 
 export const DEFAULT = {
