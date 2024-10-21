@@ -20,7 +20,7 @@ const listTabs = [
   {
     name: TAB_PROFILE.CHANGE_PASSWORD,
     icon: LockIcon,
-    label: 'Thay đổi mật khảu',
+    label: 'Thay đổi mật khẩu',
   },
   {
     name: TAB_PROFILE.MY_ORDER,

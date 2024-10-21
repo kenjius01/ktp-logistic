@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Roboto } from 'next/font/google';
@@ -32,7 +33,9 @@ export default function RootLayout({
       <body className={font.className}>
         <QueryProvider>
           <AuthProvider>
-            <MainLayout>{children}</MainLayout>
+            <Suspense>
+              <MainLayout>{children}</MainLayout>
+            </Suspense>
           </AuthProvider>
           <ReactQueryDevtools />
         </QueryProvider>

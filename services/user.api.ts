@@ -1,6 +1,7 @@
 import { IResponse } from '@/constants/types/BaseResponse.type';
 import {
   AuthResponseType,
+  FormUpdateProfileType,
   LoginFormType,
   RegisterFormType,
   UserType,
@@ -45,10 +46,14 @@ export const logoutApi = ({
 };
 
 interface IFormChangePassword {
-  currentPassword: string;
-  newPassword: string;
-  rePassword: string;
+  current_password: string;
+  new_password: string;
+  re_password: string;
 }
 export const changePasswordApi = (body: IFormChangePassword): Promise<IResponse<unknown>> => {
   return http.post(APIS.CHANGE_PASSWORD, body);
+};
+
+export const updateProfileApi = (body: FormUpdateProfileType): Promise<IResponse<unknown>> => {
+  return http.post(APIS.UPDATE_PROFILE, body);
 };

@@ -15,19 +15,19 @@ import { changePasswordApi } from '@/services/user.api';
 
 const formSchema = z
   .object({
-    currentPassword: z.string().min(1, {
+    current_password: z.string().min(1, {
       message: 'Vui lòng nhập mật khẩu hiện tại',
     }),
-    newPassword: z.string().min(1, {
+    new_password: z.string().min(1, {
       message: 'Vui lòng nhập mật khẩu mới',
     }),
-    rePassword: z.string().min(1, {
+    re_password: z.string().min(1, {
       message: 'Vui lòng xác nhận lại mật khẩu',
     }),
   })
-  .refine(({ rePassword, newPassword }) => newPassword === rePassword, {
+  .refine(({ re_password, new_password }) => new_password === re_password, {
     message: 'Mật khẩu xác nhận không khớp',
-    path: ['rePassword'],
+    path: ['re_password'],
   });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -36,9 +36,9 @@ export const ChangePassword = () => {
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      currentPassword: '',
-      newPassword: '',
-      rePassword: '',
+      current_password: '',
+      new_password: '',
+      re_password: '',
     },
   });
 
@@ -54,8 +54,8 @@ export const ChangePassword = () => {
           console.log(res);
           form.reset();
           toast.success('Đổi mật khẩu thành công');
+          return;
         }
-        console.log(res);
         toast.error(res.message);
       },
     });
@@ -69,21 +69,21 @@ export const ChangePassword = () => {
           <form onSubmit={form.handleSubmit(onChangePass)}>
             <FormInput
               control={form.control}
-              name="currentPassword"
+              name="current_password"
               label="Mật khẩu hiện tại"
               required
               type="password"
             />
             <FormInput
               control={form.control}
-              name="newPassword"
+              name="new_password"
               label="Mật khẩu mới"
               required
               type="password"
             />
             <FormInput
               control={form.control}
-              name="rePassword"
+              name="re_password"
               label="Xác nhận mật khẩu"
               required
               type="password"

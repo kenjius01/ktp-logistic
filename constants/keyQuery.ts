@@ -28,4 +28,7 @@ export const KEY_QUERY = {
   FM_TRACKING_ORDER: 'fm_tracking_order',
   FM_DETAIL_TRACKING: 'fm_detail_tracking',
   CHANGE_PASSWORD: 'changePassword',
+  UPDATE_PROFILE: 'updateProfile',
+  MY_ORDER: 'myOrder',
+  CANCEL_ORDER: 'cancelOrder',
 };

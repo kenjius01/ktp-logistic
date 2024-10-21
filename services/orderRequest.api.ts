@@ -28,3 +28,11 @@ export const searchOrderUserApi = (
 ): Promise<IResponse<IBaseResPaginate<TOrderInfo>>> => {
   return http.post(APIS.ORDER_REQUEST_LIST, body);
 };
+
+export const cancelOrderRequestApi = ({
+  id,
+}: {
+  id: number | string;
+}): Promise<IResponse<unknown>> => {
+  return http.post(APIS.CANCEL_ORDER_REQUEST(id));
+};

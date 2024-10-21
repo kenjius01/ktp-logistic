@@ -122,7 +122,7 @@ export const FormOrderRequest = () => {
               <FormFileUpload
                 control={form.control}
                 name="image_url"
-                label={<span className="text-lg font-bold uppercase">Ảnh hàng hóa</span>}
+                label={<span className="text-lg font-bold uppercase">Ảnh kiện hàng</span>}
               />
             </div>
 

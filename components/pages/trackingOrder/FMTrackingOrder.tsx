@@ -258,7 +258,9 @@ export const FMTrackingOrder = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button variant={'default'}>Đóng</Button>
+            <Button onClick={onCloseModal} variant={'ghost'}>
+              Đóng
+            </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

@@ -17,7 +17,7 @@ import { NewsItem } from './NewsItem';
 export const ListNews = () => {
   const { data } = useSuspenseQuery(categoryNewsOptions);
   const searchParams = useSearchParams();
-  const page = Number(searchParams.get('page')) || 1;
+  const page = Number(searchParams.get('page')) || DEFAULT.PAGE;
 
   const [categoryId, setCategoryId] = useState(0);
   const { data: newsRes, isLoading } = useQuery({

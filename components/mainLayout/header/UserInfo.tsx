@@ -34,6 +34,7 @@ export const UserInfo = ({ user, isMobile }: UserInfoProps) => {
         onSuccess: () => {
           logout();
           router.refresh();
+          router.push(ROUTES.HOME);
         },
       },
     );

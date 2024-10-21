@@ -6,6 +6,7 @@ export const APIS = {
   LOGOUT: '/api/v1/auth/logout',
   UPLOAD_FILE: '/api/v1/public/ktp-upload',
   CHANGE_PASSWORD: '/api/v1/web/user/change-password',
+  UPDATE_PROFILE: '/api/v1/web/user/update-profile',
 
   SEARCH_BANNERS: '/api/v1/public/banner-quang-cao/search',
   SEARCH_COMPANY_PHOTO: '/api/v1/public/company-photo/search',
@@ -32,7 +33,7 @@ export const APIS = {
   ORDER_REQUEST_PUBLIC: '/api/v1/public/don-hang',
   SHIPPING_REGULATION: '/api/v1/public/quy-dinh-van-chuyen/search',
   ORDER_REQUEST_LIST: '/api/v1/web/don-hang/search',
-  CANCEL_ORDER_REQUEST: (id: string) => `/api/v1/web/don-hang/huy/${id}`,
+  CANCEL_ORDER_REQUEST: (id: string | number) => `/api/v1/web/don-hang/huy/${id}`,
 
   //TRACKING ORDER
   HCT_TRACKING: '/api/v1/public/hct-logistics/search',

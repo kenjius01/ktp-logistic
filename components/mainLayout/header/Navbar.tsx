@@ -1,12 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { Menu } from 'lucide-react';
+import { Menu, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Container } from '@/components/Container';
 import { Logo } from '@/components/logo/Logo';
+import { TAB_PROFILE } from '@/components/pages/profile/ProfileSidebar';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { listNavbarMenu } from '@/constants/menu';
@@ -54,7 +55,15 @@ export const Navbar = () => {
           </div>
           <div className="hidden sm:flex sm:items-center">
             {user ? (
-              <UserInfo user={user} />
+              <div className="flex items-center gap-2">
+                <div className="cursor-pointer rounded-full p-2 hover:bg-muted">
+                  <ShoppingCart
+                    className="h-6 w-6"
+                    onClick={() => onNavigate(ROUTES.PROFILE_BY_TAB(TAB_PROFILE.MY_ORDER))}
+                  />
+                </div>
+                <UserInfo user={user} />
+              </div>
             ) : (
               <React.Fragment>
                 <Button
@@ -69,7 +78,17 @@ export const Navbar = () => {
             )}
           </div>
           <div className="flex items-center gap-4 sm:hidden">
-            {user && <UserInfo isMobile user={user} />}
+            {user && (
+              <div className="flex items-center gap-2">
+                <div className="cursor-pointer rounded-full p-2 hover:bg-muted">
+                  <ShoppingCart
+                    className="h-6 w-6"
+                    onClick={() => onNavigate(ROUTES.PROFILE_BY_TAB(TAB_PROFILE.MY_ORDER))}
+                  />
+                </div>
+                <UserInfo isMobile user={user} />
+              </div>
+            )}
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">

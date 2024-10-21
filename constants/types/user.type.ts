@@ -39,3 +39,14 @@ export type UserType = {
   created_at: DateType;
   avatar_url: string;
 };
+
+export type FormUpdateProfileType = {
+  avatar_url?: string;
+  first_name?: string;
+  last_name?: string;
+  phone_number?: string;
+  gender?: string;
+  email?: string;
+  address?: string;
+  date_of_birth?: DateType;
+};
