@@ -26,9 +26,18 @@ export const MassItem = ({ item, activeMassId, setActiveMassId, onSelectMass }: 
       }}
     >
       <div className="flex flex-col items-center justify-center gap-4">
-        <Image src={item?.avatar_url} alt="iconMass" height={40} width={40} />
+        <div className="relative h-10 w-10">
+          <Image
+            src={item?.avatar_url}
+            alt="iconMass"
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 640px) 100vw, 33vw"
+          />
+        </div>
         <p>
-          {item.from} - {item.to}g
+          {item.from} - {item.to}
+          {item?.don_vi}
         </p>
       </div>
     </div>

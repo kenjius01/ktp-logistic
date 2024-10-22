@@ -5,6 +5,7 @@ export type MassListType = {
   avatar_url: string;
   from: number;
   to: number;
+  don_vi: string;
   created_at: '2024-08-24T18:04:54.209592';
 };
 

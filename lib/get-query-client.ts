@@ -6,12 +6,13 @@ export function makeQueryClient() {
     defaultOptions: {
       queries: {
         // staleTime: 60 * 1000,
+        staleTime: 0,
         refetchOnWindowFocus: false,
       },
       dehydrate: {
         // include pending queries in dehydration
         shouldDehydrateQuery: (query) =>
-          defaultShouldDehydrateQuery(query) || query.state.status === 'pending',
+          defaultShouldDehydrateQuery(query) || query.state.status === 'success',
       },
     },
   });
