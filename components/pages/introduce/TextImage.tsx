@@ -77,7 +77,7 @@ export const TextImage = ({
     <div className={cn(className, 'relative items-center')} ref={ref}>
       <motion.div
         variants={getImageVariant(aosImage)}
-        className={cn('relative', classImage)}
+        className={cn('relative overflow-hidden', classImage)}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}
       >

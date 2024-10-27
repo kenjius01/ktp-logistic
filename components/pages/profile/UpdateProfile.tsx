@@ -110,21 +110,24 @@ export const UpdateProfile = () => {
       <div className="py-6">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onUpdateProfile)}>
-            <FormField
-              control={form.control}
-              name="avatar_url"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <AvatarUpload
-                      value={field.value}
-                      onChange={(file) => onChangeAvatar(field, file)}
-                      isLoading={isLoadingImg}
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
+            <div className="flex items-center justify-center">
+              <FormField
+                control={form.control}
+                name="avatar_url"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <AvatarUpload
+                        value={field.value}
+                        onChange={(file) => onChangeAvatar(field, file)}
+                        isLoading={isLoadingImg}
+                        className="h-28 w-28"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+            </div>
             <div className="mt-4 flex flex-col gap-2 md:flex-row">
               <div className="w-full space-y-2">
                 <FormInput
@@ -169,6 +172,7 @@ export const UpdateProfile = () => {
             <div className="flex flex-col gap-2 md:flex-row">
               <div className="w-full">
                 <FormSelect
+                  control={form.control}
                   name="gender"
                   label="Giới tính"
                   placeholder="Chọn giới tính"

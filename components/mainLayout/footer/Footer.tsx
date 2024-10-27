@@ -10,13 +10,13 @@ import { ROUTES } from '@/constants/routes';
 
 export const Footer = () => {
   const { data } = useSuspenseQuery(companyInfoOptions);
-  const companyInfo = data?.result?.items?.[0];
+  const companyInfos = data?.result?.items || [];
   return (
     <footer className="bg-muted py-12 text-center">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 md:gap-8">
           <div className="flex justify-center space-y-2 md:justify-start">
-            <div className="flex flex-shrink-0 items-center">
+            <div className="flex flex-shrink-0">
               <Logo
                 className="h-24 w-24 md:h-40 md:w-40"
                 style={{ objectFit: 'cover' }}
@@ -85,11 +85,16 @@ export const Footer = () => {
           </div>
           <div className="flex flex-col items-center gap-y-2 text-left md:items-start">
             <h4 className="flex text-lg font-bold uppercase md:self-start">Thông tin liên hệ</h4>
-            <ul className="flex flex-col items-center space-y-1">
-              <li className="flex self-start xl:text-nowrap">Địa chỉ: {companyInfo?.address}</li>
-              <li className="flex self-start">Email: {companyInfo?.email}</li>
-              <li className="flex self-start">Số điện thoại: {companyInfo?.phone_number}</li>
-            </ul>
+            {companyInfos.map((item, index) => (
+              <div key={item.id} className="flex flex-col">
+                <p className="font-bold">Cở sở {index + 1}:</p>
+                <ul className="flex flex-col items-center space-y-1">
+                  <li className="flex self-start">Địa chỉ: {item?.address}</li>
+                  <li className="flex self-start">Email: {item?.email}</li>
+                  <li className="flex self-start">Số điện thoại: {item?.phone_number}</li>
+                </ul>
+              </div>
+            ))}
           </div>
           <div className="flex flex-col items-center space-y-2">
             <h4 className="text-lg font-bold uppercase">Theo dõi chúng tôi</h4>

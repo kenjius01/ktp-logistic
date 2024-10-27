@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -41,6 +42,7 @@ interface FormSelectProps<T extends FieldValues> {
 
 export const FormSelect = <T extends FieldValues>({
   name,
+  control,
   config,
   defaultSelect,
   description,
@@ -81,7 +83,7 @@ export const FormSelect = <T extends FieldValues>({
   }, [data?.result, defaultSelect, options, queryFn]);
   return (
     <FormField
-      control={form.control}
+      control={form.control || control}
       name={name}
       render={({ field }) => (
         <FormItem>
@@ -91,8 +93,9 @@ export const FormSelect = <T extends FieldValues>({
             </FormLabel>
           )}
           <Select
+            value={field.value ? field.value.toString() : ''}
             disabled={disabled || isLoading}
-            onValueChange={field.onChange}
+            onValueChange={(v) => v != '' && field.onChange(v)}
             defaultValue={field.value}
             {...rest}
           >

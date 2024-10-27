@@ -8,7 +8,7 @@ const ContactPage = () => {
     <div>
       <div className="h-80 md:h-[450px]">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.3255639159815!2d106.66978270888838!3d10.786357989318645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ed43913c8c5%3A0x40910a582f5d5df2!2sTHI%CC%A3NH%20PHA%CC%81T%20LOGISTICS!5e0!3m2!1svi!2s!4v1727407967095!5m2!1svi!2s"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3099.3051234810223!2d105.79033647428847!3d20.99318068900156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135acb770826d59%3A0xcd07ef5ab6e7cbb6!2zMjkxLTI3NSBMxrDGoW5nIFRo4bq_IFZpbmgsIFRydW5nIFbEg24sIE5hbSBU4burIExpw6ptLCBIw6AgTuG7mWksIFZpZXRuYW0!5e1!3m2!1sen!2s!4v1729997764110!5m2!1sen!2s"
           width="100%"
           height="100%"
           style={{ border: '0', position: 'relative', zIndex: '10' }}

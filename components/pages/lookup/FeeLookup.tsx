@@ -34,15 +34,11 @@ const formSchema = z.object({
   from_province_code: z.string().min(1, {
     message: 'Vui lòng chọn tỉnh',
   }),
-  from_district_code: z.string().min(1, {
-    message: 'Vui lòng chọn huyện',
-  }),
+  from_district_code: z.string(),
   to_province_code: z.string().min(1, {
     message: 'Vui lòng chọn tỉnh',
   }),
-  to_district_code: z.string().min(1, {
-    message: 'Vui lòng chọn huyện',
-  }),
+  to_district_code: z.string(),
 });
 
 export const FeeLookup = () => {
@@ -170,7 +166,6 @@ export const FeeLookup = () => {
 
                     <div className="w-full space-y-2">
                       <FormCombobox
-                        required
                         className="w-full justify-between"
                         label="Quận/huyện"
                         placeholder="Chọn huyện"
@@ -205,7 +200,6 @@ export const FeeLookup = () => {
                     </div>
                     <div className="w-full space-y-2">
                       <FormCombobox
-                        required
                         className="w-full justify-between"
                         label="Quận/huyện"
                         placeholder="Chọn huyện"

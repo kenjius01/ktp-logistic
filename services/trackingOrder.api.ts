@@ -3,6 +3,7 @@ import {
   IFmTrackingDetail,
   IFmTrackingList,
   IHctTracking,
+  ITcatTracking,
 } from '@/constants/types/trackingOrder.type';
 import { http } from '@/lib/http';
 
@@ -34,6 +35,26 @@ export const getDetailFmTrackingOrderApi = ({
   code,
 }: IParams): Promise<IResponse<IFmTrackingDetail>> => {
   return http.get(APIS.FM_TRACKING_DETAIL, {
+    params: {
+      code,
+    },
+  });
+};
+
+export const searchTcatTrackingOrderApi = ({
+  code,
+}: IParams): Promise<IResponse<ITcatTracking>> => {
+  return http.post(APIS.TCAT_TRACKING, null, {
+    params: {
+      code,
+    },
+  });
+};
+
+export const searchElevenTrackingOrderApi = ({
+  code,
+}: IParams): Promise<IResponse<ITcatTracking>> => {
+  return http.post(APIS.ELEVEN_TRACKING, null, {
     params: {
       code,
     },

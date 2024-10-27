@@ -2,9 +2,10 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Autoplay from 'embla-carousel-autoplay';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 
 import { Container } from '@/components/Container';
+import { ImageWithFallback } from '@/components/container/image/ImageWithFallback';
+import { Card } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -38,19 +39,21 @@ export const Partner = () => {
         đối tác
       </motion.h4>
       <motion.div variants={fadeUpVariants} initial="hidden" whileInView="visible">
-        <Carousel className="mx-auto" opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]}>
-          <CarouselContent className="justify-center">
+        <Carousel opts={{ loop: true }} plugins={[Autoplay({ delay: 5000 })]}>
+          <CarouselContent>
             {listPartner.map((item) => (
               <CarouselItem className="sm:basis-1/2 md:basis-1/4 xl:basis-1/5" key={item?.id}>
-                <div className="relative mb-2 aspect-video h-24">
-                  <Image
-                    className="object-cover"
-                    src={item?.avatar_url || ''}
-                    alt="partner"
-                    fill
-                    sizes="(max-width: 240px) 10vw, 33vw"
-                  />
-                </div>
+                <Card className="w-ful mx-auto max-w-xs cursor-pointer overflow-hidden rounded">
+                  <div className="group relative m-auto flex aspect-video rounded-lg">
+                    <ImageWithFallback
+                      src={item?.avatar_url || ''}
+                      alt="partner"
+                      fill
+                      sizes="(max-width: 640px) 100vw, 33vw"
+                      className="object-cover transition-all duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                </Card>
               </CarouselItem>
             ))}
           </CarouselContent>

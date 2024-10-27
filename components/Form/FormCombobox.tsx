@@ -68,6 +68,7 @@ export const FormCombobox = <T extends FieldValues>({
   queryFn,
   queryKey,
 }: FormComboboxProps<T>) => {
+  const [open, setOpen] = React.useState(false);
   const form = useFormContext();
   const { data, isLoading } = useQuery({
     queryKey: queryKey as QueryKey,
@@ -105,7 +106,7 @@ export const FormCombobox = <T extends FieldValues>({
               {label} {required && <span className="text-red-500">*</span>}
             </FormLabel>
           )}
-          <Popover>
+          <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild className="">
               <FormControl>
                 <Button
@@ -147,6 +148,7 @@ export const FormCombobox = <T extends FieldValues>({
                         key={item?.[fieldNames.value]}
                         onSelect={() => {
                           form.setValue(name, item?.[fieldNames.value]);
+                          setOpen(false);
                         }}
                       >
                         {item?.[fieldNames.label]}

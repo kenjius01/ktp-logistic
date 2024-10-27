@@ -78,3 +78,16 @@ export interface IFmTrackingDetail {
   error_message: string;
   list: Array<IFmTracking>;
 }
+
+export interface ITcatTrackingItem {
+  id: string;
+  rel: string;
+  checkpoint_date: DateType;
+  info: string;
+  location: string;
+}
+
+export interface ITcatTracking {
+  total_items: number;
+  items: Array<ITcatTrackingItem>;
+}

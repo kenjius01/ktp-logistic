@@ -12,12 +12,13 @@ import useAuthStore from '@/stores/useAuthStore';
 import { getInitialsName } from '@/utils/function.utils';
 
 type AvatarUploadProps = {
+  className?: string;
   value?: string;
   onChange?: (value?: File) => void;
   isLoading?: boolean;
 };
 
-export function AvatarUpload({ isLoading, value, onChange }: AvatarUploadProps) {
+export function AvatarUpload({ className, isLoading, value, onChange }: AvatarUploadProps) {
   const { user } = useAuthStore();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +29,7 @@ export function AvatarUpload({ isLoading, value, onChange }: AvatarUploadProps) 
   };
 
   return (
-    <div className="relative h-20 w-20">
+    <div className={cn('relative h-20 w-20', className)}>
       <Avatar className={cn('h-full w-full', isLoading && 'hidden')}>
         <AvatarImage src={value} className="object-cover" />
         <AvatarFallback className="bg-secondary">{user && getInitialsName(user)}</AvatarFallback>

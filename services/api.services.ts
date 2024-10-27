@@ -39,6 +39,7 @@ export const APIS = {
   HCT_TRACKING: '/api/v1/public/hct-logistics/search',
   FM_TRACKING_SEARCH: '/api/v1/public/family-mart/search',
   FM_TRACKING_DETAIL: `/api/v1/public/family-mart/detail`,
-
+  TCAT_TRACKING: '/api/v1/t-cat/search',
+  ELEVEN_TRACKING: '/api/v1/7-eleven/search',
   //PROFILE
 };

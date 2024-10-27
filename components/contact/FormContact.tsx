@@ -21,8 +21,8 @@ const formSchema = z.object({
     .max(50),
   email: z.string(),
   phone_number: z.string().min(1, { message: 'Vui lòng nhập số điện thoại' }),
-  address: z.string(),
-  content: z.string(),
+  address: z.string().min(1, { message: 'Vui lòng nhập địa chỉ' }),
+  content: z.string().min(1, { message: 'Vui lòng nhập nội dung' }),
 });
 
 export const FormContact = () => {

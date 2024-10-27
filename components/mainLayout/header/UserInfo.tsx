@@ -44,7 +44,7 @@ export const UserInfo = ({ user, isMobile }: UserInfoProps) => {
       <DropdownMenuTrigger asChild>
         <div className="flex cursor-pointer items-center gap-2">
           <Avatar>
-            <AvatarImage className="border" src={user?.avatar_url} alt="avatar" />
+            <AvatarImage className="" src={user?.avatar_url} alt="avatar" />
             <AvatarFallback>{getInitialsName(user)}</AvatarFallback>
           </Avatar>
           {!isMobile && <div>{getFullName(user)}</div>}
