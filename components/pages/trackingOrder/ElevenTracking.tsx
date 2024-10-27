@@ -116,7 +116,11 @@ export const ElevenTracking = () => {
         </div>
       ) : (
         isFetched && (
-          <p className="text-center font-bold text-destructive">Không có kết quả hiển thị nào!</p>
+          <div className="rs mt-8 rounded-md border p-6 shadow-md">
+            <p className="text-center font-bold text-destructive">
+              {data?.message || 'Không có kết quả hiển thị nào!'}
+            </p>
+          </div>
         )
       )}
     </div>
