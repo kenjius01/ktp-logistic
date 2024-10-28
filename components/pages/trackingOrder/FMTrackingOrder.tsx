@@ -70,10 +70,10 @@ export const FMTrackingOrder = () => {
 
   const [searchValue, setSearchValue] = useState<SearchValueType>();
 
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: [KEY_QUERY.FM_TRACKING_ORDER, searchValue],
     queryFn: () => searchFmTrackingOrderApi(searchValue as SearchValueType),
-    enabled: !!searchValue,
+    enabled: false,
   });
 
   const listTracking = data?.result.list || [];
@@ -128,6 +128,7 @@ export const FMTrackingOrder = () => {
   const onSearch = (values: FormValues) => {
     const codes = [values.code1, values.code2, values.code3, values.code4, values.code5];
     setSearchValue({ codes });
+    refetch();
   };
 
   const onCloseModal = () => {

@@ -33,8 +33,8 @@ export const ProfileSidebar = () => {
   const searchParams = useSearchParams();
   const tab = searchParams?.get('tab') || TAB_PROFILE.INFO;
   return (
-    <div className="col-span-1 rounded-md border-r px-3">
-      <div className="flex flex-col">
+    <div className="col-span-4 rounded-md border p-4 md:col-span-1 md:px-3">
+      <div className="flex md:flex-col">
         {listTabs.map(({ icon: Icon, name, label }) => (
           <Link
             href={{ query: { tab: name } }}

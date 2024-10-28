@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Form } from '@/components/ui/form';
 import { DEFAULT_FILTER } from '@/constants/common';
+import { OPERATION_FILTER } from '@/constants/filters';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { massListOptions } from '@/constants/options';
 import { IConfigPrice, LookupFormType } from '@/constants/types/lookup.type';
@@ -82,6 +83,7 @@ export const FeeLookup = () => {
     enabled: !!lookupForm,
   });
   const configPrices = lookupRes?.result?.config_price || [];
+  const service_id = form.watch('service_id');
   const onLookup = (values: z.infer<typeof formSchema>) => {
     const { khoi_luong, ...rest } = values;
     const khoi_luong_id = findKhoiLuongId(Number(khoi_luong));
@@ -152,11 +154,17 @@ export const FeeLookup = () => {
                         placeholder="Chọn tỉnh"
                         control={form.control}
                         name="from_province_code"
-                        queryKey={[KEY_QUERY.PROVINCE]}
+                        queryKey={[KEY_QUERY.PROVINCE, 'from_province_code', service_id]}
                         queryFn={() =>
                           searchProvince({
                             keyword: '',
-                            filters: [],
+                            filters: [
+                              {
+                                name: 'in_the_country',
+                                value: service_id === 2,
+                                operation: OPERATION_FILTER.EQ,
+                              },
+                            ],
                             pageable: { page_size: 100, page: 1 },
                           })
                         }
@@ -172,7 +180,12 @@ export const FeeLookup = () => {
                         control={form.control}
                         name="from_district_code"
                         config={{ enabled: !!fromProvinceCode }}
-                        queryKey={[KEY_QUERY.DISTRICT, fromProvinceCode]}
+                        queryKey={[
+                          KEY_QUERY.DISTRICT,
+                          fromProvinceCode,
+                          'from_district_code',
+                          service_id,
+                        ]}
                         queryFn={() => searchDistrictByProvince(fromProvinceCode)}
                         fieldNames={{ value: 'code', label: 'name' }}
                       />
@@ -187,11 +200,17 @@ export const FeeLookup = () => {
                         placeholder="Chọn tỉnh"
                         control={form.control}
                         name="to_province_code"
-                        queryKey={[KEY_QUERY.PROVINCE]}
+                        queryKey={[KEY_QUERY.PROVINCE, 'to_province_code', service_id]}
                         queryFn={() =>
                           searchProvince({
                             keyword: '',
-                            filters: [],
+                            filters: [
+                              {
+                                name: 'in_the_country',
+                                value: service_id === 2,
+                                operation: OPERATION_FILTER.EQ,
+                              },
+                            ],
                             pageable: { page_size: 100, page: 1 },
                           })
                         }
@@ -206,8 +225,8 @@ export const FeeLookup = () => {
                         control={form.control}
                         name="to_district_code"
                         config={{ enabled: !!toProvinceCode }}
-                        queryKey={[toProvinceCode]}
-                        queryFn={() => searchDistrictByProvince(fromProvinceCode)}
+                        queryKey={[toProvinceCode, 'to_district_code', service_id]}
+                        queryFn={() => searchDistrictByProvince(toProvinceCode)}
                         fieldNames={{ value: 'code', label: 'name' }}
                       />
                     </div>

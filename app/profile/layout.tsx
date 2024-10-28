@@ -13,7 +13,7 @@ const ProfileLayout = ({ children }: ProfileLayoutProps) => {
       <Container className="py-8">
         <div className="grid grid-cols-4 gap-4">
           <ProfileSidebar />
-          <div className="col-span-3">{children}</div>
+          <div className="col-span-4 md:col-span-3">{children}</div>
         </div>
       </Container>
     </Suspense>

@@ -158,7 +158,7 @@ export const MyOrder = () => {
         />
 
         <Dialog open={isOpenModal} onOpenChange={onCloseModal}>
-          <DialogContent className="max-h-[80%]">
+          <DialogContent className="max-h-[80%] lg:max-w-[800px]">
             <DialogHeader className="">
               <DialogTitle>Chi tiết đơn hàng</DialogTitle>
             </DialogHeader>

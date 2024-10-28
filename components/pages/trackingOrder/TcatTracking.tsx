@@ -39,13 +39,14 @@ export const TcatTracking = () => {
     },
   });
   const [searchValue, setSearchValue] = useState<z.infer<typeof formSchema>>();
-  const { data, isLoading, isFetched } = useQuery({
+  const { data, isLoading, isFetched, refetch } = useQuery({
     queryKey: [KEY_QUERY.TCAT_TRACKING_ORDER, searchValue],
     queryFn: () => searchTcatTrackingOrderApi(searchValue as z.infer<typeof formSchema>),
-    enabled: !!searchValue,
+    enabled: false,
   });
   const onSearch = (values: z.infer<typeof formSchema>) => {
     setSearchValue(values);
+    refetch();
   };
   const listCheck = data?.result?.items || [];
   return (
