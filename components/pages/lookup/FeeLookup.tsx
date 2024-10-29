@@ -40,6 +40,7 @@ const formSchema = z.object({
     message: 'Vui lòng chọn tỉnh',
   }),
   to_district_code: z.string(),
+  service_id1: z.number(),
 });
 
 export const FeeLookup = () => {
@@ -84,6 +85,7 @@ export const FeeLookup = () => {
   });
   const configPrices = lookupRes?.result?.config_price || [];
   const service_id = form.watch('service_id');
+  const service_id1 = form.watch('service_id1');
   const onLookup = (values: z.infer<typeof formSchema>) => {
     const { khoi_luong, ...rest } = values;
     const khoi_luong_id = findKhoiLuongId(Number(khoi_luong));
@@ -191,6 +193,18 @@ export const FeeLookup = () => {
                       />
                     </div>
                   </div>
+                  <div className="space-y-2">
+                    <FormCombobox
+                      required
+                      className="w-full justify-between"
+                      label="Dịch vụ"
+                      control={form.control}
+                      name="service_id1"
+                      queryKey={[KEY_QUERY.SHIPPING_SERVICE, '2']}
+                      queryFn={() => searchShippingServiceApi(DEFAULT_FILTER)}
+                      fieldNames={{ value: 'id', label: 'name' }}
+                    />
+                  </div>
                   <div className="flex flex-col gap-2 md:flex-row">
                     <div className="w-full space-y-2">
                       <FormCombobox
@@ -200,14 +214,14 @@ export const FeeLookup = () => {
                         placeholder="Chọn tỉnh"
                         control={form.control}
                         name="to_province_code"
-                        queryKey={[KEY_QUERY.PROVINCE, 'to_province_code', service_id]}
+                        queryKey={[KEY_QUERY.PROVINCE, 'to_province_code', service_id1]}
                         queryFn={() =>
                           searchProvince({
                             keyword: '',
                             filters: [
                               {
                                 name: 'in_the_country',
-                                value: service_id === 2,
+                                value: service_id1 === 2,
                                 operation: OPERATION_FILTER.EQ,
                               },
                             ],
@@ -225,7 +239,7 @@ export const FeeLookup = () => {
                         control={form.control}
                         name="to_district_code"
                         config={{ enabled: !!toProvinceCode }}
-                        queryKey={[toProvinceCode, 'to_district_code', service_id]}
+                        queryKey={[toProvinceCode, 'to_district_code', service_id1]}
                         queryFn={() => searchDistrictByProvince(toProvinceCode)}
                         fieldNames={{ value: 'code', label: 'name' }}
                       />
