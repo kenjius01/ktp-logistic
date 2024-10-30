@@ -88,17 +88,17 @@ const ServicesIntro = () => {
               <div className="flex items-center justify-center">
                 <Form {...form}>
                   <form
-                    className="shrink-0"
+                    className="flex items-center gap-4"
                     onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
                   >
                     <FormInput
-                      className="h-12 w-full md:min-w-[440px]"
+                      className="w-full md:min-w-96"
                       control={form.control}
                       name="code"
                       label="Mã đơn hàng"
                       required
                     />
-                    <Button disabled={isLoading} type="submit" className="mt-2 font-bold">
+                    <Button disabled={isLoading} type="submit" className="mt-6 font-bold">
                       {isLoading ? (
                         <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                       ) : (

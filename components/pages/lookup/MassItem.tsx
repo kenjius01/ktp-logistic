@@ -33,6 +33,7 @@ export const MassItem = ({ item, activeMassId, setActiveMassId, onSelectMass }: 
             fill
             style={{ objectFit: 'cover' }}
             sizes="(max-width: 640px) 100vw, 33vw"
+            className={cn(activeMassId === item.id && 'brightness-0 invert-[1]')}
           />
         </div>
         <p>
