@@ -1,10 +1,17 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ReloadIcon } from '@radix-ui/react-icons';
 import { useQuery } from '@tanstack/react-query';
+import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { z } from 'zod';
 
 import { Container } from '@/components/Container';
+import { FormInput } from '@/components/Form';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
   Carousel,
@@ -13,6 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Form } from '@/components/ui/form';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT_FILTER, listAdInfos, SERVICE_COMPANY } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -24,7 +32,18 @@ import useAuthStore from '@/stores/useAuthStore';
 import { CompanyCarousel } from './CompanyCarousel';
 import { ProcessAndFeedback } from './ProcessAndFeedback';
 
+const formSchema = z.object({
+  code: z.string().min(1, {
+    message: 'Vui lòng nhập mã tra cứu',
+  }),
+});
 const ServicesIntro = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      code: '',
+    },
+  });
   const { user } = useAuthStore();
   const router = useRouter();
   const { data, isLoading } = useQuery({
@@ -39,6 +58,10 @@ const ServicesIntro = () => {
       return;
     }
     window.open(item?.link_web, '_blank');
+  };
+
+  const onSearch = (values: z.infer<typeof formSchema>) => {
+    console.log(values);
   };
   return (
     <Container>
@@ -61,6 +84,34 @@ const ServicesIntro = () => {
             <p className="text-center text-xl font-bold uppercase">
               Tra cứu lộ trình đơn hàng từ nước ngoài
             </p>
+            {user ? (
+              <div className="flex items-center justify-center">
+                <Form {...form}>
+                  <form
+                    className="shrink-0"
+                    onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
+                  >
+                    <FormInput
+                      className="h-12 w-full md:min-w-[440px]"
+                      control={form.control}
+                      name="code"
+                      label="Mã đơn hàng"
+                      required
+                    />
+                    <Button disabled={isLoading} type="submit" className="mt-2 font-bold">
+                      {isLoading ? (
+                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                      ) : (
+                        <SearchIcon className="mr-2 h-4 w-4" />
+                      )}
+                      Tra cứu
+                    </Button>
+                  </form>
+                </Form>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
 
           {/* Carousel */}

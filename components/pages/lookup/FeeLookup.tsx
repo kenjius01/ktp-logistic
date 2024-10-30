@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReloadIcon } from '@radix-ui/react-icons';
-import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { z } from 'zod';
 
@@ -44,6 +44,7 @@ const formSchema = z.object({
 });
 
 export const FeeLookup = () => {
+  const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(massListOptions);
   const massList = data?.result?.items || [];
   const form = useForm<z.infer<typeof formSchema>>({
@@ -78,7 +79,7 @@ export const FeeLookup = () => {
 
     return item ? item.id : ''; // Trả về `id` nếu tìm thấy
   };
-  const { data: lookupRes, isLoading } = useQuery({
+  const { data: lookupRes, isFetching: isLoading } = useQuery({
     queryKey: [KEY_QUERY.LOOKUP, lookupForm],
     queryFn: () => lookupFeeAndTimeApi(lookupForm as LookupFormType),
     enabled: !!lookupForm,
@@ -95,6 +96,7 @@ export const FeeLookup = () => {
       khoi_luong_id,
     };
     setLookupForm(dataLookup);
+    queryClient.invalidateQueries({ queryKey: [KEY_QUERY.LOOKUP] });
   };
 
   const columns: ColumnDef<IConfigPrice>[] = [
