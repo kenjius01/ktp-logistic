@@ -25,12 +25,17 @@ import { DATE_FORMAT } from '@/constants/date';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { searchElevenTrackingOrderApi } from '@/services/trackingOrder.api';
 import { formatDateFn } from '@/utils/date.utils';
+import { generateUniqueID } from '@/utils/function.utils';
 
 const formSchema = z.object({
   code: z.string().min(1, {
     message: 'Vui lòng nhập mã tra cứu',
   }),
 });
+type SearchValueType = {
+  code: string;
+  refetchId?: string;
+};
 export const ElevenTracking = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,15 +43,14 @@ export const ElevenTracking = () => {
       code: '',
     },
   });
-  const [searchValue, setSearchValue] = useState<z.infer<typeof formSchema>>();
-  const { data, isLoading, isFetched, refetch } = useQuery({
+  const [searchValue, setSearchValue] = useState<SearchValueType>();
+  const { data, isLoading, isFetched } = useQuery({
     queryKey: [KEY_QUERY.ELEVEN_TRACKING_ORDER, searchValue],
-    queryFn: () => searchElevenTrackingOrderApi(searchValue as z.infer<typeof formSchema>),
-    enabled: false,
+    queryFn: () => searchElevenTrackingOrderApi(searchValue as SearchValueType),
+    enabled: !!searchValue,
   });
   const onSearch = (values: z.infer<typeof formSchema>) => {
-    setSearchValue(values);
-    refetch();
+    setSearchValue({ code: values.code, refetchId: generateUniqueID() });
   };
   const listCheck = data?.result?.items || [];
   return (
