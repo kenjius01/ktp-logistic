@@ -30,6 +30,12 @@ export type TShippingRegulation = {
   title: string;
 };
 
+export type TReasonCancel = {
+  id: number | string;
+  order_id: number | string;
+  reason: string;
+};
+
 export type TOrderInfo = {
   id: number | string;
   full_name: string;
@@ -41,4 +47,5 @@ export type TOrderInfo = {
   image_url: Array<string>;
   created_at: string;
   status: string;
+  reason_cancel: TReasonCancel;
 };

@@ -163,7 +163,7 @@ export const MyOrder = () => {
               <DialogTitle>Chi tiết đơn hàng</DialogTitle>
             </DialogHeader>
             <ScrollArea className="h-96">
-              <div className="rs max-h-full space-y-2">
+              <div className="rs max-h-full space-y-4">
                 <div className="w-full space-y-2">
                   <p className="text-sm font-bold">Họ và tên</p>
                   <Input disabled value={rowData?.full_name} />
@@ -196,6 +196,12 @@ export const MyOrder = () => {
                     />
                   </div>
                 </div>
+                {rowData?.reason_cancel?.reason && (
+                  <div className="w-full space-y-2">
+                    <p className="text-sm font-bold">Lý do hủy hàng</p>
+                    <Textarea disabled value={rowData?.reason_cancel.reason} />
+                  </div>
+                )}
                 <div className="w-full space-y-2">
                   <p className="text-sm font-bold">Kê khai thông tin hàng hóa</p>
                   <Textarea disabled value={rowData?.total_packages} />

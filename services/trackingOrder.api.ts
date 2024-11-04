@@ -1,5 +1,6 @@
 import { IResponse } from '@/constants/types/BaseResponse.type';
 import {
+  IAllTracking,
   IFmTrackingDetail,
   IFmTrackingList,
   IHctTracking,
@@ -59,4 +60,8 @@ export const searchElevenTrackingOrderApi = ({
       code,
     },
   });
+};
+
+export const searchAllTrackingOrderApi = ({ code }: IParams): Promise<IResponse<IAllTracking>> => {
+  return http.post(APIS.ALL_TRACKING(code));
 };

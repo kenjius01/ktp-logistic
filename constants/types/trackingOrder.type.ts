@@ -91,3 +91,17 @@ export interface ITcatTracking {
   total_items: number;
   items: Array<ITcatTrackingItem>;
 }
+
+export interface IAllTracking {
+  carrier: string;
+  code_vi: string;
+  code_tracking: string;
+  infos: [
+    {
+      message: string;
+      status: string;
+      date_time: DateType;
+      address: string;
+    },
+  ];
+}

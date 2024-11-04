@@ -7,6 +7,7 @@ import { ReloadIcon } from '@radix-ui/react-icons';
 import { useQuery } from '@tanstack/react-query';
 import { LoaderCircleIcon, SearchIcon } from 'lucide-react';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { z } from 'zod';
 
 import { FormInput } from '@/components/Form';
@@ -37,13 +38,18 @@ type SearchValueType = {
   refetchId?: string;
 };
 export const ElevenTracking = () => {
+  const searchParams = useSearchParams();
+  const code = searchParams?.get('code') || '';
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      code: '',
+      code,
     },
   });
-  const [searchValue, setSearchValue] = useState<SearchValueType>();
+  const [searchValue, setSearchValue] = useState<SearchValueType | undefined>(
+    code ? { code } : undefined,
+  );
   const { data, isLoading, isFetched } = useQuery({
     queryKey: [KEY_QUERY.ELEVEN_TRACKING_ORDER, searchValue],
     queryFn: () => searchElevenTrackingOrderApi(searchValue as SearchValueType),

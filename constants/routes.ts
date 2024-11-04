@@ -11,5 +11,5 @@ export const ROUTES = {
   LOGIN: '/login',
   REGISTER: '/register',
   TRACKING_ORDER: '/tracking-order',
-  TRACKING_ORDER_TYPE: (type: string) => `/tracking-order/${type}`,
+  TRACKING_ORDER_TYPE: (type: string, code?: string) => `/tracking-order/${type}?code=${code}`,
 };
