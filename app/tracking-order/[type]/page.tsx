@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { Container } from '@/components/Container';
 import { ElevenTracking } from '@/components/pages/trackingOrder/ElevenTracking';
 import { FMTrackingOrder } from '@/components/pages/trackingOrder/FMTrackingOrder';
@@ -14,7 +16,7 @@ interface TypeTrackingOrderPage {
 const TypeTrackingOrderPage = ({ params: { type } }: TypeTrackingOrderPage) => {
   const typeTracking = decodeURIComponent(type);
   return (
-    <div>
+    <Suspense>
       <Container>
         <div className="py-12">
           <h1 className="text-center text-4xl font-bold">Tra cứu hành trình đơn hàng</h1>
@@ -24,7 +26,7 @@ const TypeTrackingOrderPage = ({ params: { type } }: TypeTrackingOrderPage) => {
           {typeTracking === SERVICE_COMPANY.T_CAT && <TcatTracking />}
         </div>
       </Container>
-    </div>
+    </Suspense>
   );
 };
 

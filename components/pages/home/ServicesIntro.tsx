@@ -2,12 +2,10 @@
 
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ReloadIcon } from '@radix-ui/react-icons';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Container } from '@/components/Container';
@@ -23,13 +21,11 @@ import {
 } from '@/components/ui/carousel';
 import { Form } from '@/components/ui/form';
 import { Skeleton } from '@/components/ui/skeleton';
-import { CODE_RESPONSE } from '@/constants/codeResponse';
 import { DEFAULT_FILTER, listAdInfos, SERVICE_COMPANY } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
 import { ROUTES } from '@/constants/routes';
 import { WebConfigType } from '@/constants/types';
 import { searchWebConfigApi } from '@/services/common.services';
-import { searchAllTrackingOrderApi } from '@/services/trackingOrder.api';
 import useAuthStore from '@/stores/useAuthStore';
 
 import { CompanyCarousel } from './CompanyCarousel';
@@ -55,14 +51,6 @@ const ServicesIntro = () => {
   });
   const listWebConfig = data?.result?.items || [];
 
-  const { mutate, isPending } = useMutation({
-    mutationKey: [KEY_QUERY.ALL_TRACKING_ORDER],
-    mutationFn: searchAllTrackingOrderApi,
-    onSuccess: () => {
-      form.reset();
-    },
-  });
-
   const onRedirectTrackingOrder = (item: WebConfigType) => {
     if (Object.values(SERVICE_COMPANY).includes(item?.name) && user) {
       router.push(ROUTES.TRACKING_ORDER_TYPE(item?.name));
@@ -72,16 +60,7 @@ const ServicesIntro = () => {
   };
 
   const onSearch = (values: z.infer<typeof formSchema>) => {
-    mutate(values, {
-      onSuccess: (res) => {
-        if (res.code === CODE_RESPONSE.GET_SUCCESS) {
-          const { code_tracking, carrier } = res.result;
-          router.push(ROUTES.TRACKING_ORDER_TYPE(carrier, code_tracking));
-          return;
-        }
-        toast.error(res.message);
-      },
-    });
+    router.push(ROUTES.TRACKING_ORDER + `?code=${values.code}`);
   };
   return (
     <Container>
@@ -118,12 +97,8 @@ const ServicesIntro = () => {
                       label="Mã đơn hàng"
                       required
                     />
-                    <Button disabled={isPending} type="submit" className="mt-6 font-bold">
-                      {isPending ? (
-                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                      ) : (
-                        <SearchIcon className="mr-2 h-4 w-4" />
-                      )}
+                    <Button type="submit" className="mt-6 font-bold">
+                      <SearchIcon className="mr-2 h-4 w-4" />
                       Tra cứu
                     </Button>
                   </form>

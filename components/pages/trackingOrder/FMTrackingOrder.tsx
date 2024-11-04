@@ -8,7 +8,6 @@ import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { EyeIcon, SearchIcon } from 'lucide-react';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import { z } from 'zod';
 
 import { FormInput } from '@/components/Form';
@@ -55,12 +54,10 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export const FMTrackingOrder = () => {
-  const searchParams = useSearchParams();
-  const code = searchParams?.get('code') || '';
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      code1: code,
+      code1: '',
       code2: '',
       code3: '',
       code4: '',
@@ -73,13 +70,7 @@ export const FMTrackingOrder = () => {
     refetchId?: string;
   };
 
-  const [searchValue, setSearchValue] = useState<SearchValueType | undefined>(
-    code
-      ? {
-          codes: [code],
-        }
-      : undefined,
-  );
+  const [searchValue, setSearchValue] = useState<SearchValueType>();
 
   const { data, isLoading } = useQuery({
     queryKey: [KEY_QUERY.FM_TRACKING_ORDER, searchValue],
