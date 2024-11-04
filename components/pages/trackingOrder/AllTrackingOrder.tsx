@@ -122,6 +122,7 @@ export const AllTrackingOrder = () => {
                   <span className="text-sm text-primary">
                     {formatDateFn(item.date_time, DATE_FORMAT.DATE_TIME)}: {item.message}
                   </span>
+                  {item?.address && <p className="text-sm text-primary">{item?.address}</p>}
                 </TimelineContent>
               </TimelineItem>
             ))}
