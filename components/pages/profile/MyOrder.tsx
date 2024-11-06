@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
-import { EyeIcon, Trash2Icon } from 'lucide-react';
+import { EyeIcon, PackageXIcon } from 'lucide-react';
 import { useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
@@ -107,11 +107,13 @@ export const MyOrder = () => {
     },
     {
       accessorKey: '',
-      header: 'Thao tác',
-      size: 40,
+      header: 'Thao tác',
+      meta: {
+        className: 'text-center',
+      },
       cell: ({ row }) => {
         return (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -128,7 +130,7 @@ export const MyOrder = () => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Trash2Icon
+                  <PackageXIcon
                     className="h-4 w-4 cursor-pointer rounded-full text-destructive"
                     onClick={() => onOpenModalCancel(row.original)}
                   />

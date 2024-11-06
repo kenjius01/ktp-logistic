@@ -87,17 +87,17 @@ const ServicesIntro = () => {
               <div className="flex items-center justify-center">
                 <Form {...form}>
                   <form
-                    className="flex items-center gap-4"
+                    className="flex flex-col items-center sm:flex-row sm:gap-4"
                     onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
                   >
                     <FormInput
-                      className="w-full md:min-w-96"
+                      className="h-12 w-full sm:min-w-80 md:min-w-[500px]"
                       control={form.control}
                       name="code"
                       label="Mã đơn hàng"
                       required
                     />
-                    <Button type="submit" className="mt-6 font-bold">
+                    <Button type="submit" size="lg" className="mt-6 font-bold">
                       <SearchIcon className="mr-2 h-4 w-4" />
                       Tra cứu
                     </Button>
@@ -111,19 +111,22 @@ const ServicesIntro = () => {
 
           {/* Carousel */}
           <div className="p-6">
-            <Carousel className="mt-8 w-auto" opts={{ loop: true }}>
+            <Carousel className="mt-8 w-auto" opts={{ loop: true, align: 'start' }}>
               <CarouselContent>
                 {isLoading
-                  ? Array.from({ length: 3 }).map((_, index) => (
-                      <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3">
-                        <div className="relative mb-2 aspect-square h-auto cursor-pointer">
+                  ? Array.from({ length: 4 }).map((_, index) => (
+                      <CarouselItem key={index} className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                        <div className="relative mx-auto mb-2 aspect-square h-auto max-w-80 cursor-pointer">
                           <Skeleton className="h-full w-full rounded-xl" />
                         </div>
                       </CarouselItem>
                     ))
                   : listWebConfig.map((item) => (
-                      <CarouselItem key={item.id} className="sm:basis-1/2 md:basis-1/3">
-                        <div className="relative mb-2 aspect-square h-auto cursor-pointer">
+                      <CarouselItem
+                        key={item.id}
+                        className="sm:basis-1/2 md:basis-1/3 lg:basis-1/4"
+                      >
+                        <div className="relative mx-auto mb-2 aspect-square w-full max-w-80 cursor-pointer">
                           <Image
                             className="rounded-3xl border-[0.5px] object-contain shadow-[-1px_4px_5px_0px_rgba(0,0,0,0.5)]"
                             src={item?.avatar_url}
