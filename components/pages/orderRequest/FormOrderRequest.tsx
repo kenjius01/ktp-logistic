@@ -6,7 +6,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { FormInput, FormTextArea } from '@/components/Form';
-import { FormFileUpload } from '@/components/Form/FormFileUpload';
+import { FormFileUploadDropzone } from '@/components/Form/FormFileUploadDropzone';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -27,7 +27,7 @@ const formSchema = z.object({
     message: 'Vui lòng nhập thời gian lấy hàng',
   }),
   total_packages: z.string(),
-  image_url: z.string(),
+  image_url: z.array(z.string()),
   content: z.string(),
 });
 export const FormOrderRequest = () => {
@@ -39,8 +39,9 @@ export const FormOrderRequest = () => {
       phone_number: '',
       address: '',
       time: '',
-      image_url: '',
+      image_url: [],
       content: '',
+      total_packages: '',
     },
   });
   const { mutate } = useMutation({
@@ -49,11 +50,7 @@ export const FormOrderRequest = () => {
   });
 
   const onSendOrderRequest = (data: z.infer<typeof formSchema>) => {
-    const dataSend = {
-      ...data,
-      image_url: [data.image_url],
-    };
-    mutate(dataSend, {
+    mutate(data, {
       onSuccess: () => {
         toast.success('Đặt hàng thành công');
       },
@@ -119,7 +116,7 @@ export const FormOrderRequest = () => {
             </div>
 
             <div className="space-y-2">
-              <FormFileUpload
+              <FormFileUploadDropzone
                 control={form.control}
                 name="image_url"
                 label={<span className="text-lg font-bold uppercase">Ảnh kiện hàng</span>}

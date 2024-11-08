@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TooltipProvider } from '@radix-ui/react-tooltip';
+import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { EyeIcon, PackageXIcon } from 'lucide-react';
@@ -15,6 +16,7 @@ import {
   DialogContent,
   DialogFooter,
   DialogHeader,
+  DialogOverlay,
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
@@ -35,6 +37,8 @@ export const MyOrder = () => {
 
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpenModalCancel, setIsOpenModalCancel] = useState(false);
+  const [isOpenModalImg, setIsOpenModalImg] = useState(false);
+  const [urlImg, setUrlImg] = useState('');
   const [rowData, setRowData] = useState<TOrderInfo>();
   const { data, isLoading, refetch } = useQuery({
     queryKey: [KEY_QUERY.MY_ORDER, page],
@@ -68,6 +72,16 @@ export const MyOrder = () => {
     setIsOpenModalCancel(true);
   };
 
+  const onOpenModalImg = (url: string) => {
+    setUrlImg(url);
+    setIsOpenModalImg(true);
+  };
+  const onCloseModalImg = () => {
+    console.log('first');
+    setIsOpenModalImg(false);
+    setUrlImg('');
+  };
+
   const onCancelOrder = (id: number | string) => {
     cancelMutate(
       { id },
@@ -84,6 +98,7 @@ export const MyOrder = () => {
       },
     );
   };
+
   const column: ColumnDef<TOrderInfo>[] = [
     {
       accessorKey: 'full_name',
@@ -158,12 +173,17 @@ export const MyOrder = () => {
           pageSize={DEFAULT.PAGE_SIZE}
           totalCount={data?.result?.total || 0}
         />
-
         <Dialog open={isOpenModal} onOpenChange={onCloseModal}>
-          <DialogContent className="max-h-[80%] lg:max-w-[800px]">
+          <DialogOverlay onClick={(e) => e.stopPropagation()} />
+          <DialogContent
+            aria-describedby="description"
+            onInteractOutside={(event) => event.preventDefault()}
+            className="max-h-[80%] lg:max-w-[800px]"
+          >
             <DialogHeader className="">
               <DialogTitle>Chi tiết đơn hàng</DialogTitle>
             </DialogHeader>
+
             <ScrollArea className="h-96">
               <div className="rs max-h-full space-y-4">
                 <div className="w-full space-y-2">
@@ -188,14 +208,20 @@ export const MyOrder = () => {
                 </div>
                 <div className="w-full space-y-2">
                   <p className="text-sm font-bold">Ảnh kiện hàng</p>
-                  <div className="relative aspect-[4/2] w-full">
-                    <ImageWithFallback
-                      src={rowData?.image_url?.[0] || ''}
-                      alt={'img order'}
-                      className="object-contain"
-                      fill
-                      sizes="100%"
-                    />
+                  <div className="grid grid-cols-4 gap-2">
+                    {rowData?.image_url?.map((url, id) => (
+                      <div key={id} className="relative aspect-[3/2] w-full grid-cols-1">
+                        <ImageWithFallback
+                          src={url || ''}
+                          alt={'img order'}
+                          className="cursor-pointer object-cover"
+                          fill
+                          onClick={() => onOpenModalImg(url)}
+                          sizes="(max-width: 640px) 100vw, 33vw"
+                          data-fancybox="gallery"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
                 {rowData?.reason_cancel?.reason && (
@@ -232,6 +258,28 @@ export const MyOrder = () => {
                 Hủy
               </Button>
             </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Modal để preview ảnh */}
+        <Dialog open={isOpenModalImg} onOpenChange={onCloseModalImg}>
+          <DialogContent className="fixed z-50 h-screen max-h-screen max-w-full border-none bg-transparent/80 p-0 text-white outline-none">
+            <VisuallyHidden>
+              <DialogTitle></DialogTitle>
+            </VisuallyHidden>
+
+            <div className="flex items-center justify-center">
+              {urlImg && (
+                <ImageWithFallback
+                  src={urlImg}
+                  alt="Preview"
+                  width={0}
+                  height={0}
+                  className="h-auto max-h-lvh w-auto object-contain"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                />
+              )}
+            </div>
           </DialogContent>
         </Dialog>
       </div>

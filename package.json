@@ -14,6 +14,7 @@
     "test-all": "npm run check-format && npm run check-lint && npm run build"
   },
   "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-accordion": "^1.2.0",
     "@radix-ui/react-aspect-ratio": "^1.1.0",
@@ -51,10 +52,10 @@
     "react": "^18",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
-    "react-dropzone": "^14.2.9",
+    "react-dropzone": "^14.3.5",
     "react-hook-form": "^7.53.0",
     "react-share": "^5.1.0",
-    "sonner": "^1.5.0",
+    "sonner": "^1.7.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.23.8",
