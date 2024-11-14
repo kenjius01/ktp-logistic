@@ -47,11 +47,9 @@ export const ChangePassword = () => {
     mutationFn: changePasswordApi,
   });
   const onChangePass = (values: FormValues) => {
-    console.log(values);
     mutate(values, {
       onSuccess: (res) => {
         if (res.code === CODE_RESPONSE.POST_SUCCESS) {
-          console.log(res);
           form.reset();
           toast.success('Đổi mật khẩu thành công');
           return;

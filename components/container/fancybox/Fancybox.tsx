@@ -1,3 +1,4 @@
+'use client';
 import React, { PropsWithChildren, useEffect, useRef } from 'react';
 import { Fancybox as NativeFancybox } from '@fancyapps/ui';
 import type { OptionsType } from '@fancyapps/ui/types/Fancybox/options';

@@ -77,7 +77,6 @@ export const MyOrder = () => {
     setIsOpenModalImg(true);
   };
   const onCloseModalImg = () => {
-    console.log('first');
     setIsOpenModalImg(false);
     setUrlImg('');
   };
