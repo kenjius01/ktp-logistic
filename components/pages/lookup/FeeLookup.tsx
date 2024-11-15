@@ -24,6 +24,17 @@ import { lookupFeeAndTimeApi, searchShippingServiceApi } from '@/services/lookup
 
 import { MassItem } from './MassItem';
 
+const transportFormOptions = [
+  {
+    value: 1,
+    label: 'Trong nước',
+  },
+  {
+    value: 2,
+    label: 'Quốc tế',
+  },
+];
+
 const formSchema = z.object({
   service_id: z.number({
     message: 'Vui lòng chọn dịch vụ',
@@ -40,7 +51,8 @@ const formSchema = z.object({
     message: 'Vui lòng chọn tỉnh',
   }),
   to_district_code: z.string(),
-  service_id1: z.number(),
+  transport_form1: z.number().optional(),
+  transport_form2: z.number().optional(),
 });
 
 export const FeeLookup = () => {
@@ -85,8 +97,8 @@ export const FeeLookup = () => {
     enabled: !!lookupForm,
   });
   const configPrices = lookupRes?.result?.config_price || [];
-  const service_id = form.watch('service_id');
-  const service_id1 = form.watch('service_id1');
+  const transport_form1 = form.watch('transport_form1');
+  const transport_form2 = form.watch('transport_form2');
   const onLookup = (values: z.infer<typeof formSchema>) => {
     const { khoi_luong, ...rest } = values;
     const khoi_luong_id = findKhoiLuongId(Number(khoi_luong));
@@ -149,6 +161,15 @@ export const FeeLookup = () => {
                       fieldNames={{ value: 'id', label: 'name' }}
                     />
                   </div>
+                  <div className="space-y-2">
+                    <FormCombobox
+                      className="w-full justify-between"
+                      label="Hình thức vận chuyển"
+                      control={form.control}
+                      name="transport_form1"
+                      options={transportFormOptions}
+                    />
+                  </div>
                   <div className="flex flex-col gap-2 md:flex-row">
                     <div className="w-full space-y-2">
                       <FormCombobox
@@ -158,14 +179,14 @@ export const FeeLookup = () => {
                         placeholder="Chọn tỉnh"
                         control={form.control}
                         name="from_province_code"
-                        queryKey={[KEY_QUERY.PROVINCE, 'from_province_code', service_id]}
+                        queryKey={[KEY_QUERY.PROVINCE, 'from_province_code', transport_form1]}
                         queryFn={() =>
                           searchProvince({
                             keyword: '',
                             filters: [
                               {
                                 name: 'in_the_country',
-                                value: service_id === 2,
+                                value: transport_form1 === 1,
                                 operation: OPERATION_FILTER.EQ,
                               },
                             ],
@@ -188,7 +209,7 @@ export const FeeLookup = () => {
                           KEY_QUERY.DISTRICT,
                           fromProvinceCode,
                           'from_district_code',
-                          service_id,
+                          transport_form1,
                         ]}
                         queryFn={() => searchDistrictByProvince(fromProvinceCode)}
                         fieldNames={{ value: 'code', label: 'name' }}
@@ -197,14 +218,11 @@ export const FeeLookup = () => {
                   </div>
                   <div className="space-y-2">
                     <FormCombobox
-                      required
                       className="w-full justify-between"
-                      label="Dịch vụ"
+                      label="Hình thức vận chuyển"
                       control={form.control}
-                      name="service_id1"
-                      queryKey={[KEY_QUERY.SHIPPING_SERVICE, '2']}
-                      queryFn={() => searchShippingServiceApi(DEFAULT_FILTER)}
-                      fieldNames={{ value: 'id', label: 'name' }}
+                      name="transport_form2"
+                      options={transportFormOptions}
                     />
                   </div>
                   <div className="flex flex-col gap-2 md:flex-row">
@@ -216,14 +234,14 @@ export const FeeLookup = () => {
                         placeholder="Chọn tỉnh"
                         control={form.control}
                         name="to_province_code"
-                        queryKey={[KEY_QUERY.PROVINCE, 'to_province_code', service_id1]}
+                        queryKey={[KEY_QUERY.PROVINCE, 'to_province_code', transport_form2]}
                         queryFn={() =>
                           searchProvince({
                             keyword: '',
                             filters: [
                               {
                                 name: 'in_the_country',
-                                value: service_id1 === 2,
+                                value: transport_form2 === 1,
                                 operation: OPERATION_FILTER.EQ,
                               },
                             ],
@@ -241,7 +259,7 @@ export const FeeLookup = () => {
                         control={form.control}
                         name="to_district_code"
                         config={{ enabled: !!toProvinceCode }}
-                        queryKey={[toProvinceCode, 'to_district_code', service_id1]}
+                        queryKey={[toProvinceCode, 'to_district_code', transport_form2]}
                         queryFn={() => searchDistrictByProvince(toProvinceCode)}
                         fieldNames={{ value: 'code', label: 'name' }}
                       />

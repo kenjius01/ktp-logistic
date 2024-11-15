@@ -1,15 +1,12 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { z } from 'zod';
 
 import { Container } from '@/components/Container';
-import { FormInput } from '@/components/Form';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -19,7 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Form } from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT_FILTER, listAdInfos, SERVICE_COMPANY } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -31,20 +28,10 @@ import useAuthStore from '@/stores/useAuthStore';
 import { CompanyCarousel } from './CompanyCarousel';
 import { ProcessAndFeedback } from './ProcessAndFeedback';
 
-const formSchema = z.object({
-  code: z.string().min(1, {
-    message: 'Vui lòng nhập mã tra cứu',
-  }),
-});
 const ServicesIntro = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      code: '',
-    },
-  });
   const { user } = useAuthStore();
   const router = useRouter();
+  const [code, setCode] = useState<string>('');
   const { data, isLoading } = useQuery({
     queryKey: [KEY_QUERY.WEB_CONFIG],
     queryFn: () => searchWebConfigApi(DEFAULT_FILTER),
@@ -59,8 +46,8 @@ const ServicesIntro = () => {
     window.open(item?.link_web, '_blank');
   };
 
-  const onSearch = (values: z.infer<typeof formSchema>) => {
-    router.push(ROUTES.TRACKING_ORDER + `?code=${values.code}`);
+  const onSearch = () => {
+    router.push(ROUTES.TRACKING_ORDER + `?code=${code}`);
   };
   return (
     <Container>
@@ -84,25 +71,17 @@ const ServicesIntro = () => {
               Tra cứu lộ trình đơn hàng từ nước ngoài
             </p>
             {user ? (
-              <div className="flex items-center justify-center">
-                <Form {...form}>
-                  <form
-                    className="flex flex-col items-center sm:flex-row sm:gap-4"
-                    onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
-                  >
-                    <FormInput
-                      className="h-12 w-full sm:min-w-80 md:min-w-[500px]"
-                      control={form.control}
-                      name="code"
-                      label="Mã đơn hàng"
-                      required
-                    />
-                    <Button type="submit" size="lg" className="mt-6 font-bold">
-                      <SearchIcon className="mr-2 h-4 w-4" />
-                      Tra cứu
-                    </Button>
-                  </form>
-                </Form>
+              <div className="mx-auto flex w-full max-w-sm items-center space-x-2 md:w-2/3 md:max-w-none">
+                <Input
+                  placeholder="Nhập mã đơn hàng"
+                  value={code}
+                  className="h-10 border border-primary"
+                  onChange={(e) => setCode(e.target.value)}
+                />
+                <Button size={'lg'} type="submit" disabled={!code} onClick={onSearch}>
+                  <SearchIcon className="mr-2 h-4 w-4" />
+                  Tra cứu
+                </Button>
               </div>
             ) : (
               <></>

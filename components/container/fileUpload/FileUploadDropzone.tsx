@@ -89,7 +89,6 @@ const FileUploadDropzone = ({ onChange }: FileUploadDropzoneProps) => {
     const newFiles = listFile.filter(
       (item) => !files?.some((existedFile) => existedFile.name === item.name),
     );
-    console.log({ newFiles });
     for (let i = 0; i < newFiles.length; i++) {
       uploadFile(newFiles[i]);
     }
