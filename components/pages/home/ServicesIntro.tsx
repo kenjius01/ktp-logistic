@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
 import { SearchIcon } from 'lucide-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { z } from 'zod';
 
 import { Container } from '@/components/Container';
+import { FormInput } from '@/components/Form';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -16,7 +19,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Input } from '@/components/ui/input';
+import { Form } from '@/components/ui/form';
 import { Skeleton } from '@/components/ui/skeleton';
 import { DEFAULT_FILTER, listAdInfos, SERVICE_COMPANY } from '@/constants/common';
 import { KEY_QUERY } from '@/constants/keyQuery';
@@ -28,10 +31,18 @@ import useAuthStore from '@/stores/useAuthStore';
 import { CompanyCarousel } from './CompanyCarousel';
 import { ProcessAndFeedback } from './ProcessAndFeedback';
 
+const formSchema = z.object({
+  code: z.string(),
+});
 const ServicesIntro = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      code: '',
+    },
+  });
   const { user } = useAuthStore();
   const router = useRouter();
-  const [code, setCode] = useState<string>('');
   const { data, isLoading } = useQuery({
     queryKey: [KEY_QUERY.WEB_CONFIG],
     queryFn: () => searchWebConfigApi(DEFAULT_FILTER),
@@ -46,8 +57,11 @@ const ServicesIntro = () => {
     window.open(item?.link_web, '_blank');
   };
 
-  const onSearch = () => {
-    router.push(ROUTES.TRACKING_ORDER + `?code=${code}`);
+  const onSearch = (values: z.infer<typeof formSchema>) => {
+    if (!values.code) {
+      return;
+    }
+    router.push(ROUTES.TRACKING_ORDER + `?code=${values.code}`);
   };
   return (
     <Container>
@@ -71,18 +85,25 @@ const ServicesIntro = () => {
               Tra cứu lộ trình đơn hàng từ nước ngoài
             </p>
             {user ? (
-              <div className="mx-auto flex w-full max-w-sm items-center space-x-2 md:w-2/3 md:max-w-none">
-                <Input
-                  placeholder="Nhập mã đơn hàng"
-                  value={code}
-                  className="h-10 border border-primary"
-                  onChange={(e) => setCode(e.target.value)}
-                />
-                <Button size={'lg'} type="submit" disabled={!code} onClick={onSearch}>
-                  <SearchIcon className="mr-2 h-4 w-4" />
-                  Tra cứu
-                </Button>
-              </div>
+              <Form {...form}>
+                <form
+                  className="flex flex-col items-center sm:flex-row sm:gap-4"
+                  onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
+                >
+                  <div className="mx-auto flex w-full max-w-lg overflow-hidden rounded-lg border-2 border-mainColor">
+                    <FormInput
+                      className="h-full w-full border-none shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-0"
+                      control={form.control}
+                      name="code"
+                      placeholder="Nhập mã tra cứu"
+                    />
+                    <Button type="submit" className="font-bold">
+                      <SearchIcon className="mr-2 h-4 w-4" />
+                      Tra cứu
+                    </Button>
+                  </div>
+                </form>
+              </Form>
             ) : (
               <></>
             )}

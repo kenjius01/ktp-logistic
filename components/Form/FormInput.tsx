@@ -36,7 +36,7 @@ export const FormInput = <T extends FieldValues>({
       control={control}
       name={name}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="w-full">
           {label && (
             <FormLabel>
               {label} {required && <span className="text-red-500">*</span>}

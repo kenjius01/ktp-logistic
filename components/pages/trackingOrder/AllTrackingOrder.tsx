@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { useQuery } from '@tanstack/react-query';
-import { SearchIcon } from 'lucide-react';
+import { LoaderCircleIcon, SearchIcon } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { z } from 'zod';
 
@@ -110,6 +110,13 @@ export const AllTrackingOrder = () => {
           />
         </div>
       </div>
+      {isLoading && (
+        <div className="rs mt-8 rounded-md border p-6 shadow-md">
+          <div className="">
+            <LoaderCircleIcon className="mx-auto h-10 w-10 animate-spin text-mainColor" />
+          </div>
+        </div>
+      )}
       {listCheck && listCheck.length > 0 ? (
         <div className="rs mt-8 rounded-md border p-6 shadow-md">
           <Timeline>
