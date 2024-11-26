@@ -305,7 +305,15 @@ export const FileUploaderItem = forwardRef<
         <span className="sr-only">remove item {index}</span>
         <RemoveIcon className="h-4 w-4 duration-200 ease-in-out hover:stroke-destructive" />
       </button>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent opacity-0 duration-200 ease-in-out group-hover:opacity-100">
+      <div
+        onClick={(e) => {
+          const imageElement = e.currentTarget.parentElement?.querySelector('img');
+          if (imageElement) {
+            imageElement.click(); // Trigger click on the image
+          }
+        }}
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-transparent opacity-0 duration-200 ease-in-out group-hover:opacity-100"
+      >
         <EyeIcon className="h-4 w-4" />
       </div>
     </div>

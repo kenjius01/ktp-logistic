@@ -119,14 +119,7 @@ const FileUploadDropzone = ({ onChange }: FileUploadDropzoneProps) => {
               aria-roledescription={`file ${i + 1} containing ${url}`}
               onRemove={onRemoveImg}
             >
-              <Image
-                src={url}
-                alt={url}
-                height={80}
-                width={80}
-                className="size-20 p-0"
-                data-fancybox="gallery"
-              />
+              <Image src={url} alt={url} fill data-fancybox="gallery" sizes="(100vw, 100vh)" />
             </FileUploaderItem>
           ))}
         </Fancybox>
