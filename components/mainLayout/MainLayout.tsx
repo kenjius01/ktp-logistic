@@ -26,10 +26,10 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       <HydrationBoundary state={dehydrate(queryClient)}>
         <Footer />
       </HydrationBoundary>
-      <div className="fixed bottom-5 left-2 z-50 flex flex-col items-center gap-4 sm:bottom-8 sm:left-5">
+      <div className="fixed bottom-16 right-3 z-50 flex flex-col items-center gap-4">
         {/* Facebook */}
-        <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
-          <div className="vr-circle-fill vr-circle-fill-fb absolute left-0 top-0 h-16 w-16 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
+        <div className="btn-vr relative z-10 mx-auto my-0 flex h-12 w-12 cursor-pointer items-center justify-center">
+          <div className="vr-circle-fill vr-circle-fill-fb absolute left-0 top-0 h-12 w-12 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
           <div className="fb-vr-img-circle absolute flex h-9 w-9 animate-phone-vr-circle-fill justify-center overflow-hidden rounded-full bg-[#1877f2]">
             <a
               href={DEFAULT.FACEBOOK_LINK}
@@ -49,8 +49,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         </div>
 
         {/* Zalo */}
-        <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
-          <div className="vr-circle-fill-zalo absolute left-0 top-0 h-16 w-16 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
+        <div className="btn-vr relative z-10 mx-auto my-0 flex h-12 w-12 cursor-pointer items-center justify-center">
+          <div className="vr-circle-fill-zalo absolute left-0 top-0 h-12 w-12 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
           <div className="absolute flex h-9 w-9 animate-phone-vr-circle-fill justify-center overflow-hidden rounded-full bg-[#1877f2]">
             <a href={DEFAULT.ZALO_LINK} target="_blank" rel="noreferrer">
               <Image src={'/images/zalo.png'} alt="" width={40} height={40} />
@@ -59,8 +59,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         </div>
 
         {/* Whatsapp */}
-        {/* <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
-          <div className="vr-circle-fill-whatsapp absolute left-0 top-0 h-16 w-16 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
+        {/* <div className="btn-vr relative z-10 mx-auto my-0 flex h-12 w-12 cursor-pointer items-center justify-center">
+          <div className="vr-circle-fill-whatsapp absolute left-0 top-0 h-12 w-12 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
           <div className="absolute flex h-9 w-9 animate-phone-vr-circle-fill justify-center overflow-hidden rounded-full bg-[#1877f2]">
             <a href={'https://wa.me'} target="_blank" rel="noreferrer">
               <Image src={'/images/whatsapp.png'} alt="" width={40} height={40} />
@@ -69,8 +69,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
         </div> */}
 
         {/* Telephone */}
-        <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
-          <div className="vr-circle-fill-phone absolute left-0 top-0 h-16 w-16 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
+        <div className="btn-vr relative z-10 mx-auto my-0 flex h-12 w-12 cursor-pointer items-center justify-center">
+          <div className="vr-circle-fill-phone absolute left-0 top-0 h-12 w-12 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
           <div className="absolute flex h-9 w-9 animate-phone-vr-circle-fill justify-center overflow-hidden rounded-full bg-[#1877f2]">
             <a href={'tel:0346088112'} target="_blank" rel="noreferrer">
               <Image src={'/images/Call-Icon.png'} alt="" width={40} height={40} />
@@ -78,8 +78,8 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
           </div>
         </div>
 
-        <div className="btn-vr relative z-10 mx-auto my-0 flex h-16 w-16 cursor-pointer items-center justify-center">
-          <div className="vr-circle-fill-zalo absolute left-0 top-0 h-16 w-16 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
+        <div className="btn-vr relative z-10 mx-auto my-0 flex h-12 w-12 cursor-pointer items-center justify-center">
+          <div className="vr-circle-fill-zalo absolute left-0 top-0 h-12 w-12 animate-zoom rounded-full border-[2px] border-transparent bg-[#2196f3b2]"></div>
           <div className="absolute flex h-9 w-9 animate-phone-vr-circle-fill justify-center overflow-hidden rounded-full bg-[#1877f2]">
             <a href={DEFAULT.ZALO_LINK} target="_blank" rel="noreferrer">
               <Image src={'/images/chatbox.png'} alt="" width={40} height={40} />
@@ -89,7 +89,7 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
       </div>
 
       {/* Scroll to top */}
-      <ScrollToTop minHeight={400} scrollTo={10} className="bottom-16 right-4">
+      <ScrollToTop minHeight={400} scrollTo={10} className="bottom-4 right-4">
         <ArrowUpToLine />
       </ScrollToTop>
     </div>
