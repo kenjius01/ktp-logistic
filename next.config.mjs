@@ -5,10 +5,12 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: '**',
+        port: '',
+        pathname: '**',
       },
       {
         protocol: 'https',
-        hostname: '/cdn.mhdigital.vn',
+        hostname: 'cdn.mhdigital.vn',
       },
     ],
   },
