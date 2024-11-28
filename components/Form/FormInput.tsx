@@ -31,6 +31,13 @@ export const FormInput = <T extends FieldValues>({
   placeholder,
   ...rest
 }: FormInputProps<T>) => {
+  const allowedKeys = ['Backspace', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+  const onKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = event;
+    if (!allowedKeys.includes(key) && (key < '0' || key > '9')) {
+      event.preventDefault();
+    }
+  };
   return (
     <FormField
       control={control}
@@ -43,7 +50,13 @@ export const FormInput = <T extends FieldValues>({
             </FormLabel>
           )}
           <FormControl>
-            <Input disabled={disabled} placeholder={placeholder} {...field} {...rest} />
+            <Input
+              disabled={disabled}
+              placeholder={placeholder}
+              onKeyDown={rest.type === 'number' ? onKeyDown : undefined}
+              {...field}
+              {...rest}
+            />
           </FormControl>
           <FormDescription>{description}</FormDescription>
           <FormMessage />

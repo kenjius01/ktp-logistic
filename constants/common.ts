@@ -20,7 +20,7 @@ export const DEFAULT = {
   PAGE: 1,
   PAGE_SIZE: 10,
   NEWS_PAGE_SIZE: 9,
-  FACEBOOK_LINK: 'https://www.facebook.com/khuong443',
+  FACEBOOK_LINK: 'https://www.facebook.com/ThinhPhat.Logistic/',
   ZALO_LINK: 'https://zalo.me/2783031911443104697',
 };
 
