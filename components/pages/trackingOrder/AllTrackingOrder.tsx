@@ -137,7 +137,9 @@ export const AllTrackingOrder = () => {
         </div>
       ) : (
         isFetched && (
-          <p className="text-center font-bold text-destructive">Không có kết quả hiển thị nào!</p>
+          <p className="text-center font-bold text-destructive">
+            {data?.message || 'Không có kết quả hiển thị nào!'}
+          </p>
         )
       )}
     </div>
