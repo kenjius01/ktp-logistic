@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { PaginationWithLinks } from '@/components/pagination/PaginationWithLinks';
 import { SkeletonCard } from '@/components/skeleton/SkeletonCard';
@@ -15,10 +15,11 @@ import { CategoryNews } from './CategoryNews';
 import { NewsItem } from './NewsItem';
 
 export const ListNews = () => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { data } = useSuspenseQuery(categoryNewsOptions);
   const searchParams = useSearchParams();
   const page = Number(searchParams.get('page')) || DEFAULT.PAGE;
-
   const [categoryId, setCategoryId] = useState(0);
   const { data: newsRes, isLoading } = useQuery({
     queryKey: [KEY_QUERY.SEARCH_NEWS_BY_CATEGORY, categoryId, page],
@@ -41,8 +42,22 @@ export const ListNews = () => {
   const listCategory = data?.result?.items || [];
   const news = newsRes?.result?.items || [];
   const totalNews = newsRes?.result?.total || 0;
+
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams],
+  );
+
   const onChangeCategory = (id: number) => {
     setCategoryId(id);
+    router.push(pathname + '?' + createQueryString('page', DEFAULT.PAGE.toString()));
   };
   const turnLoadingToArray = Array.from(Array(DEFAULT.NEWS_PAGE_SIZE).keys()).map((item) => {
     return <SkeletonCard className="w-full" lineClassName="w-full" key={item} times={2} />;
