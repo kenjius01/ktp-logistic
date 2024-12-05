@@ -21,7 +21,7 @@ export const ListNews = () => {
 
   const [categoryId, setCategoryId] = useState(0);
   const { data: newsRes, isLoading } = useQuery({
-    queryKey: [KEY_QUERY.SEARCH_NEWS_BY_CATEGORY, categoryId],
+    queryKey: [KEY_QUERY.SEARCH_NEWS_BY_CATEGORY, categoryId, page],
     queryFn: () =>
       searchNewsApi({
         filters:
