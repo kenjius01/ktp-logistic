@@ -84,29 +84,25 @@ const ServicesIntro = () => {
             <p className="text-center text-xl font-bold uppercase">
               Tra cứu lộ trình đơn hàng từ nước ngoài
             </p>
-            {user ? (
-              <Form {...form}>
-                <form
-                  className="flex flex-col items-center sm:flex-row sm:gap-4"
-                  onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
-                >
-                  <div className="mx-auto flex w-full max-w-lg overflow-hidden rounded-lg border-2 border-mainColor">
-                    <FormInput
-                      className="h-full w-full border-none shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-0"
-                      control={form.control}
-                      name="code"
-                      placeholder="Nhập mã tra cứu"
-                    />
-                    <Button type="submit" className="font-bold">
-                      <SearchIcon className="mr-2 h-4 w-4" />
-                      Tra cứu
-                    </Button>
-                  </div>
-                </form>
-              </Form>
-            ) : (
-              <></>
-            )}
+            <Form {...form}>
+              <form
+                className="flex flex-col items-center sm:flex-row sm:gap-4"
+                onSubmit={form.handleSubmit(onSearch, (e) => console.log('error hct form', e))}
+              >
+                <div className="mx-auto flex w-full max-w-lg overflow-hidden rounded-lg border-2 border-mainColor">
+                  <FormInput
+                    className="h-full w-full border-none shadow-none outline-none focus:border-none focus:outline-none focus-visible:ring-0"
+                    control={form.control}
+                    name="code"
+                    placeholder="Nhập mã tra cứu"
+                  />
+                  <Button type="submit" className="font-bold">
+                    <SearchIcon className="mr-2 h-4 w-4" />
+                    Tra cứu
+                  </Button>
+                </div>
+              </form>
+            </Form>
           </div>
 
           {/* Carousel */}

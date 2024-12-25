@@ -27,8 +27,22 @@ export const Banner = () => {
         >
           <CarouselContent>
             {listBanners.map((item) => (
-              <CarouselItem key={item.id} className="relative h-[400px] w-full">
-                <Image style={{ objectFit: 'cover' }} alt="banner" src={item?.link} fill priority />
+              <CarouselItem key={item.id} className="relative aspect-[3/1] w-full">
+                <Image
+                  style={{ objectFit: 'cover' }}
+                  alt="banner"
+                  src={item?.link}
+                  fill
+                  priority
+                  className="blur-md"
+                />
+                <Image
+                  style={{ objectFit: 'contain' }}
+                  alt="banner"
+                  src={item?.link}
+                  fill
+                  priority
+                />
               </CarouselItem>
             ))}
           </CarouselContent>

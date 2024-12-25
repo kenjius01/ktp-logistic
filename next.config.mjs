@@ -12,6 +12,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'cdn.mhdigital.vn',
       },
+      {
+        protocol: 'https',
+        hostname: 'cms-api.thinhphat-logistics.com',
+      },
     ],
   },
 };
